@@ -6,6 +6,8 @@ Setup a database called `final_capstone` using PG Admin.
 
 Run the database setup script `database_setup.sql` in the PG Admin Query Tool.
 
+Note this will setup 2 users as samples `user` and `admin`. The password for both users is `password`.
+
 
 ### Database users 
 
@@ -80,7 +82,7 @@ The authentication controller uses the `JdbcUserDao` to read and write data from
 
 ### DAO integration tests
 
-`com.techelevator.dao.FinalCapstoneDaoTests` has been provided for you to use as a base class for any DAO integration test. It initializes a Datasource for testing and manages rollback of database changes between tests.
+`com.techelevator.dao.BaseDaoTests` has been provided for you to use as a base class for any DAO integration test. It initializes a Datasource for testing and manages rollback of database changes between tests.
 
 The following is an example of extending this class for writing your own DAO integration tests:
 
