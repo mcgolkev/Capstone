@@ -12,6 +12,14 @@ export default {
 
     getProperty(id){
         return http.get(`properties/${id}`);
+    },
+
+    addProperty(property){
+      return http.post('properties', property);
+    },
+
+    deleteProperty(id){
+      return http.delete(`properties/${id}`)
     }
   
   }

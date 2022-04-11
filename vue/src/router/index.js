@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Properties from '../views/Properties.vue'
 import PropertyInfo from '../views/PropertyInfo.vue'
+import AddProperty from '../views/AddProperty.vue'
 
 Vue.use(Router)
 
@@ -69,6 +70,14 @@ const router = new Router({
       component: PropertyInfo,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: "/properties",
+      name: "add-property",
+      component: AddProperty,
+      meta: {
+        requiresAuth: true
       }
     }
   ]
