@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS apartments, users;
 
 DROP SEQUENCE IF EXISTS seq_user_id;
 
@@ -18,6 +18,25 @@ CREATE TABLE users (
 	role varchar(50) NOT NULL,
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
+
+CREATE TABLE apartments (
+	property_id serial,
+	-- user_id int NOT NULL,
+	address varchar(100) NOT NULL,
+	price decimal NOT NULL,
+	picture text,
+	available date NOT NULL,
+	num_bedrooms decimal,
+	num_bathrooms decimal,
+	square_feet int,
+	short_description text,
+	long_description text,
+	
+	CONSTRAINT PK_apartments PRIMARY KEY (property_id)
+	-- CONSTRAINT FK_apartments_users FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+-- Maybe additional fields for timestamp and user input
+-- Maybe foriegn key of user_id (linker table?)
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
