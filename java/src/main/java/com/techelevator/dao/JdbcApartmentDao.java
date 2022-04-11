@@ -23,7 +23,7 @@ public class JdbcApartmentDao implements ApartmentDao {
         String sql = "SELECT * FROM apartments;";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
-        if (results.next()) {
+        while (results.next()) {
             Apartment apartment = mapRowToApartment(results);
             apartments.add(apartment);
         }
