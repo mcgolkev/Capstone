@@ -1,6 +1,8 @@
+-- If not created yet, create a database called scrumlords
+
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS apartments, users;
+DROP TABLE IF EXISTS users, apartments;
 
 DROP SEQUENCE IF EXISTS seq_user_id;
 
@@ -43,6 +45,9 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpUL
 
 
 --- USER SETUP (Do Not Modify)
+DROP USER IF EXISTS final_capstone_owner;
+DROP USER IF EXISTS final_capstone_appuser;
+
 DROP USER IF EXISTS final_capstone_owner;
 DROP USER IF EXISTS final_capstone_appuser;
 
