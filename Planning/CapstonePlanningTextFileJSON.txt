@@ -1,0 +1,52 @@
+
+
+HTTP Requests
+
+
+
+Two get requests: one for home page, one for particular property detail
+
+http://localhost:3000/
+
+http://localhost:3000/home/properties -> this is main list of properties FOR RENT
+http://localhost:3000/home/properties/id   -> this is for property detail new-page endpoint
+
+properties
+{
+	"propertyId": - primary call   (integer)
+	"address" = (string)
+	"price" = (double)
+	"picture" =  (string, in form of URL like coverpages of books exercise)
+	"whenAvailable" = (date, YYY-MM-DD)
+	"numberOfBedrooms" (double)
+	"numberOfBathrooms" (double)
+	"squarefoot" (integer)
+	"dateAvailableForRent"(date YYYY-MM-DD)
+	"short-description" (String)
+		-free form, include pets, ...security deposit, non-smoking, available utilities,
+	"long-description" (String)
+}
+
+
+question fields: timestamp, who updated, 
+
+
+
+eventually tables:
+
+leasees
+
+
+leassors
+
+users (table)
+userId
+firstName
+lastName
+
+
+linker table:
+userId
+propertyId
+
+
