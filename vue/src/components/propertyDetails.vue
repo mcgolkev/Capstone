@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import propertyService from '../services/PropertyService.vue';
+import propertyService from '../services/PropertyService.js';
 
 export default {
     name: "property-details",

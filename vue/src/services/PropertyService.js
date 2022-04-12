@@ -1,26 +1,24 @@
 import axios from 'axios';
 
-const http = axios.create({
-    baseURL: "http://localhost:3000/"
-  });
-
 export default {
 
     get(){
-        return http.get('properties');
+        return axios.get('properties');
     },
 
     getProperty(id){
-        return http.get(`properties/${id}`);
+        return axios.get(`properties/${id}`);
     },
 
     addProperty(property){
-      return http.post('properties', property);
+      return axios.post('properties', property);
     },
 
     deleteProperty(id){
-      return http.delete(`properties/${id}`)
+      return axios.delete(`properties/${id}`)
     }
+
+    // update property return http.put(`properties/${id}`, property)
   
   }
   

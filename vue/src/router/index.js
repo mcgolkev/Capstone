@@ -97,3 +97,6 @@ router.beforeEach((to, from, next) => {
 });
 
 export default router;
+
+
+//this.$store.state
