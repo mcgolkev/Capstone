@@ -50,6 +50,11 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
-    }
+    },
+    DELETE_PROPERTY(state, id) {
+      state.properties = state.properties.filter((property) => {
+        return property.id !== id;
+      });
+    },
   }
 })
