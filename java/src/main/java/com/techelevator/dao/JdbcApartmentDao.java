@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class JdbcApartmentDao implements ApartmentDao {
 
     @Override
     public void updateApartment(Apartment apartment, Long id) {
-        String sql = "UPDATE apartment SET address_line_1 = ?, address_line_2 = ?, city = ?," +
+        String sql = "UPDATE apartments SET address_line_1 = ?, address_line_2 = ?, city = ?," +
                 "state = ?, zip = ?, price = ?, picture = ?, available = ?, num_bedrooms = ?," +
                 "num_bathrooms = ?, square_feet = ?, short_description = ?, long_description = ?" +
                 "WHERE property_id =?; ";
@@ -69,6 +70,7 @@ public class JdbcApartmentDao implements ApartmentDao {
 
 
 
+
     private Apartment mapRowToApartment(SqlRowSet rs) {
         Apartment apartment = new Apartment();
         apartment.setPropertyId(rs.getLong("property_id"));
@@ -76,7 +78,7 @@ public class JdbcApartmentDao implements ApartmentDao {
         apartment.setAddressLine2(rs.getString("address_line_2"));
         apartment.setCity(rs.getString("city"));
         apartment.setState(rs.getString("state"));
-        apartment.setZip(rs.getString("zip"));
+        apartment.setZip(rs.getInt("zip"));
         apartment.setPrice(rs.getDouble("price"));
         apartment.setPicture(rs.getString("picture"));
         apartment.setDateAvailable(rs.getString("available"));
