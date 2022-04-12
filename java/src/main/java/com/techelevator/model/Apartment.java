@@ -1,9 +1,17 @@
 package com.techelevator.model;
 
+
+import org.springframework.stereotype.Component;
+
+@Component
 public class Apartment {
 
     private Long propertyId;
-    private String address;
+    private String addressLine1;
+    private String addressLine2;
+    private String city;
+    private String state;
+    private String zip;
     private Double price;
     private String picture;
     private double numBedrooms;
@@ -13,9 +21,13 @@ public class Apartment {
     private String longDescription;
     private String dateAvailable; // YYYY-mm-dd
 
-    public Apartment(Long propertyId, String address, Double price, String picture, double numBedrooms, double numBathrooms, Integer squareFeet, String shortDescription, String longDescription, String dateAvailable) {
+    public Apartment(Long propertyId, String addressLine1,String addressLine2, String city, String state, String zip, Double price, String picture, double numBedrooms, double numBathrooms, Integer squareFeet, String shortDescription, String longDescription, String dateAvailable) {
         this.propertyId = propertyId;
-        this.address = address;
+        this.addressLine1 = addressLine1;
+        this.addressLine2 = addressLine2;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
         this.price = price;
         this.picture = picture;
         this.numBedrooms = numBedrooms;
@@ -35,8 +47,25 @@ public class Apartment {
     public Long getPropertyId() {
         return propertyId;
     }
-    public String getAddress() {
-        return address;
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getZip() {
+        return zip;
     }
 
     public Double getPrice() {
@@ -79,10 +108,6 @@ public class Apartment {
         this.propertyId = propertyId;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public void setPrice(Double price) {
         this.price = price;
     }
@@ -115,22 +140,44 @@ public class Apartment {
         this.dateAvailable = dateAvailable;
     }
 
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
 
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
 
     //---------------methods---------------------------
     public String toString() {
         return "Apartment{" +
                 "property_id=" + propertyId +
-                ", address='" + address + //'\'' +
+                ", address_line_1='" + addressLine1 + //'\'' +
+                ", address_line_2='" + addressLine2 + //'\'' +
+                ", city='" + city + //'\'' +
+                ", state='" + state + //'\'' +
+                ", zip='" + zip + //'\'' +
                 ", price='" + price + //'\'' +
                 ", picture='" + picture + //'\'' +
                 ", available='" + dateAvailable + //'\'' +
-                ", numBathrooms=" + numBathrooms +
-                ", numBedrooms=" + numBedrooms +
+                ", num_bathrooms=" + numBathrooms +
+                ", num_bedrooms=" + numBedrooms +
                 ", square_feet=" + squareFeet + //'\'' +
                 ", short_description=" + shortDescription +
                 ", long_description=" + longDescription +
-                // ..... other info
+
                 '}';
     }
 }

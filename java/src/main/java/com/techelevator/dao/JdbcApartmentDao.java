@@ -29,28 +29,40 @@ public class JdbcApartmentDao implements ApartmentDao {
         }
         return apartments;
     }
-/*
-    @Override
-    public Apartment createApartment(Apartment apartment) {
-        Apartment newApartment = null;
-        String sql = "INSERT INTO apartments(park_name, date_established, area, has_camping)\n" +
-                "VALUES (?,?,?,?) RETURNING park_id;";
-        //queryForObject(sql, object to return.Class, params to replace ?
-        long newParkId = jdbcTemplate.queryForObject(sql,Long.class,park.getParkName(),
-                park.getDateEstablished(),park.getArea(),park.getHasCamping());
 
-        newPark = getPark(newParkId);//read the new park from the database based on the id
-
-        return newPark;
+    public Apartment findApartment(Long propertyId){
+      Apartment apartment = new Apartment();
+        String sql = "SELECT * FROM apartments WHERE property_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, propertyId);
+        if(results.next()){
+           apartment = mapRowToApartment(results);
+        }return apartment;
     }
-*/
+    //todo: try catch if the search is blank
+
+    @Override
+    public void updateProperty(Apartment apartment, Long id) {
+        String sql = "UPDATE apartment SET address_line_1 = ?, address_line_2 = ?, city = ?," +
+                "state = ?, zip = ?, price = ?, picture = ?, available = ?, num_bedrooms = ?," +
+                "num_bathrooms = ?, square_feet = ?, short_description = ?, long_description = ?" +
+                "WHERE property_id =?; ";
+        jdbcTemplate.update(sql, apartment.getAddressLine1(), apartment.getAddressLine2(),
+                apartment.getCity(), apartment.getState(), apartment.getZip(), apartment.getPrice(),
+                apartment.getPicture(), apartment.getDateAvailable(), apartment.getNumBedrooms(),
+                apartment.getNumBathrooms(), apartment.getSquareFeet(), apartment.getShortDescription(),
+                apartment.getLongDescription(), id);
+    }
 
 
 
     private Apartment mapRowToApartment(SqlRowSet rs) {
         Apartment apartment = new Apartment();
         apartment.setPropertyId(rs.getLong("property_id"));
-        apartment.setAddress(rs.getString("address"));
+        apartment.setAddressLine1(rs.getString("address_line_1"));
+        apartment.setAddressLine2(rs.getString("address_line_2"));
+        apartment.setCity(rs.getString("city"));
+        apartment.setState(rs.getString("state"));
+        apartment.setZip(rs.getString("zip"));
         apartment.setPrice(rs.getDouble("price"));
         apartment.setPicture(rs.getString("picture"));
         apartment.setDateAvailable(rs.getString("available"));
