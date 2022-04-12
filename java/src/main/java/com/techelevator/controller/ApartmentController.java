@@ -29,7 +29,7 @@ public class ApartmentController {
     public void updateApartment(@RequestBody Apartment apartment, @PathVariable long id){
       apartmentDao.updateApartment(apartment, id);}
 
-    @RequestMapping(path = "/properties/{id}", method = RequestMethod.POST)
+    @RequestMapping(path = "/properties", method = RequestMethod.POST)
     public void createApartment (@RequestBody Apartment apartment){
         apartmentDao.createApartment(apartment);}
 

@@ -3,6 +3,8 @@ package com.techelevator.model;
 
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 @Component
 public class Apartment {
 
@@ -11,7 +13,7 @@ public class Apartment {
     private String addressLine2;
     private String city;
     private String state;
-    private String zip;
+    private int zip;
     private Double price;
     private String picture;
     private double numBedrooms;
@@ -21,7 +23,7 @@ public class Apartment {
     private String longDescription;
     private String dateAvailable; // YYYY-mm-dd
 
-    public Apartment(Long propertyId, String addressLine1,String addressLine2, String city, String state, String zip, Double price, String picture, double numBedrooms, double numBathrooms, Integer squareFeet, String shortDescription, String longDescription, String dateAvailable) {
+    public Apartment(Long propertyId, String addressLine1,String addressLine2, String city, String state, int zip, Double price, String picture, double numBedrooms, double numBathrooms, Integer squareFeet, String shortDescription, String longDescription, String dateAvailable) {
         this.propertyId = propertyId;
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
@@ -64,7 +66,7 @@ public class Apartment {
         return state;
     }
 
-    public String getZip() {
+    public int getZip() {
         return zip;
     }
 
@@ -156,7 +158,7 @@ public class Apartment {
         this.state = state;
     }
 
-    public void setZip(String zip) {
+    public void setZip(int zip) {
         this.zip = zip;
     }
 
