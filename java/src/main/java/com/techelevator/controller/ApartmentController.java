@@ -30,8 +30,12 @@ public class ApartmentController {
       apartmentDao.updateApartment(apartment, id);}
 
     @RequestMapping(path = "/properties", method = RequestMethod.POST)
-    public void createApartment (@RequestBody Apartment apartment){
-        apartmentDao.createApartment(apartment);}
+    public void createApartment(@RequestBody Apartment apartment){
+         apartmentDao.createApartment(apartment);}
+
+    @RequestMapping(path = "/properties/{id}", method = RequestMethod.DELETE)
+    public void deleteApartment(@PathVariable long id){
+        apartmentDao.deleteApartment(id);}
 
 }
 
