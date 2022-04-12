@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import propertyService from "../services/PropertyService.vue"
+import propertyService from "../services/PropertyService.js"
 
 export default {
     name: "create-property",
@@ -38,6 +38,7 @@ export default {
                 bathrooms: "",
                 sqft: "",
                 shortDescription: ""
+                //add address
             }
         }
     },
