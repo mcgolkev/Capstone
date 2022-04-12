@@ -21,12 +21,9 @@
 import PropertyService from '../services/PropertyService'
 export default {
     name: "property-details",
-    props:  {
-    propertyId: Number
-  },
     methods: {},
     created(){
-      PropertyService.get(this.propertyId).then(response => {
+      PropertyService.getProperty(this.$route.params.id).then(response => {
         this.$store.commit("SET_ACTIVE_PROPERTY", response.data)
       }).catch(error => {
         if (error.response.status == 404){

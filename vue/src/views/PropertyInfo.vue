@@ -1,6 +1,6 @@
 <template>
     <div>
-  <property-details v-bind:property-id="parseInt($route.params.id)" />
+  <property-details />
   </div>
 </template>
 
