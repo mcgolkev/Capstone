@@ -22,16 +22,20 @@ export default new Vuex.Store({
     user: currentUser || {},
     properties: [],
     activeProperty: {
-      id: null,
-      address: null,
-      price: null,
-      picture: null,
-      available: null,
-      bedrooms: null,
-      bathrooms: null,
-      sqft: null,
-      shortDescription: null,
-      longDescription: null
+      // id: null,
+      // address1: null,
+      // address2: null,
+      // city: null,
+      // state: null,
+      // zip: null,
+      // price: null,
+      // picture: null,
+      // available: null,
+      // bedrooms: null,
+      // bathrooms: null,
+      // sqft: null,
+      // shortDescription: null,
+      // longDescription: null
     }
   },
   mutations: {
@@ -50,6 +54,12 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    SET_PROPERTY(state, data){
+      state.properties = data;
+    },
+    SET_ACTIVE_PROPERTY(state, data) {
+      state.activeProperty = data;
     },
     DELETE_PROPERTY(state, id) {
       state.properties = state.properties.filter((property) => {

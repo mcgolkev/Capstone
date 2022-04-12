@@ -1,13 +1,14 @@
 <template>
 <div>
-    <property-details />
+    <h1>Properties For Rent</h1>
+    <property-list />
 </div>
 </template>
 
 <script>
-import propertyDetails from '../components/propertyDetails.vue'
+import PropertyList from '../components/PropertyList.vue'
 export default {
-  components: { propertyDetails },
+  components: { PropertyList },
     name: "properties"
 }
 </script>

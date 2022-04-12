@@ -66,7 +66,7 @@ const router = new Router({
     },
     {
       path: "/properties/:id",
-      name: "PropertyInfo",
+      name: "property-info",
       component: PropertyInfo,
       meta: {
         requiresAuth: false
