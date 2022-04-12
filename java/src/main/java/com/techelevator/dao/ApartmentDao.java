@@ -10,7 +10,9 @@ public interface ApartmentDao {
 
     List<Apartment> findAll();
 
-    void updateProperty(Apartment apartment, Long id);
+    void updateApartment(Apartment apartment, Long id);
 
     Apartment findApartment(Long id);
+
+    Apartment createApartment(Apartment apartment);
 }

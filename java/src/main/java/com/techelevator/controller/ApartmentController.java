@@ -8,6 +8,7 @@ import java.lang.reflect.AnnotatedParameterizedType;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class ApartmentController {
     private ApartmentDao apartmentDao;
     private Apartment apartment;
@@ -25,8 +26,12 @@ public class ApartmentController {
         return apartmentDao.findApartment(id);}
 
     @RequestMapping(path = "/properties/{id}", method = RequestMethod.PUT)
-    public void updateProperties(@RequestBody Apartment apartment, @PathVariable long id){
-      apartmentDao.updateProperty(apartment, id);}
+    public void updateApartment(@RequestBody Apartment apartment, @PathVariable long id){
+      apartmentDao.updateApartment(apartment, id);}
+
+    @RequestMapping(path = "/properties/{id}", method = RequestMethod.POST)
+    public void createApartment (@RequestBody Apartment apartment){
+        apartmentDao.createApartment(apartment);}
 
 }
 

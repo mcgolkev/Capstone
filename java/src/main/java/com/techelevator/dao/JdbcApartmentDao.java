@@ -30,6 +30,20 @@ public class JdbcApartmentDao implements ApartmentDao {
         return apartments;
     }
 
+    public Apartment createApartment(Apartment apartment){
+        String sql = "INSERT INTO apartments (address_line_1, address_line_2, city," +
+                "state, zip, price, picture, available, num_bedrooms," +
+                "num_bathrooms, square_feet, short_description, long_description)" +
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
+
+        Long newId = jdbcTemplate.queryForObject(sql, Long.class, apartment.getAddressLine1(), apartment.getAddressLine2(),
+                apartment.getCity(), apartment.getState(), apartment.getZip(), apartment.getPrice(),
+                apartment.getPicture(), apartment.getDateAvailable(), apartment.getNumBedrooms(),
+                apartment.getNumBathrooms(), apartment.getSquareFeet(), apartment.getShortDescription(),
+                apartment.getLongDescription());
+        return findApartment(newId);
+    }
+
     public Apartment findApartment(Long propertyId){
       Apartment apartment = new Apartment();
         String sql = "SELECT * FROM apartments WHERE property_id = ?;";
@@ -41,7 +55,7 @@ public class JdbcApartmentDao implements ApartmentDao {
     //todo: try catch if the search is blank
 
     @Override
-    public void updateProperty(Apartment apartment, Long id) {
+    public void updateApartment(Apartment apartment, Long id) {
         String sql = "UPDATE apartment SET address_line_1 = ?, address_line_2 = ?, city = ?," +
                 "state = ?, zip = ?, price = ?, picture = ?, available = ?, num_bedrooms = ?," +
                 "num_bathrooms = ?, square_feet = ?, short_description = ?, long_description = ?" +

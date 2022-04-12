@@ -177,7 +177,6 @@ public class Apartment {
                 ", square_feet=" + squareFeet + //'\'' +
                 ", short_description=" + shortDescription +
                 ", long_description=" + longDescription +
-
                 '}';
     }
 }
