@@ -40,6 +40,8 @@ CREATE TABLE apartments (
 -- Maybe additional fields for timestamp and user input
 -- Maybe foriegn key of user_id (linker table?)
 
+-- Might have to limit roles to specific values
+
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
