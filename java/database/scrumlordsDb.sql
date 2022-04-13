@@ -47,6 +47,42 @@ CREATE TABLE apartments (
 
 -- Might have to limit roles to specific values
 
+CREATE TABLE ownership (
+	ownership_id serial,
+	property_id int,
+	landlord_primary int,
+	landlord_secondary int,
+	renter_primary int,
+	renter_secondary int,
+	renter_tertiary int,
+
+	CONSTRAINT PK_ownership PRIMARY KEY (ownership_id)
+);
+
+CREATE TABLE account (
+	account_id serial,
+	property_id int,
+	balance_owed decimal,
+	monthly_rent decimal,
+	--amount of rent each month
+	CONSTRAINT PK_account PRIMARY KEY (account_id)
+
+);
+
+CREATE TABLE maintenance (
+	request_id serial,
+	submitted_by int,
+	--user_id int
+	property_id int,
+	current_status varchar(150),
+	date_submitted date NOT NULL,
+	description text,
+	employee_assigned int,
+	--user_ID of employee assigned by landlord to fix
+
+	CONSTRAINT PK_maintenance PRIMARY KEY (request_id)
+);
+
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
