@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component //anytime that a ApartmentDao gets injected, create an object of JdbcApartmentDao to use
@@ -31,18 +32,18 @@ public class JdbcApartmentDao implements ApartmentDao {
         return apartments;
     }
 
-    public Apartment createApartment(Apartment apartment){
+    public void createApartment(Apartment apartment){
         String sql = "INSERT INTO apartments (address_line_1, address_line_2, city," +
                 "state, zip, price, picture, available, num_bedrooms," +
                 "num_bathrooms, square_feet, short_description, long_description)" +
                 "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
-
-        Long newId = jdbcTemplate.queryForObject(sql, Long.class, apartment.getAddressLine1(), apartment.getAddressLine2(),
+        LocalDate date = LocalDate.parse(apartment.getDateAvailable());
+       jdbcTemplate.update(sql, apartment.getAddressLine1(), apartment.getAddressLine2(),
                 apartment.getCity(), apartment.getState(), apartment.getZip(), apartment.getPrice(),
-                apartment.getPicture(), apartment.getDateAvailable(), apartment.getNumBedrooms(),
+                apartment.getPicture(), date, apartment.getNumBedrooms(),
                 apartment.getNumBathrooms(), apartment.getSquareFeet(), apartment.getShortDescription(),
                 apartment.getLongDescription());
-        return findApartment(newId);
+
     }
 
     public Apartment findApartment(Long propertyId){
@@ -55,20 +56,29 @@ public class JdbcApartmentDao implements ApartmentDao {
     }
     //todo: try catch if the search is blank
 
+
+
+
     @Override
     public void updateApartment(Apartment apartment, Long id) {
         String sql = "UPDATE apartments SET address_line_1 = ?, address_line_2 = ?, city = ?," +
                 "state = ?, zip = ?, price = ?, picture = ?, available = ?, num_bedrooms = ?," +
                 "num_bathrooms = ?, square_feet = ?, short_description = ?, long_description = ?" +
                 "WHERE property_id =?; ";
+        LocalDate date = LocalDate.parse(apartment.getDateAvailable());
         jdbcTemplate.update(sql, apartment.getAddressLine1(), apartment.getAddressLine2(),
                 apartment.getCity(), apartment.getState(), apartment.getZip(), apartment.getPrice(),
-                apartment.getPicture(), apartment.getDateAvailable(), apartment.getNumBedrooms(),
+                apartment.getPicture(), date, apartment.getNumBedrooms(),
                 apartment.getNumBathrooms(), apartment.getSquareFeet(), apartment.getShortDescription(),
                 apartment.getLongDescription(), id);
     }
 
-
+    public  void deleteApartment(Long propertyId){
+        String sql = "DELETE\n" +
+                "FROM apartments\n" +
+                "WHERE property_id = ?;";
+        jdbcTemplate.update(sql, propertyId);
+    }
 
 
     private Apartment mapRowToApartment(SqlRowSet rs) {
