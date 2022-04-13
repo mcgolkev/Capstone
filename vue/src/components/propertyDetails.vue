@@ -1,17 +1,11 @@
 <template>
   <div>
     <div>
-        <h1>Address: {{this.$store.state.activeProperty.addressLine1}}</h1>
-        <p>{{this.$store.state.activeProperty.city}}</p>
-        <p>{{this.$store.state.activeProperty.state}}</p>
-        <p>{{this.$store.state.activeProperty.zip}}</p>
-      <p>{{this.$store.state.activeProperty.price}}</p>
-      <!-- <img v-bind:src="property.picture" v-bind:alt="property.address" /> -->
-      <p>{{this.$store.state.activeProperty.dateAvailable}}</p>
-      <p>{{this.$store.state.activeProperty.numBedrooms}}</p>
-      <p>{{this.$store.state.activeProperty.numBathrooms}}</p>
-      <p>{{this.$store.state.activeProperty.squareFeet}}</p>
-      <p>{{this.$store.state.activeProperty.shortDescription}}</p>
+        <!-- <img v-bind:src="property.picture" v-bind:alt="property.addres1s" /> -->
+    <h1>Address: {{this.$store.state.activeProperty.addressLine1}} {{this.$store.state.activeProperty.addressLine2}} {{this.$store.state.activeProperty.city}} {{this.$store.state.activeProperty.state}} {{this.$store.state.activeProperty.zip}}</h1>
+      <p> Date Available: {{this.$store.state.activeProperty.dateAvailable}}, ${{this.$store.state.activeProperty.price}}</p>
+      <p>Bed: {{this.$store.state.activeProperty.numBedrooms}} Bath: {{this.$store.state.activeProperty.numBathrooms}} {{this.$store.state.activeProperty.squareFeet}}sqft</p>
+      <p>Description: {{this.$store.state.activeProperty.longDescription}}</p>
     </div>
       <!-- contact realtor button -->
   </div>

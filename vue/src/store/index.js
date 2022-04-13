@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import Buefy from 'buefy'
+import 'buefy/dist/buefy.css'
 
+Vue.use(Buefy)
 Vue.use(Vuex)
 
 /*
@@ -21,22 +24,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     properties: [],
-    activeProperty: {
-      // id: null,
-      // address1: null,
-      // address2: null,
-      // city: null,
-      // state: null,
-      // zip: null,
-      // price: null,
-      // picture: null,
-      // available: null,
-      // bedrooms: null,
-      // bathrooms: null,
-      // sqft: null,
-      // shortDescription: null,
-      // longDescription: null
-    }
+    activeProperty: {}
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {

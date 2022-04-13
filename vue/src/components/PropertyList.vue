@@ -1,17 +1,11 @@
 <template>
-  <div class="property-list">
-      <div v-for="property in this.$store.state.properties" v-bind:key="property.propertyId">
-        <h1><router-link :to="{name: 'property-info', params: {id: property.propertyId}}">Address: {{property.addressLine1}}</router-link></h1>
-        <p>{{property.city}}</p>
-        <p>{{property.state}}</p>
-        <p>{{property.zip}}</p>
-      <p>{{property.price}}</p>
-      <!-- <img v-bind:src="property.picture" v-bind:alt="property.address" /> -->
-      <p>{{property.dateAvailable}}</p>
-      <p>{{property.numBedrooms}}</p>
-      <p>{{property.numBathrooms}}</p>
-      <p>{{property.squareFeet}}</p>
-      <p>{{property.shortDescription}}</p>
+  <div class="property-list column">
+ <div class="property-information" v-for="property in this.$store.state.properties" v-bind:key="property.propertyId">
+     <!-- <img v-bind:src="property.picture" v-bind:alt="property.addres1s" /> -->
+    <h1><router-link :to="{name: 'property-info', params: {id: property.propertyId}}">Address: {{property.addressLine1}} {{property.city}} {{property.state}} {{property.zip}}</router-link></h1>
+      <p> Date Available: {{property.dateAvailable}}, ${{property.price}}</p>
+      <p>Bed: {{property.numBedrooms}} Bath: {{property.numBathrooms}} {{property.squareFeet}}sqft</p>
+      <p>Description: {{property.shortDescription}}</p>
       </div>
   </div>
 </template>

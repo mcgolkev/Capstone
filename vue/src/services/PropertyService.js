@@ -18,7 +18,7 @@ export default {
       return axios.delete(`properties/${id}`)
     }
 
-    // update property return http.put(`properties/${id}`, property)
+    // update property return axios.put(`properties/${id}`, property)
   
   }
   
