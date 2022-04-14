@@ -24,7 +24,7 @@ CREATE TABLE users (
 
 CREATE TABLE apartments (
 	property_id serial,
-	-- user_id int NOT NULL,
+	landlord int NOT NULL,
 	address_line_1 varchar(150) NOT NULL,
 	address_line_2 varchar(150),
 	city varchar(250) NOT NULL,
@@ -38,10 +38,11 @@ CREATE TABLE apartments (
 	square_feet int,
 	short_description text,
 	long_description text,
+	available_for_rent boolean,
 	
 	CONSTRAINT PK_apartments PRIMARY KEY (property_id)
-	-- CONSTRAINT FK_apartments_users FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
+
 -- Maybe additional fields for timestamp and user input
 -- Maybe foriegn key of user_id (linker table?)
 
@@ -49,44 +50,91 @@ CREATE TABLE apartments (
 
 CREATE TABLE ownership (
 	ownership_id serial,
-	property_id int,
-	landlord_primary int,
-	landlord_secondary int,
-	renter_primary int,
-	renter_secondary int,
-	renter_tertiary int,
+	property_id int NOT NULL,
+	landlord int NOT NULL,
+	renter int,
 
-	CONSTRAINT PK_ownership PRIMARY KEY (ownership_id)
+	CONSTRAINT PK_ownership PRIMARY KEY (ownership_id),
+	CONSTRAINT FK1_ownership_users FOREIGN KEY (landlord) REFERENCES users(user_id),
+	CONSTRAINT FK2_ownership_users FOREIGN KEY (renter) REFERENCES users(user_id),
+	CONSTRAINT FK3_ownership_apartments FOREIGN KEY (property_id) REFERENCES apartments(property_id)
 );
 
 CREATE TABLE account (
 	account_id serial,
-	property_id int,
-	balance_owed decimal,
-	monthly_rent decimal,
-	--amount of rent each month
-	CONSTRAINT PK_account PRIMARY KEY (account_id)
+	ownership_id int not null,
+	balance_due decimal,
+	monthly_rent_amt decimal,
+	past_due boolean,
+		
+	CONSTRAINT PK_account PRIMARY KEY (account_id),
+	CONSTRAINT FK_account_ownership FOREIGN KEY (ownership_id) REFERENCES ownership(ownership_id)
+);
 
+CREATE TABLE maint_staff (
+	maint_staff_id SERIAL,
+	staff_user_id int NOT NULL,
+	staff_name varchar(50) NOT NULL,
+	service_dept varchar(30) NOT NULL,
+		
+	CONSTRAINT PK_maint_staff PRIMARY KEY (maint_staff_id),
+	CONSTRAINT FK1_maint_staff_users FOREIGN KEY (staff_user_id) REFERENCES users(user_id),
+	CONSTRAINT FK2_maint_staff_users FOREIGN KEY (staff_name) REFERENCES users(username)
 );
 
 CREATE TABLE maintenance (
-	request_id serial,
-	submitted_by int,
-	--user_id int
-	property_id int,
-	current_status varchar(150),
-	date_submitted date NOT NULL,
-	description text,
-	employee_assigned int,
-	--user_ID of employee assigned by landlord to fix
-
-	CONSTRAINT PK_maintenance PRIMARY KEY (request_id)
+	maintenance_id SERIAL,
+	ownership_id int NOT NULL,
+	maint_staff_id int,
+	description text NOT NULL,
+	complete boolean,
+	assigned boolean,
+	new_request boolean,
+	
+	CONSTRAINT PK_maintenance PRIMARY KEY (maintenance_id),
+	CONSTRAINT FK1_maintenance_ownership FOREIGN KEY (ownership_id) REFERENCES ownership(ownership_id),
+	CONSTRAINT FK2_maintenance_maint_staff FOREIGN KEY (maint_staff_id) REFERENCES maint_staff(maint_staff_id)
 );
 
-INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
-INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+CREATE TABLE notification (
+	notification_id serial,
+	user_id int not null,
+	message varchar(200) not null,
+	read boolean,
+		
+	CONSTRAINT PK_notification PRIMARY KEY (notification_id),
+	CONSTRAINT FK_notification_users FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- BASE USERS
+INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');  -- UID 1
+INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');-- UID 2
+
+-- MAINTENANCE STAFF USERS
+INSERT INTO users (username,password_hash,role) VALUES ('Mary Chiller','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','STAFF'); -- UID 3
+INSERT INTO users (username,password_hash,role) VALUES ('Sam Carpenter','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','STAFF'); -- UID 4
+INSERT INTO users (username,password_hash,role) VALUES ('Sally Watts','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','STAFF'); -- UID 5
+INSERT INTO users (username,password_hash,role) VALUES ('Tom Mower','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','STAFF'); -- UID 6
+INSERT INTO users (username,password_hash,role) VALUES ('John Snow','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','STAFF'); -- UID 7
+
+-- LANDLORD USERS
+INSERT INTO users (username,password_hash,role) VALUES ('Fred Mertz','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','LANDLORD'); -- UID 8
+INSERT INTO users (username,password_hash,role) VALUES ('Mr. Shickadance','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','LANDLORD'); -- UID 9
+
+-- RENTER USERS
+INSERT INTO users (username,password_hash,role) VALUES ('Frank Goodyear','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','RENTER'); -- UID 10
+INSERT INTO users (username,password_hash,role) VALUES ('Annie Singleton','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','RENTER'); -- UID 11
+INSERT INTO users (username,password_hash,role) VALUES ('Tony Stark','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','RENTER'); -- UID 12
+INSERT INTO users (username,password_hash,role) VALUES ('Jake Olsen','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','RENTER'); -- UID 13
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- PROPERTY ID 1
 INSERT INTO apartments (
+			landlord,
 			address_line_1,
 			address_line_2,
 			city,
@@ -100,11 +148,12 @@ INSERT INTO apartments (
 			square_feet,
 			short_description,
 			long_description)
-VALUES ('15 Main St.', 
+VALUES (8,
+		'1154 Jackson Rd.', 
 		'Apt. 2',
-		'Mapleville', 
-		'VT',
-		12343,
+		'Clearwater', 
+		'FL',
+		33755,
 		1200, 
 		'www.google.com', 
 		'08/01/2022',
@@ -116,10 +165,10 @@ VALUES ('15 Main St.',
 		centrally located to downtown\, greenbelt, and foothills. Application submittal 
 		required prior to scheduling walk-through.');
 		
-
+-- PROPERTY ID 2
 INSERT INTO apartments (
+			landlord,
 			address_line_1,
-			
 			city,
 			state,
 			zip,
@@ -131,11 +180,11 @@ INSERT INTO apartments (
 			square_feet,
 			short_description,
 			long_description)
-VALUES ('433 N. Village Ave', 
-		
-		'Rockville Center', 
-		'NY',
-		11343,
+VALUES (8,
+		'222 N Betty Ln.', 
+		'Clearwater', 
+		'FL',
+		33755,
 		3200, 
 		'www.google.com', 
 		'12/1/2022',
@@ -153,10 +202,10 @@ VALUES ('433 N. Village Ave',
 		Required 1 month broker fees 1 month security, paystubs required!! 
 		1 year lease $6,000 to move in! Call to schedule a showing');
 
-
+-- PROPERTY ID 3
 INSERT INTO apartments (
+			landlord,
 			address_line_1,
-			
 			city,
 			state,
 			zip,
@@ -168,11 +217,11 @@ INSERT INTO apartments (
 			square_feet,
 			short_description,
 			long_description)
-VALUES ('44 Powell Ave.', 
-		
-		'Smithtown', 
-		'UT',
-		98745,
+VALUES (8,
+		'318 N Prescott Ave', 
+		'Clearwater', 
+		'FL',
+		33755,
 		1700, 
 		'www.google.com', 
 		'06/01/2022',
@@ -187,10 +236,10 @@ VALUES ('44 Powell Ave.',
 		June 5th. 1 month security, 1 month broker fee and first months rent due upfront. 
 		Email agent to schedule a showing. HomeSmart Premier Living Realty');
 		
-
+-- PROPERTY ID 4
 INSERT INTO apartments (
+			landlord,
 			address_line_1,
-			
 			city,
 			state,
 			zip,
@@ -202,11 +251,11 @@ INSERT INTO apartments (
 			square_feet,
 			short_description,
 			long_description)
-VALUES ('155 Prince St.', 
-		
-		'Archer', 
-		'VA',
-		45832,
+VALUES (8,
+		'1577 Walnut St', 
+		'Clearwater', 
+		'FL',
+		33755,
 		1200, 
 		'www.google.com', 
 		'08/01/2022',
@@ -220,10 +269,10 @@ VALUES ('155 Prince St.',
 		close to Roosvelt field mall and Nassau courts. Close to LIJ ,Winthrop 
 		hospitals. You pay 50% of the utilities. Available now. NO SMOKING,NO PETS.Please call Lisa');
 
-
+-- PROPERTY ID 5
 INSERT INTO apartments (
+			landlord,
 			address_line_1,
-			
 			city,
 			state,
 			zip,
@@ -235,12 +284,12 @@ INSERT INTO apartments (
 			square_feet,
 			short_description,
 			long_description)
-VALUES ('37 Hempstead Ave.', 
-		
-		'Shirley', 
-		'TX',
-		68741,
-		1200, 
+VALUES (9,
+		'1453 Springdale St', 
+		'Clearwater', 
+		'FL',
+		33755,
+		1350, 
 		'www.google.com', 
 		'05/15/2022',
 		1,
@@ -258,8 +307,9 @@ VALUES ('37 Hempstead Ave.',
 		details. All layouts, dimensions and interior finishes are approximate and for display. Call/email/visit with 
 		Leasing Agent for full unit details. Equal Housing Opportunity owner/management.');
 		
-
+-- PROPERTY ID 6
 INSERT INTO apartments (
+			landlord,
 			address_line_1,
 			address_line_2,
 			city,
@@ -273,12 +323,13 @@ INSERT INTO apartments (
 			square_feet,
 			short_description,
 			long_description)
-VALUES ('28 Berkshire Rd.', 
-		'Apt. 301',
-		'West Sayville', 
-		'NY',
-		78954,
-		1200, 
+VALUES (9,
+		'1837 Venetian Point Dr', 
+		'Apt. 2',
+		'Clearwater', 
+		'FL',
+		33755,
+		2200, 
 		'www.google.com', 
 		'06/01/2022',
 		1,
@@ -304,10 +355,10 @@ VALUES ('28 Berkshire Rd.',
 		
 		THERE ARE NO BROKER FEES - NO SMOKING - NO PETS - SERIOUS INQUIRIES ONLY');
 
-
+-- PROPERTY ID 7
 INSERT INTO apartments (
+			landlord,
 			address_line_1,
-			
 			city,
 			state,
 			zip,
@@ -319,12 +370,12 @@ INSERT INTO apartments (
 			square_feet,
 			short_description,
 			long_description)
-VALUES ('71 Wampum St.', 
-		
-		'Stamford', 
-		'CT',
-		59748,
-		1200, 
+VALUES (9,
+		'1249 Eldridge St', 
+		'Clearwater', 
+		'FL',
+		33755,
+		2750, 
 		'www.google.com', 
 		'07/01/2022',
 		4,
@@ -347,8 +398,9 @@ VALUES ('71 Wampum St.',
 		for the interested buyer. Call for more details. Provide your own due diligence. 
 		Zoning approval will still be required.');
 		
-
+-- PROPERTY ID 8
 INSERT INTO apartments (
+			landlord,
 			address_line_1,
 			address_line_2,
 			city,
@@ -362,11 +414,12 @@ INSERT INTO apartments (
 			square_feet,
 			short_description,
 			long_description)
-VALUES ('108 Copper St.', 
-		'Apt. 202',
-		'South Ozone Park', 
-		'CO',
-		24879,
+VALUES (9,
+		'50 Coe Rd', 
+		'Apt. 2',
+		'Belleair', 
+		'FL',
+		33756,
 		4325, 
 		'www.google.com', 
 		'09/01/2022',
@@ -390,7 +443,230 @@ VALUES ('108 Copper St.',
 		apartment living. This is living up.
 		
 		-Balcony -3rd Floor');
+----------------------------------------------------------------------------------------
+--  NOTIFICATOIN TABLE
+-- NOTIFICAION ID 1
+INSERT INTO notification (
+			user_id,
+			message,
+			read
+			)
+VALUES (
+		10,
+		'Your rent is past due',
+		FALSE
+		);
+----------------------------------------------------------------------
+--  MAINT_STAFF TABLE
+-- MAINT_STAFF ID 1
+INSERT INTO maint_staff (
+		staff_user_id,
+		staff_name,
+		service_dept
+		)
+VALUES (
+		3,
+		'Mary Chiller',
+		'HVAC'
+		);
+-- MAINT_STAFF ID 2
+INSERT INTO maint_staff (
+		staff_user_id,
+		staff_name,
+		service_dept
+		)
+VALUES (
+		4,
+		'Sam Carpenter',
+		'Carpentry'
+		);
+-- MAINT_STAFF ID 3		
+INSERT INTO maint_staff (
+		staff_user_id,
+		staff_name,
+		service_dept
+		)
+VALUES (
+		5,
+		'Sally Watts',
+		'Electrician'
+		);
 
+-- MAINT_STAFF ID 4		
+INSERT INTO maint_staff (
+		staff_user_id,
+		staff_name,
+		service_dept
+		)
+VALUES (
+		6,
+		'Tom Mower',
+		'Landscaping'
+		);
+-- MAINT_STAFF ID 5		
+INSERT INTO maint_staff (
+		staff_user_id,
+		staff_name,
+		service_dept
+		)
+VALUES (
+		7,
+		'John Snow',
+		'Security'
+		);
+-----------------------------------------------------
+--  OWNERSHIP TABLE
+-- OWNERSHIP ID 1
+INSERT INTO ownership (
+			property_id,
+			landlord,
+			renter
+			)
+VALUES (
+		1,
+		8,
+		10
+		);
+-- OWNERSHIP ID 2
+INSERT INTO ownership (
+			property_id,
+			landlord,
+			renter
+			)
+VALUES (
+		5,
+		9,
+		11
+		);
+-- OWNERSHIP ID 3
+INSERT INTO ownership (
+			property_id,
+			landlord,
+			renter
+			)
+VALUES (
+		3,
+		8,
+		12
+		);
+-- OWNERSHIP ID 4
+INSERT INTO ownership (
+			property_id,
+			landlord,
+			renter
+			)
+VALUES (
+		8,
+		9,
+		13
+		);
+		
+------------------------------------------------------------------------------------------------------------------------------
+-- MAINTENANCE TABLE
+-- MAINTENANCE TABLE ID 1
+INSERT INTO maintenance(
+	ownership_id,
+	maint_staff_id,
+	description,
+	assigned,
+	new_request
+)
+VALUES (
+	1,
+	1,
+	'The air conditioning system does not get cold in the garage.',
+	TRUE,
+	FALSE
+);
+
+-- MAINTENANCE TABLE ID 2
+INSERT INTO maintenance(
+	ownership_id,
+	description,
+	new_request
+)
+VALUES (
+	3,
+	'The porch light is broken',
+	TRUE
+);
+
+-- MAINTENANCE TABLE ID 3
+INSERT INTO maintenance(
+	ownership_id,
+	description,
+	new_request,
+	assigned,
+	complete,
+	maint_staff_id
+	
+)
+VALUES (
+	3,
+	'The automatic sprinkler does not shut off.',
+	FALSE,
+	FALSE,
+	TRUE,
+	4
+);
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+-- ACCOUNT TABLE
+-- ACCOUNT TABLE ID 1
+INSERT INTO account(
+	ownership_id,
+	balance_due,
+	monthly_rent_amt,
+	past_due
+)
+VALUES (
+	1,
+	2400,
+	1200,
+	TRUE	
+);
+
+-- ACCOUNT TABLE ID 2
+INSERT INTO account(
+	ownership_id,
+	balance_due,
+	monthly_rent_amt
+)
+VALUES (
+	2,
+	1350,
+	1350	
+);
+
+-- ACCOUNT TABLE ID 3
+INSERT INTO account(
+	ownership_id,
+	balance_due,
+	monthly_rent_amt,
+	past_due
+)
+VALUES (
+	3,
+	1700,
+	1700,
+	FALSE	
+);
+
+-- ACCOUNT TABLE ID 4
+INSERT INTO account(
+	ownership_id,
+	balance_due,
+	monthly_rent_amt,
+	past_due
+)
+VALUES (
+	4,
+	12975,
+	4325,
+	TRUE	
+);
+
+----------------------------------------------------------------------------------
 --- USER SETUP (Do Not Modify)
 DROP USER IF EXISTS final_capstone_owner;
 DROP USER IF EXISTS final_capstone_appuser;
