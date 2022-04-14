@@ -18,6 +18,7 @@ export default {
       return axios.delete(`properties/${id}`)
     }
 
+
     // update property return axios.put(`properties/${id}`, property)
   
   }
