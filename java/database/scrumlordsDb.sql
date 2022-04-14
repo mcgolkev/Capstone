@@ -3,7 +3,7 @@ ROLLBACK;
 
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, apartments;
+DROP TABLE IF EXISTS users, apartments, account, ownership, maintenance;
 
 DROP SEQUENCE IF EXISTS seq_user_id;
 
@@ -155,7 +155,7 @@ VALUES (8,
 		'FL',
 		33755,
 		1200, 
-		'www.google.com', 
+		'https://pi.movoto.com/p/836/6085117_0_UffU2F_l.jpeg', 
 		'08/01/2022',
 		3,
 		2,
@@ -186,7 +186,7 @@ VALUES (8,
 		'FL',
 		33755,
 		3200, 
-		'www.google.com', 
+		'https://photos.zillowstatic.com/fp/20a8d3c6490e0adc032b1841ab59f690-cc_ft_1536.webp', 
 		'12/1/2022',
 		3,
 		2,
@@ -223,7 +223,7 @@ VALUES (8,
 		'FL',
 		33755,
 		1700, 
-		'www.google.com', 
+		'https://photos.zillowstatic.com/fp/1e3efdd0d6c7a05051fec612dd23f4ce-uncropped_scaled_within_1536_1152.webp', 
 		'06/01/2022',
 		1,
 		1,
@@ -284,6 +284,7 @@ INSERT INTO apartments (
 			square_feet,
 			short_description,
 			long_description)
+<<<<<<< HEAD
 VALUES (9,
 		'1453 Springdale St', 
 		'Clearwater', 
@@ -291,6 +292,15 @@ VALUES (9,
 		33755,
 		1350, 
 		'www.google.com', 
+=======
+VALUES ('37 Hempstead Ave.', 
+		
+		'Shirley', 
+		'TX',
+		68741,
+		1200, 
+		'https://photos.zillowstatic.com/fp/9d64ba1dc031963a657c7cd15687e948-cc_ft_1536.webp', 
+>>>>>>> a76b664923a6d5df47918a5ad4e953776227cbdd
 		'05/15/2022',
 		1,
 		1,
@@ -323,6 +333,7 @@ INSERT INTO apartments (
 			square_feet,
 			short_description,
 			long_description)
+<<<<<<< HEAD
 VALUES (9,
 		'1837 Venetian Point Dr', 
 		'Apt. 2',
@@ -331,6 +342,15 @@ VALUES (9,
 		33755,
 		2200, 
 		'www.google.com', 
+=======
+VALUES ('28 Berkshire Rd.', 
+		'Apt. 301',
+		'West Sayville', 
+		'NY',
+		78954,
+		1200, 
+		'https://photos.zillowstatic.com/fp/1383ceb6762023465850da3f2f66f419-cc_ft_1536.webp', 
+>>>>>>> a76b664923a6d5df47918a5ad4e953776227cbdd
 		'06/01/2022',
 		1,
 		1,

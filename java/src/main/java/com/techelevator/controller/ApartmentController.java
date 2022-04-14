@@ -37,6 +37,31 @@ public class ApartmentController {
     public void deleteApartment(@PathVariable long id){
         apartmentDao.deleteApartment(id);}
 
+
+    /**
+        @RequestMapping(value = "/maintenance", method = RequestMethod.GET)
+         public List<Maintenance> findAllMaintenanceRequests(){
+         return maintenanceDao.findAllMaintenanceRequests();}
+
+        @RequestMapping(value = "/maintenance/{id}", method = RequestMethod.GET)
+         public Maintenance findMaintenanceRequest(@PathVariable long id){
+         return maintenanceDao.findMaintenanceRequest(id);}
+
+        @RequestMapping(path = "/maintenance/{id}", method = RequestMethod.PUT)
+         public void updateMaintenanceRequest (@RequestBody Maintenance maintenance, @PathVariable long id){
+         maintenanceDao.updateMaintenanceRequest(maintenance, id);}
+     */
+
+    /**
+     *      @RequestMapping(value = "/rent/{id}", method = RequestMethod.GET)
+     *      public Rent findRentDue(@PathVariable long id){
+     *      return rentDao.findRentDue(id);}
+     *
+     *      @RequestMapping(path = "/rent/{id}", method = RequestMethod.PUT)
+     *      public void updateRent (@RequestBody Rent rent, @PathVariable long id){
+     *      rentDao.updateRent(rent, id);}
+     */
+
 }
 
 
