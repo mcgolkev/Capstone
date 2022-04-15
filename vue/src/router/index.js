@@ -8,6 +8,8 @@ import store from '../store/index'
 import Properties from '../views/Properties.vue'
 import PropertyInfo from '../views/PropertyInfo.vue'
 import AddProperty from '../views/AddProperty.vue'
+// import Renter from '../components/Renter'
+// import NotificationList from '../components/NotificationList'
 
 Vue.use(Router)
 
@@ -80,7 +82,23 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    }
+    },
+    // {
+    //   path: "/rent",
+    //   name: "renter",
+    //   component: Renter,
+    //   meta: {
+    //     requiresAuth: true
+    //   }
+    // },
+    // {
+    //   path: "/notification",
+    //   name: "notification-list",
+    //   component: NotificationList,
+    //   meta: {
+    //     requiresAuth: true
+    //   }
+    // },
   ]
 })
 

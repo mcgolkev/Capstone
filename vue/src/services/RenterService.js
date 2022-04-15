@@ -2,12 +2,16 @@ import axios from 'axios';
 
 export default {
 
-     getRental(userID){
-      return axios.get(`home/${userID}`);
+     getRental(){
+      return axios.get('home/');
     },
 
-    getMaintenance(userID){
-      return axios.get(`home/${userID}`);
+    getRentInfo(){
+      return axios.get('rent');
+    },
+
+    getMaintenance(){
+      return axios.get('maintenance');
     },
 
     addMaintenance(userID, maintenance){

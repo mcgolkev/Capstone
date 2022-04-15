@@ -26,7 +26,9 @@ export default new Vuex.Store({
     properties: [],
     activeProperty: {},
     renterProperty: {},
-    maintenance: {}
+    maintenance: {},
+    notifications: [],
+    rentInfo: {}
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -56,6 +58,12 @@ export default new Vuex.Store({
     },
     SET_MAINTENANCE(state, data) {
       state.maintenance = data;
+    },
+    SET_NOTIFICATIONS(state, data){
+      state.notifications = data;
+    },
+    SET_RENT_INFO(state, data){
+      state.rentInfo = data;
     },
     DELETE_PROPERTY(state, id) {
       state.properties = state.properties.filter((property) => {
