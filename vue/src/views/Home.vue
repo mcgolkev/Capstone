@@ -1,12 +1,17 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
+    <div class="renter-view" v-if="this.$store.state.user.role === 'user'">
+      <renter />
+    </div>
   </div>
 </template>
 
 <script>
+import Renter from '../components/Renter.vue'
+
 export default {
-  name: "home"
+  name: "home",
+  components: {Renter}
 };
 </script>
