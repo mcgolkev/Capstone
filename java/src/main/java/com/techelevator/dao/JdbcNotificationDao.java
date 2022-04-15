@@ -6,6 +6,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 @Component
@@ -18,12 +19,12 @@ public class JdbcNotificationDao implements NotificationDao{
     }
 
     @Override
-    public List<Notification> findAllByUserId(Long id) {
+    public List<Notification> findAllByUserId(String userName) {
         List<Notification> notifications = new ArrayList<>();
-        String sql = "SELECT * \n" +
+        String sql = "SELECT *\n" +
                 "FROM notification\n" +
-                "WHERE user_id = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+                "WHERE user_id =(Select user_id FROM users WHERE username = ? );";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userName);
         while (results.next()){
             Notification notification = mapRowToNotification(results);
             notifications.add(notification);

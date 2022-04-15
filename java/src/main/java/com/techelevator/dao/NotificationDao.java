@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface NotificationDao {
 
-    List<Notification> findAllByUserId(Long id);
+    List<Notification> findAllByUsername(String userName);
 
     void updateNotification(Notification notification);
 

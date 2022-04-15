@@ -17,4 +17,6 @@ public interface ApartmentDao {
     void createApartment(Apartment apartment);
 
     void deleteApartment(Long id);
+
+    Apartment findAptForCurrentUser();
 }
