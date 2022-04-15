@@ -17,7 +17,7 @@ public class RentController {
 
     @RequestMapping(value = "/rent/{id}", method = RequestMethod.GET)
     public Rent findRent(@PathVariable long id){
-        return rentDao.findRentDue(id);}
+        return rentDao.findRentDueByRenterId(id);}
 
     @RequestMapping(path = "/rent/{id}", method = RequestMethod.PUT)
     public void updateRent(@RequestBody Rent rent, @PathVariable long id){

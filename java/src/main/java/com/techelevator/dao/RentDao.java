@@ -8,7 +8,7 @@ public interface RentDao {
      *
      * void updateRent(rent, id)
      */
-    Rent findRentDue(long id);
+    Rent findRentDueByRenterId(long id);
 
     void updateRent(Rent rent, long id);
 

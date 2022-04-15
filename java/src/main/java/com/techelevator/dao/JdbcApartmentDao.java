@@ -31,7 +31,7 @@ public class JdbcApartmentDao implements ApartmentDao {
         }
         return apartments;
     }
-
+    @Override
     public void createApartment(Apartment apartment){
         String sql = "INSERT INTO apartments (address_line_1, address_line_2, city," +
                 "state, zip, price, picture, available, num_bedrooms," +

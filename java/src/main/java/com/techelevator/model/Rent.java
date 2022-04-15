@@ -10,13 +10,17 @@ private long ownershipId;
 private BigDecimal balanceDue;
 private boolean pastDue;
 private BigDecimal monthlyRentAmount;
+private long accountId;
 
 
-    public Rent(long ownershipId, BigDecimal balanceDue, boolean pastDue, BigDecimal monthlyRentAmount) {
+
+
+    public Rent(long ownershipId, BigDecimal balanceDue, boolean pastDue, BigDecimal monthlyRentAmount, long accountId) {
         this.ownershipId = ownershipId;
         this.balanceDue = balanceDue;
         this.pastDue = pastDue;
         this.monthlyRentAmount = monthlyRentAmount;
+        this.accountId = accountId;
     }
 
     public BigDecimal getBalanceDue() {
@@ -48,7 +52,16 @@ private BigDecimal monthlyRentAmount;
     public void setPastDue(boolean pastDue) {
         this.pastDue = pastDue;
     }
+
+    public long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(long accountId) {
+        this.accountId = accountId;
+    }
     public Rent(){
+
 
     }
 
@@ -58,6 +71,7 @@ private BigDecimal monthlyRentAmount;
                 ", balance_due='" + balanceDue + //'\'' +
                 ", past_due='" + pastDue + //'\'' +
                 ", monthly_rent_amt='" + monthlyRentAmount + //'\'' +
+                ", account_id ='" + accountId + //'\'' +
                 '}';
     }
 
