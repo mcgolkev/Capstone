@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import com.techelevator.model.Apartment;
 
 
+import java.security.Principal;
 import java.util.List;
 
 
@@ -18,5 +19,5 @@ public interface ApartmentDao {
 
     void deleteApartment(Long id);
 
-    Apartment findAptForCurrentUser();
+    Apartment findAptForCurrentUser(Principal principal);
 }

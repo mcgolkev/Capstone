@@ -5,9 +5,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Component //anytime that a ApartmentDao gets injected, create an object of JdbcApartmentDao to use
@@ -43,7 +43,6 @@ public class JdbcApartmentDao implements ApartmentDao {
                 apartment.getPicture(), date, apartment.getNumBedrooms(),
                 apartment.getNumBathrooms(), apartment.getSquareFeet(), apartment.getShortDescription(),
                 apartment.getLongDescription());
-
     }
 
     public Apartment findApartment(Long propertyId){
@@ -56,10 +55,12 @@ public class JdbcApartmentDao implements ApartmentDao {
     }
 
 
-    public Apartment findAptForCurrentUser(){
+    public Apartment findAptForCurrentUser(Principal principal){
         Apartment apartment = new Apartment();
-        String sql = "SELECT * FROM apartments WHERE property_id = (SELECT property_id FROM ownership WHERE renter = (SELECT user_id FROM users WHERE username = ?))";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, "Tony Stark");
+        String sql = "SELECT * FROM apartments WHERE property_id in (SELECT property_id " +
+                "FROM ownership WHERE landlord in (SELECT user_id FROM users WHERE username = ?)" +
+                " or renter in (SELECT user_id FROM users WHERE username = ?) )";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal.getName(),principal.getName());
         if(results.next()){
             apartment = mapRowToApartment(results);
         }return apartment;
