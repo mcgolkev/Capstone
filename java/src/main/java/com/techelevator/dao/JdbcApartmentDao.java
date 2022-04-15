@@ -59,7 +59,7 @@ public class JdbcApartmentDao implements ApartmentDao {
     public Apartment findAptForCurrentUser(){
         Apartment apartment = new Apartment();
         String sql = "SELECT * FROM apartments WHERE property_id = (SELECT property_id FROM ownership WHERE renter = (SELECT user_id FROM users WHERE username = ?))";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, );
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, "Tony Stark");
         if(results.next()){
             apartment = mapRowToApartment(results);
         }return apartment;

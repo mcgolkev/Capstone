@@ -19,7 +19,7 @@ public class JdbcNotificationDao implements NotificationDao{
     }
 
     @Override
-    public List<Notification> findAllByUserId(String userName) {
+    public List<Notification> findAllByUsername(String userName) {
         List<Notification> notifications = new ArrayList<>();
         String sql = "SELECT *\n" +
                 "FROM notification\n" +
@@ -44,8 +44,12 @@ public class JdbcNotificationDao implements NotificationDao{
     }
 
     @Override
-    public void addNotification(Notification notification) {
-    return;
+    public void addNotification(Notification notification, String userName) {
+        String sql = "INSERT INTO notification \n" +
+                "(user_id, message, read)\n" +
+                "VALUES ((Select user_id FROM users WHERE username = ? ), ?, FALSE);";
+        jdbcTemplate.update(sql,userName,notification.getMessage());
+        return;
     }
 
     @Override

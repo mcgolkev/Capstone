@@ -24,6 +24,10 @@ public class NotificationController {
         return notificationDao.findAllByUsername(principal.getName());
     }
 
+    @RequestMapping(path = "/notification", method = RequestMethod.POST)
+    public void addNotification(Notification notification,Principal principal){
+         notificationDao.addNotification(notification,principal.getName());
+    }
 
     @RequestMapping(path = "/notification", method = RequestMethod.PUT)
     public void updateNotification( @RequestBody Notification notification){
