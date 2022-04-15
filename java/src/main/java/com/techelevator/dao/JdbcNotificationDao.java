@@ -44,17 +44,21 @@ public class JdbcNotificationDao implements NotificationDao{
     }
 
     @Override
-    public void addNotification(Notification notification, String userName) {
+    public void addNotification(Notification notification) {
         String sql = "INSERT INTO notification \n" +
                 "(user_id, message, read)\n" +
-                "VALUES ((Select user_id FROM users WHERE username = ? ), ?, FALSE);";
-        jdbcTemplate.update(sql,userName,notification.getMessage());
+                "VALUES (?, ?, FALSE);";
+        jdbcTemplate.update(sql,notification.getUser_id(),notification.getMessage());
         return;
     }
 
     @Override
-    public void deleteNotification(Long notificationId) {
-    return;
+    public void deleteNotification(Notification notification) {
+        String sql = "DELETE \n" +
+                "FROM notification\n" +
+                "WHERE notification_id = ?;";
+        jdbcTemplate.update(sql, notification.getNotification_id());
+        return;
     }
 
     private Notification mapRowToNotification(SqlRowSet rs){

@@ -25,12 +25,17 @@ public class NotificationController {
     }
 
     @RequestMapping(path = "/notification", method = RequestMethod.POST)
-    public void addNotification(Notification notification,Principal principal){
-         notificationDao.addNotification(notification,principal.getName());
+    public void addNotification(@RequestBody  Notification notification){
+         notificationDao.addNotification(notification);
     }
 
     @RequestMapping(path = "/notification", method = RequestMethod.PUT)
     public void updateNotification( @RequestBody Notification notification){
         notificationDao.updateNotification(notification);
+    }
+
+    @RequestMapping(path = "/notification", method = RequestMethod.DELETE)
+    public void deleteNotification( @RequestBody Notification notification){
+        notificationDao.deleteNotification(notification);
     }
 }

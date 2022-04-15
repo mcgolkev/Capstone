@@ -68,9 +68,6 @@ public class JdbcApartmentDao implements ApartmentDao {
     }
     //todo: try catch if the search is blank
 
-
-
-
     @Override
     public void updateApartment(Apartment apartment, Long id) {
         String sql = "UPDATE apartments SET address_line_1 = ?, address_line_2 = ?, city = ?," +

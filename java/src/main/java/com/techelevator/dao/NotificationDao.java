@@ -10,8 +10,8 @@ public interface NotificationDao {
 
     void updateNotification(Notification notification);
 
-    void addNotification(Notification notification, String userName);
+    void addNotification(Notification notification);
 
-   void deleteNotification(Long notificationId);
+   void deleteNotification(Notification notification);
 
 }

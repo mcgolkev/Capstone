@@ -617,7 +617,7 @@ INSERT INTO maintenance(
 )
 VALUES (
 	3,
-	6,
+	4,
 	'The shrubs need to be trimmed.',
 	TRUE,
 	FALSE,
