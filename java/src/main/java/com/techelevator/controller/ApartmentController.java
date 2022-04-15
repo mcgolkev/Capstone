@@ -5,6 +5,7 @@ import com.techelevator.model.Apartment;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.AnnotatedParameterizedType;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -37,6 +38,9 @@ public class ApartmentController {
     public void deleteApartment(@PathVariable long id){
         apartmentDao.deleteApartment(id);}
 
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public Apartment findAptForCurrentUser(Principal principal){
+        return apartmentDao.findAptForCurrentUser(principal);}
 
     /**
      *      @RequestMapping(value = "/rent/{id}", method = RequestMethod.GET)
