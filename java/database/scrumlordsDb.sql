@@ -3,7 +3,7 @@ ROLLBACK;
 
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, apartments;
+DROP TABLE IF EXISTS users, apartments, ownership, account, maint_staff, notifications, maintenance;
 
 DROP SEQUENCE IF EXISTS seq_user_id;
 
