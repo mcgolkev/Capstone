@@ -19,5 +19,5 @@ public interface ApartmentDao {
 
     void deleteApartment(Long id);
 
-    Apartment findAptForCurrentUser(Principal principal);
+    List<Apartment> findAptForCurrentUser(Principal principal);
 }

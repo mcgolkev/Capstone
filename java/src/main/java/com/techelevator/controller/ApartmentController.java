@@ -39,7 +39,7 @@ public class ApartmentController {
         apartmentDao.deleteApartment(id);}
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public Apartment findAptForCurrentUser(Principal principal){
+    public List<Apartment> findAptForCurrentUser(Principal principal){
         return apartmentDao.findAptForCurrentUser(principal);}
 
     /**

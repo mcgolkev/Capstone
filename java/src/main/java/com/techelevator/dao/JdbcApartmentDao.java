@@ -55,15 +55,16 @@ public class JdbcApartmentDao implements ApartmentDao {
     }
 
 
-    public Apartment findAptForCurrentUser(Principal principal){
-        Apartment apartment = new Apartment();
+    public List<Apartment> findAptForCurrentUser(Principal principal){
+        List<Apartment> apartments = new ArrayList<>();
         String sql = "SELECT * FROM apartments WHERE property_id in (SELECT property_id " +
                 "FROM ownership WHERE landlord in (SELECT user_id FROM users WHERE username = ?)" +
                 " or renter in (SELECT user_id FROM users WHERE username = ?) )";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal.getName(),principal.getName());
-        if(results.next()){
-            apartment = mapRowToApartment(results);
-        }return apartment;
+        while(results.next()){
+            Apartment apartment = mapRowToApartment(results);
+            apartments.add(apartment);
+        }return apartments;
     }
     //todo: try catch if the search is blank
 
