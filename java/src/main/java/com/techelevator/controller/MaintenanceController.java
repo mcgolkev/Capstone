@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 public class MaintenanceController {
-    private MaintenanceDao maintenanceDao;
-    private Maintenance maintenance;
+    //private MaintenanceDao maintenanceDao;
+    //private Maintenance maintenance;
 
 
 
