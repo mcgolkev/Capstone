@@ -9,10 +9,10 @@ public class Maintenance {
     private Long maintenanceId;
     private Long ownershipId;
     private Long maintenanceStaffId;
-    private Text description;
+    private String description;
     private boolean complete;
 
-    public Maintenance(Long maintenanceId, Long ownershipId, Long maintenanceStaffId, Text description, boolean complete, boolean assigned, boolean newRequest) {
+    public Maintenance(Long maintenanceId, Long ownershipId, Long maintenanceStaffId, String description, boolean complete, boolean assigned, boolean newRequest) {
         this.maintenanceId = maintenanceId;
         this.ownershipId = ownershipId;
         this.maintenanceStaffId = maintenanceStaffId;
@@ -21,7 +21,7 @@ public class Maintenance {
         this.assigned = assigned;
         this.newRequest = newRequest;
     }
-
+    public Maintenance(){}
 
 
     // GETTERS SETTERS
@@ -49,11 +49,11 @@ public class Maintenance {
         this.maintenanceStaffId = maintenanceStaffId;
     }
 
-    public Text getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(Text description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -87,16 +87,15 @@ public class Maintenance {
     //---------------methods---------------------------
     public String toString() {
         return "Maintenance{" +
-                "maintenanceId=" + maintenanceId +
-                ", ownershipId='" + ownershipId + //'\'' +
-                ", maintenanceStaffId='" + maintenanceStaffId + //'\'' +
+                "maintenance_id=" + maintenanceId +
+                ", ownership_id='" + ownershipId + //'\'' +
+                ", maintenance_staff_id='" + maintenanceStaffId + //'\'' +
                 ", description='" + description + //'\'' +
                 ", complete='" + complete + //'\'' +
                 ", assigned='" + assigned + //'\'' +
-                ", newRequest='" + newRequest + //'\'' +
+                ", new_request='" + newRequest + //'\'' +
                 '}';
     }
-
 
 
 }

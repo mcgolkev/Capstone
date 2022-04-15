@@ -6,14 +6,9 @@ import java.util.List;
 
 public interface MaintenanceDao {
 
-    List<Maintenance> findAll();
+    List<Maintenance> findAllMaintenance();
 
+    Maintenance findMaintenanceById(Long id);
 
-
-
-    /**
-     * Maintenance findMaintenanceRequest(id)
-     *
-     * void updateMaintenanceRequest(Maintenance maintenance, id)
-     */
+    void updateMaintenanceStatus(Maintenance maintenance, Long id);
 }
