@@ -25,7 +25,8 @@ export default new Vuex.Store({
     user: currentUser || {},
     properties: [],
     activeProperty: {},
-    rentedProperty: {}
+    renterProperty: {},
+    maintenance: {}
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -50,8 +51,11 @@ export default new Vuex.Store({
     SET_ACTIVE_PROPERTY(state, data) {
       state.activeProperty = data;
     },
-    SET_RENTED_PROPERTY(state, data) {
-      state.rentedProperty = data;
+    SET_RENTER_PROPERTY(state, data) {
+      state.renterProperty = data;
+    },
+    SET_MAINTENANCE(state, data) {
+      state.maintenance = data;
     },
     DELETE_PROPERTY(state, id) {
       state.properties = state.properties.filter((property) => {
