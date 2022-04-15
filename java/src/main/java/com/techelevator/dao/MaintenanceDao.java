@@ -12,5 +12,5 @@ public interface MaintenanceDao {
 
     void updateMaintenanceStatus(Maintenance maintenance, Long id);
 
-    //todo find maintenance by username
+    void createMaintenanceRequest(Maintenance maintenance);
 }

@@ -14,7 +14,9 @@ public class MaintenanceController {
     private Maintenance maintenance;
 
 
-
+    @RequestMapping(path = "/maintenance", method = RequestMethod.POST)
+    public void createApartment(@RequestBody Maintenance maintenance){
+        maintenanceDao.createMaintenanceRequest(maintenance);}
 
     @RequestMapping(value = "/maintenance/{id}", method = RequestMethod.GET)
     public Maintenance findMaintenanceRequest(@PathVariable long id){

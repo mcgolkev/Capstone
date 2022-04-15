@@ -11,8 +11,9 @@ public class Maintenance {
     private Long maintenanceStaffId;
     private String description;
     private boolean complete;
+    private String dateSubmitted;
 
-    public Maintenance(Long maintenanceId, Long ownershipId, Long maintenanceStaffId, String description, boolean complete, boolean assigned, boolean newRequest) {
+    public Maintenance(Long maintenanceId, Long ownershipId, Long maintenanceStaffId, String description, boolean complete, boolean assigned, boolean newRequest, String dateSubmitted) {
         this.maintenanceId = maintenanceId;
         this.ownershipId = ownershipId;
         this.maintenanceStaffId = maintenanceStaffId;
@@ -20,6 +21,7 @@ public class Maintenance {
         this.complete = complete;
         this.assigned = assigned;
         this.newRequest = newRequest;
+        this.dateSubmitted = dateSubmitted;
     }
     public Maintenance(){}
 
@@ -89,7 +91,7 @@ public class Maintenance {
         return "Maintenance{" +
                 "maintenance_id=" + maintenanceId +
                 ", ownership_id='" + ownershipId + //'\'' +
-                ", maintenance_staff_id='" + maintenanceStaffId + //'\'' +
+                ", maint_staff_id='" + maintenanceStaffId + //'\'' +
                 ", description='" + description + //'\'' +
                 ", complete='" + complete + //'\'' +
                 ", assigned='" + assigned + //'\'' +
@@ -98,4 +100,11 @@ public class Maintenance {
     }
 
 
+    public String getDateSubmitted() {
+        return dateSubmitted;
+    }
+
+    public void setDateSubmitted(String dateSubmitted) {
+        this.dateSubmitted = dateSubmitted;
+    }
 }
