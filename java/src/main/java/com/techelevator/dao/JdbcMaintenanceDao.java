@@ -34,14 +34,15 @@ public class JdbcMaintenanceDao implements  MaintenanceDao {
     }
 
     @Override
-    public Maintenance findMaintenanceById(Long id) {
-        Maintenance maintenance = new Maintenance();
+    public List<Maintenance> findMaintenanceById(Long id) {
+        List<Maintenance> maintenances = new ArrayList<>();
         String sql = "SELECT * FROM maintenance WHERE property_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
-        if (results.next()) {
-            Maintenance maintenance1 = mapRowToMaintenance(results);
+        while (results.next()) {
+            Maintenance maintenance = mapRowToMaintenance(results);
+            maintenances.add(maintenance);
         }
-        return maintenance;
+        return maintenances;
     }
 
     @Override

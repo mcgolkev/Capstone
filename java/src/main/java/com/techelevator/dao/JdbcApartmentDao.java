@@ -22,7 +22,7 @@ public class JdbcApartmentDao implements ApartmentDao {
     @Override
     public List<Apartment> findAll() {
         List<Apartment> apartments = new ArrayList<>();
-        String sql = "SELECT * FROM apartments;";
+        String sql = "SELECT * FROM apartments WHERE available_for_rent = TRUE ;";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {

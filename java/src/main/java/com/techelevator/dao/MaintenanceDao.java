@@ -8,7 +8,7 @@ public interface MaintenanceDao {
 
     List<Maintenance> findAllMaintenance();
 
-    Maintenance findMaintenanceById(Long id);
+    List<Maintenance> findMaintenanceById(Long id);
 
     void updateMaintenanceStatus(Maintenance maintenance, Long id);
 

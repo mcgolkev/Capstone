@@ -3,7 +3,7 @@ ROLLBACK;
 
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, apartments, ownership, account, maint_staff, notifications, maintenance;
+DROP TABLE IF EXISTS maint_staff , notifications, maintenance, account, ownership, apartments, users;
 
 DROP SEQUENCE IF EXISTS seq_user_id;
 
@@ -147,7 +147,8 @@ INSERT INTO apartments (
 			num_bathrooms,
 			square_feet,
 			short_description,
-			long_description)
+			long_description,
+			available_for_rent)
 VALUES (8,
 		'1154 Jackson Rd.', 
 		'Apt. 2',
@@ -163,7 +164,8 @@ VALUES (8,
 		'Charming North-End newly constructed duplex unit.',
 		'Located on quiet dead-end street\, 
 		centrally located to downtown\, greenbelt, and foothills. Application submittal 
-		required prior to scheduling walk-through.');
+		required prior to scheduling walk-through.',
+	   FALSE);
 		
 -- PROPERTY ID 2
 INSERT INTO apartments (
@@ -179,7 +181,8 @@ INSERT INTO apartments (
 			num_bathrooms,
 			square_feet,
 			short_description,
-			long_description)
+			long_description,
+			available_for_rent)
 VALUES (8,
 		'222 N Betty Ln.', 
 		'Clearwater', 
@@ -200,7 +203,8 @@ VALUES (8,
 		Hospital/University & Route 25A. THIS WILL NOT LAST AGAIN!! Extensive 
 		background check and credit references! No pets no exceptions! 
 		Required 1 month broker fees 1 month security, paystubs required!! 
-		1 year lease $6,000 to move in! Call to schedule a showing');
+		1 year lease $6,000 to move in! Call to schedule a showing',
+	   TRUE);
 
 -- PROPERTY ID 3
 INSERT INTO apartments (
@@ -216,7 +220,8 @@ INSERT INTO apartments (
 			num_bathrooms,
 			square_feet,
 			short_description,
-			long_description)
+			long_description,
+			available_for_rent)
 VALUES (8,
 		'318 N Prescott Ave', 
 		'Clearwater', 
@@ -234,7 +239,8 @@ VALUES (8,
 		'No pets and no smoking. $1700 includes all utilities. Additional fee for AC in 
 		summer months. Wifi and cable is the responsibility of the tenant. Available 
 		June 5th. 1 month security, 1 month broker fee and first months rent due upfront. 
-		Email agent to schedule a showing. HomeSmart Premier Living Realty');
+		Email agent to schedule a showing. HomeSmart Premier Living Realty',
+	   FALSE);
 		
 -- PROPERTY ID 4
 INSERT INTO apartments (
@@ -250,7 +256,8 @@ INSERT INTO apartments (
 			num_bathrooms,
 			square_feet,
 			short_description,
-			long_description)
+			long_description,
+			available_for_rent)
 VALUES (8,
 		'1577 Walnut St', 
 		'Clearwater', 
@@ -267,7 +274,8 @@ VALUES (8,
 		
 		'Safe and quiet neiborhoot, close to Adelphi and Hofstra univercities,
 		close to Roosvelt field mall and Nassau courts. Close to LIJ ,Winthrop 
-		hospitals. You pay 50% of the utilities. Available now. NO SMOKING,NO PETS.Please call Lisa');
+		hospitals. You pay 50% of the utilities. Available now. NO SMOKING,NO PETS.Please call Lisa',
+	   TRUE);
 
 -- PROPERTY ID 5
 INSERT INTO apartments (
@@ -283,7 +291,8 @@ INSERT INTO apartments (
 			num_bathrooms,
 			square_feet,
 			short_description,
-			long_description)
+			long_description,
+			available_for_rent)
 VALUES (9,
 		'1453 Springdale St', 
 		'Clearwater', 
@@ -305,7 +314,8 @@ VALUES (9,
 		to shopping and very close distance to Smithtown historic quaint Village and the Smithtown train station! 
 		Pricing may include current special, is subject to change without notice restrictions apply—call for 
 		details. All layouts, dimensions and interior finishes are approximate and for display. Call/email/visit with 
-		Leasing Agent for full unit details. Equal Housing Opportunity owner/management.');
+		Leasing Agent for full unit details. Equal Housing Opportunity owner/management.',
+	   FALSE);
 		
 -- PROPERTY ID 6
 INSERT INTO apartments (
@@ -322,7 +332,8 @@ INSERT INTO apartments (
 			num_bathrooms,
 			square_feet,
 			short_description,
-			long_description)
+			long_description,
+			available_for_rent)
 VALUES (9,
 		'1837 Venetian Point Dr', 
 		'Apt. 2',
@@ -353,7 +364,8 @@ VALUES (9,
 		1 Year lease minimum - First Month Rent . 1 Month Security Deposit at lease 
 		signing. Subject to credit check.
 		
-		THERE ARE NO BROKER FEES - NO SMOKING - NO PETS - SERIOUS INQUIRIES ONLY');
+		THERE ARE NO BROKER FEES - NO SMOKING - NO PETS - SERIOUS INQUIRIES ONLY',
+	   	TRUE);
 
 -- PROPERTY ID 7
 INSERT INTO apartments (
@@ -369,7 +381,8 @@ INSERT INTO apartments (
 			num_bathrooms,
 			square_feet,
 			short_description,
-			long_description)
+			long_description,
+			available_for_rent)
 VALUES (9,
 		'1249 Eldridge St', 
 		'Clearwater', 
@@ -396,7 +409,8 @@ VALUES (9,
 		
 		This property can also be sub-divided. If contractors yard is not suitable 
 		for the interested buyer. Call for more details. Provide your own due diligence. 
-		Zoning approval will still be required.');
+		Zoning approval will still be required.',
+	   TRUE);
 		
 -- PROPERTY ID 8
 INSERT INTO apartments (
@@ -413,7 +427,8 @@ INSERT INTO apartments (
 			num_bathrooms,
 			square_feet,
 			short_description,
-			long_description)
+			long_description,
+			available_for_rent)
 VALUES (9,
 		'50 Coe Rd', 
 		'Apt. 2',
@@ -442,7 +457,8 @@ VALUES (9,
 		and easy access to the LIRR Huntington Station. This is not just 
 		apartment living. This is living up.
 		
-		-Balcony -3rd Floor');
+		-Balcony -3rd Floor',
+	   FALSE);
 ----------------------------------------------------------------------------------------
 --  NOTIFICATOIN TABLE
 -- NOTIFICAION ID 1
@@ -600,7 +616,7 @@ INSERT INTO maintenance(
 )
 VALUES (
 	2,
-	4,
+	2,
 	'The front door does not close properly.',
 	TRUE,
 	FALSE
