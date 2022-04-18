@@ -5,6 +5,8 @@ import com.techelevator.model.Apartment;
 import com.techelevator.model.Rent;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @RestController
 @CrossOrigin
 public class RentController {
@@ -15,9 +17,9 @@ public class RentController {
      this.rentDao = rentDao; this.rent = rent;
     }
 
-    @RequestMapping(value = "/rent/{id}", method = RequestMethod.GET)
-    public Rent findRent(@PathVariable long id){
-        return rentDao.findRentDueByRenterId(id);}
+    @RequestMapping(path = "/rent", method = RequestMethod.GET)
+    public Rent findRent(Principal principal){
+        return rentDao.findRentDueByRenterId(principal.getName());}
 
     @RequestMapping(path = "/rent/{id}", method = RequestMethod.PUT)
     public void updateRent(@RequestBody Rent rent, @PathVariable long id){

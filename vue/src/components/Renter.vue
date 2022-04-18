@@ -1,15 +1,41 @@
 <template>
   <!-- Renter:  Will want rental information (if renting) and maintenance request info, browsing properties-->
   <div>
-    <div class="rental-property-info">
+    <div
+      class="rental-property-info"
+      v-for="property in this.$store.state.renterProperty"
+      v-bind:key="property.propertyId"
+    >
       <h1>
-        Address: {{ this.$store.state.renterProperty.addressLine1 }}
-        {{ this.$store.state.renterProperty.addressLine2 }}
-        {{ this.$store.state.renterProperty.city }}
-        {{ this.$store.state.renterProperty.state }}
-        {{ this.$store.state.renterProperty.zip }}
+        Address: {{ property.addressLine1 }}
+        {{ property.addressLine2 }}
+        {{ property.city }}
+        {{ property.state }}
+        {{ property.zip }}
       </h1>
-      <rent-info />
+    </div>
+    <rent-info />
+
+    <div class="payment-form">
+      <form v-on:submit.prevent>
+        <div class="field">
+          <p>Payment Form:</p>
+          <label for="date">Date:</label>
+          <input type="date" name="date" id="date" v-model="maintenance.date" />
+          <label for="amount">Amount:</label>
+          <input
+            type="text"
+            name="amount"
+            id="amount"
+            v-model="maintenance.amount"
+          />
+        </div>
+        <div class="actions">
+          <button type="submit" v-on:click="savePayment()">
+            Submit Payment
+          </button>
+        </div>
+      </form>
     </div>
 
     <div class="notifications">
@@ -25,30 +51,13 @@
             <option value="appliances">Appliances</option>
             <option value="heating-and-cooling">Heating and Cooling</option>
           </select> -->
-          <p> Maintenance Request: </p>
+          <p>Maintenance Request:</p>
           <label for="problem-description">Problem Description</label>
           <input type="text" v-model="maintenance.description" />
         </div>
         <div class="actions">
           <button type="submit" v-on:click="saveMaintenance()">
             Submit Maintenance Request
-          </button>
-        </div>
-      </form>
-    </div>
-
-    <div class="payment-form">
-      <form v-on:submit.prevent>
-        <div class="field">
-          <p> Payment Form: </p>
-          <label for="amount">Amount</label>
-          <input type="amount" name="amount" id="name" v-model="maintenance.amount" />
-          <label for="date">Date</label>
-          <input type="date" name="date" id="date" v-model="maintenance.date" />
-        </div>
-        <div class="actions">
-          <button type="submit" v-on:click="savePayment()">
-            Submit Payment
           </button>
         </div>
       </form>
@@ -71,12 +80,12 @@ export default {
     return {
       maintenance: {
         type: "",
-        description: ""
+        description: "",
       },
       payment: {
         amount: "",
-        date: ""
-      }
+        date: "",
+      },
     };
   },
   methods: {
@@ -88,7 +97,7 @@ export default {
       });
     },
     savePayment() {
-      RenterService.addMaintenance(this.payment).then((response) => {
+      RenterService.addPayment(this.payment).then((response) => {
         if (response.status == 201) {
           this.$router.push({ name: "Home" });
         }

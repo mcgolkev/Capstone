@@ -13,4 +13,6 @@ public interface MaintenanceDao {
     void updateMaintenanceStatus(Maintenance maintenance, Long id);
 
     void createMaintenanceRequest(Maintenance maintenance);
+
+    List<Maintenance> findIncompleteMaintenance(String username);
 }

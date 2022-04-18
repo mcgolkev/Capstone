@@ -55,12 +55,12 @@ public class JdbcApartmentDao implements ApartmentDao {
     }
 
 
-    public List<Apartment> findAptForCurrentUser(Principal principal){
+    public List<Apartment> findAptForCurrentUser(String principal){
         List<Apartment> apartments = new ArrayList<>();
-        String sql = "SELECT * FROM apartments WHERE property_id in (SELECT property_id " +
-                "FROM ownership WHERE landlord in (SELECT user_id FROM users WHERE username = ?)" +
-                " or renter in (SELECT user_id FROM users WHERE username = ?) )";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal.getName(),principal.getName());
+        String sql = "SELECT * FROM apartments WHERE property_id in (SELECT property_id \n" +
+                "FROM ownership WHERE landlord in (SELECT user_id FROM users WHERE username = ?) \n" +
+                "or renter in (SELECT user_id FROM users WHERE username = ?) )";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal,principal);
         while(results.next()){
             Apartment apartment = mapRowToApartment(results);
             apartments.add(apartment);

@@ -1,23 +1,28 @@
 import axios from 'axios';
 
 export default {
-
      getRental(){
-      return axios.get('home/');
+      return axios.get('apartments');
     },
 
     getRentInfo(){
       return axios.get('rent');
     },
 
-    getMaintenance(){
-      return axios.get('maintenance');
+    addPayment(payment){
+      return axios.post('payment', payment);
     },
 
-    addMaintenance(userID, maintenance){
-      return axios.post(`home/${userID}/maintenance`, maintenance);
-    }
+    getNotifications(){
+      return axios.get('notification');
+    },
 
-    // userID may just be pulled from the backend
+    updateNotifications(id, notification){
+      return axios.put(`notifications/${id}`, notification);
+    },
+
+    addMaintenance(maintenance){
+      return axios.post(`maintenance`, maintenance);
+    }
 
 }

@@ -83,22 +83,6 @@ const router = new Router({
         requiresAuth: true
       }
     },
-    // {
-    //   path: "/rent",
-    //   name: "renter",
-    //   component: Renter,
-    //   meta: {
-    //     requiresAuth: true
-    //   }
-    // },
-    // {
-    //   path: "/notification",
-    //   name: "notification-list",
-    //   component: NotificationList,
-    //   meta: {
-    //     requiresAuth: true
-    //   }
-    // },
   ]
 })
 
