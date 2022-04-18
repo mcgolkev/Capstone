@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.MaintenanceDao;
+import com.techelevator.dao.MaintenanceStaffDao;
 import com.techelevator.model.Maintenance;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,9 @@ public class MaintenanceController {
     private MaintenanceDao maintenanceDao;
     private Maintenance maintenance;
 
+    public MaintenanceController(MaintenanceDao maintenanceDao){
+        this.maintenanceDao = maintenanceDao;
+    }
 
     @RequestMapping(path = "/maintenance", method = RequestMethod.POST)
     public void createApartment(@RequestBody Maintenance maintenance){
