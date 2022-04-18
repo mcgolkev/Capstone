@@ -1,8 +1,8 @@
 <template>
   <div>
-      <div v-for="maintenance in this.$store.state.maintenance" v-bind:key="maintenance.maintenanceId">
-          <p>Date: {{maintenance.dateSubmitted}}</p>
-          <p>From: {{maintenance.ownershipId}}</p>
+      <div v-for="maint in this.$store.state.maintenance" v-bind:key="maint.maintenanceId">
+          <router-link :to="{name: 'maintenance', params: {id: maint.maintenanceId}}"><p>Date: {{maint.dateSubmitted}}</p>
+          <p>From: {{maint.ownershipId}}</p></router-link>
     </div>
     </div>
 </template>
@@ -20,6 +20,7 @@ export default {
           this.$router.push({ name: "NotFound" });
         }
       });
+  
   },
 };
 </script>

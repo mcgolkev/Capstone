@@ -8,6 +8,7 @@ import store from '../store/index'
 import Properties from '../views/Properties.vue'
 import PropertyInfo from '../views/PropertyInfo.vue'
 import AddProperty from '../views/AddProperty.vue'
+import Maintenance from '../views/Maintenance.vue'
 // import Renter from '../components/Renter'
 // import NotificationList from '../components/NotificationList'
 
@@ -79,6 +80,14 @@ const router = new Router({
       path: "/properties",
       name: "add-property",
       component: AddProperty,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/maintenance/:id",
+      name: "maintenance",
+      component: Maintenance,
       meta: {
         requiresAuth: true
       }
