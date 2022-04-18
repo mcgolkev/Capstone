@@ -90,6 +90,7 @@ CREATE TABLE maintenance (
 	complete boolean,
 	assigned boolean,
 	new_request boolean,
+	date_submitted DATE NOT NULL DEFAULT now(),
 	
 	CONSTRAINT PK_maintenance PRIMARY KEY (maintenance_id),
 	CONSTRAINT FK1_maintenance_ownership FOREIGN KEY (ownership_id) REFERENCES ownership(ownership_id),
