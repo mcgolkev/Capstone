@@ -49,15 +49,6 @@ public class ApartmentController {
     public List<Apartment> findAptForCurrentUser(Principal principal){
         return apartmentDao.findAptForCurrentUser(principal.getName());}
 
-    /**
-     *      @RequestMapping(value = "/rent/{id}", method = RequestMethod.GET)
-     *      public Rent findRentDue(@PathVariable long id){
-     *      return rentDao.findRentDue(id);}
-     *
-     *      @RequestMapping(path = "/rent/{id}", method = RequestMethod.PUT)
-     *      public void updateRent (@RequestBody Rent rent, @PathVariable long id){
-     *      rentDao.updateRent(rent, id);}
-     */
 
 }
 

@@ -3,7 +3,7 @@ ROLLBACK;
 
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS maint_staff , notifications, maintenance, account, ownership, apartments, users;
+DROP TABLE IF EXISTS users, apartments, ownership, account, account_history, maint_staff, maintenance, notification;
 
 DROP SEQUENCE IF EXISTS seq_user_id;
 
@@ -71,6 +71,18 @@ CREATE TABLE account (
 	CONSTRAINT FK_account_ownership FOREIGN KEY (ownership_id) REFERENCES ownership(ownership_id)
 );
 
+CREATE TABLE account_history (
+	account_history_id serial,
+	account_id int not null,
+	date DATE not null,
+	memo varchar(250) not null,
+	amount decimal not null,
+	balance decimal not null,
+		
+	CONSTRAINT PK_account_history PRIMARY KEY (account_history_id),
+	CONSTRAINT FK_account_history_account FOREIGN KEY (account_id) REFERENCES account(account_id)
+);
+
 CREATE TABLE maint_staff (
 	maint_staff_id SERIAL,
 	staff_user_id int NOT NULL,
@@ -90,6 +102,7 @@ CREATE TABLE maintenance (
 	complete boolean,
 	assigned boolean,
 	new_request boolean,
+	date_submitted DATE NOT NULL DEFAULT now(),
 	
 	CONSTRAINT PK_maintenance PRIMARY KEY (maintenance_id),
 	CONSTRAINT FK1_maintenance_ownership FOREIGN KEY (ownership_id) REFERENCES ownership(ownership_id),
@@ -156,7 +169,7 @@ VALUES (8,
 		'FL',
 		33755,
 		1200, 
-		'www.google.com', 
+		'https://images.craigslist.org/00D0D_cP1eYzJLhdwz_0CI0lM_600x450.jpg', 
 		'08/01/2022',
 		3,
 		2,
@@ -189,7 +202,7 @@ VALUES (8,
 		'FL',
 		33755,
 		3200, 
-		'www.google.com', 
+		'https://images.craigslist.org/00D0D_cP1eYzJLhdwz_0CI0lM_600x450.jpg', 
 		'12/1/2022',
 		3,
 		2,
@@ -228,7 +241,7 @@ VALUES (8,
 		'FL',
 		33755,
 		1700, 
-		'www.google.com', 
+		'https://images.craigslist.org/00D0D_cP1eYzJLhdwz_0CI0lM_600x450.jpg', 
 		'06/01/2022',
 		1,
 		1,
@@ -264,7 +277,7 @@ VALUES (8,
 		'FL',
 		33755,
 		1200, 
-		'www.google.com', 
+		'https://images.craigslist.org/00D0D_cP1eYzJLhdwz_0CI0lM_600x450.jpg', 
 		'08/01/2022',
 		2,
 		1,
@@ -299,7 +312,7 @@ VALUES (9,
 		'FL',
 		33755,
 		1350, 
-		'www.google.com', 
+		'https://images.craigslist.org/00D0D_cP1eYzJLhdwz_0CI0lM_600x450.jpg', 
 		'05/15/2022',
 		1,
 		1,
@@ -341,7 +354,7 @@ VALUES (9,
 		'FL',
 		33755,
 		2200, 
-		'www.google.com', 
+		'https://images.craigslist.org/00D0D_cP1eYzJLhdwz_0CI0lM_600x450.jpg', 
 		'06/01/2022',
 		1,
 		1,
@@ -389,7 +402,7 @@ VALUES (9,
 		'FL',
 		33755,
 		2750, 
-		'www.google.com', 
+		'https://images.craigslist.org/00D0D_cP1eYzJLhdwz_0CI0lM_600x450.jpg', 
 		'07/01/2022',
 		4,
 		2,
@@ -436,7 +449,7 @@ VALUES (9,
 		'FL',
 		33756,
 		4325, 
-		'www.google.com', 
+		'https://images.craigslist.org/00D0D_cP1eYzJLhdwz_0CI0lM_600x450.jpg', 
 		'09/01/2022',
 		3,
 		2,
@@ -726,6 +739,860 @@ VALUES (
 	4325,
 	TRUE	
 );
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+-- ACCOUNT_HISTORY TABLE
+-- ACCOUNT_ID 3 PAYMENT HISTORY
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/1
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'11/1/2021',
+	'Charge - Rent',
+	1700,
+	1700
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/2
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'11/1/2021',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/3
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'12/1/2021',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/4
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'12/1/2021',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/5
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'1/1/2022',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/6
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'1/1/2022',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/7
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'2/1/2022',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/8
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'2/1/2022',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/9
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'3/1/2022',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/10
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'3/1/2022',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/11
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'4/1/2022',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/12
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'4/1/2022',
+	'Payment',
+	1700,
+	0
+);
+
+--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-- ACCOUNT_ID 2 PAYMENT HISTORY
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/13
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'11/1/2021',
+	'Charge - Rent',
+	1350,
+	1350
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/14
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'11/1/2021',
+	'Payment',
+	1350,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/15
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'12/1/2021',
+	'Charge - Rent',
+	1350,
+	1350
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/16
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'12/1/2021',
+	'Payment',
+	1350,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/17
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'1/1/2022',
+	'Charge - Rent',
+	1350,
+	1350
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/18
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'1/1/2022',
+	'Payment',
+	1350,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/19
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'2/1/2022',
+	'Charge - Rent',
+	1350,
+	1350
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/20
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'2/1/2022',
+	'Payment',
+	1350,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/21
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'3/1/2022',
+	'Charge - Rent',
+	1350,
+	1350
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/22
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'3/1/2022',
+	'Payment',
+	1350,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/23
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'4/1/2022',
+	'Charge - Rent',
+	1350,
+	1350
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/24
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'4/1/2022',
+	'Payment',
+	1350,
+	0
+);
+
+
+--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-- ACCOUNT_ID 3 PAYMENT HISTORY
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/25
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'11/1/2021',
+	'Charge - Rent',
+	1700,
+	1700
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/26
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'11/1/2021',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/27
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'12/1/2021',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/28
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'12/1/2021',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/29
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'1/1/2022',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/30
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'1/1/2022',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/31
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'2/1/2022',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/32
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'2/1/2022',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/33
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'3/1/2022',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/34
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'3/1/2022',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/35
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'4/1/2022',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/36
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'4/1/2022',
+	'Payment',
+	1700,
+	0
+);
+
+
+--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-- ACCOUNT_ID 4 PAYMENT HISTORY
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/37
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'11/1/2021',
+	'Charge - Rent',
+	4325,
+	4325
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/38
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'11/1/2021',
+	'Payment',
+	4325,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/39
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'12/1/2021',
+	'Charge - Rent',
+	4325,
+	4325
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/40
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'12/1/2021',
+	'Payment',
+	4325,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/41
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'1/1/2022',
+	'Charge - Rent',
+	4325,
+	4325
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/42
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'1/1/2022',
+	'Payment',
+	4325,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/43
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'2/1/2022',
+	'Charge - Rent',
+	4325,
+	4325
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/44
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'3/1/2022',
+	'Charge - Rent',
+	4325,
+	8650
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/45
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'4/1/2022',
+	'Charge - Rent',
+	4325,
+	12975
+);
+
+
+
+--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-- ACCOUNT_ID 1 PAYMENT HISTORY
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/46
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'11/1/2021',
+	'Charge - Rent',
+	1200,
+	1200
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/47
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'11/1/2021',
+	'Payment',
+	1200,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/48
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'12/1/2021',
+	'Charge - Rent',
+	1200,
+	1200
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/49
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'12/1/2021',
+	'Payment',
+	1200,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/50
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'1/1/2022',
+	'Charge - Rent',
+	1200,
+	1200
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/51
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'1/1/2022',
+	'Payment',
+	1200,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/52
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'2/1/2022',
+	'Charge - Rent',
+	1200,
+	1200
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/53
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'1/1/2022',
+	'Payment',
+	1200,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/54
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'3/1/2022',
+	'Charge - Rent',
+	1200,
+	1200
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/55
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'4/1/2022',
+	'Charge - Rent',
+	1200,
+	2400
+);
+
 
 ----------------------------------------------------------------------------------
 --- USER SETUP (Do Not Modify)
