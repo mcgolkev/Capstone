@@ -3,7 +3,7 @@ ROLLBACK;
 
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS maint_staff , notifications, maintenance, account, ownership, apartments, users;
+DROP TABLE IF EXISTS users, apartments, ownership, account, account_history, maint_staff, maintenance, notification;
 
 DROP SEQUENCE IF EXISTS seq_user_id;
 
@@ -79,7 +79,7 @@ CREATE TABLE account_history (
 	amount decimal not null,
 	balance decimal not null,
 		
-	CONSTRAINT PK_account PRIMARY KEY (account_history_id),
+	CONSTRAINT PK_account_history PRIMARY KEY (account_history_id),
 	CONSTRAINT FK_account_history_account FOREIGN KEY (account_id) REFERENCES account(account_id)
 );
 
@@ -747,7 +747,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -763,7 +763,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -778,7 +778,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -793,7 +793,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -808,7 +808,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -823,7 +823,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -838,7 +838,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -853,7 +853,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -868,7 +868,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -883,7 +883,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -898,7 +898,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -913,7 +913,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -925,13 +925,13 @@ VALUES (
 	0
 );
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 -- ACCOUNT_ID 2 PAYMENT HISTORY
 -- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/13
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -947,7 +947,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -962,7 +962,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -977,7 +977,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -992,7 +992,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1007,7 +1007,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1022,7 +1022,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1037,7 +1037,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1052,7 +1052,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1067,7 +1067,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1082,7 +1082,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1097,7 +1097,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1110,13 +1110,13 @@ VALUES (
 );
 
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 -- ACCOUNT_ID 3 PAYMENT HISTORY
 -- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/25
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1132,7 +1132,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1147,7 +1147,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1162,7 +1162,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1177,7 +1177,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1192,7 +1192,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1207,7 +1207,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1222,7 +1222,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1237,7 +1237,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1252,7 +1252,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1267,7 +1267,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1282,7 +1282,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1295,13 +1295,13 @@ VALUES (
 );
 
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 -- ACCOUNT_ID 4 PAYMENT HISTORY
 -- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/37
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1317,7 +1317,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1332,7 +1332,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1347,7 +1347,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1362,7 +1362,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1377,7 +1377,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1392,7 +1392,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1408,7 +1408,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1424,7 +1424,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1438,13 +1438,13 @@ VALUES (
 
 
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 -- ACCOUNT_ID 1 PAYMENT HISTORY
 -- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/46
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1460,7 +1460,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1475,7 +1475,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1490,7 +1490,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1505,7 +1505,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1520,7 +1520,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1535,7 +1535,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1550,7 +1550,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1565,7 +1565,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
@@ -1581,7 +1581,7 @@ VALUES (
 INSERT INTO account_history(
 	account_id,
 	date,
-	memeo,
+	memo,
 	amount,
 	balance
 )
