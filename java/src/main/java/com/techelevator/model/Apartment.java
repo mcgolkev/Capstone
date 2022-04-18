@@ -21,9 +21,10 @@ public class Apartment {
     private Integer squareFeet;
     private String shortDescription;
     private String longDescription;
-    private String dateAvailable; // YYYY-mm-dd
+    private String dateAvailable;
+    private boolean availableForRent; // YYYY-mm-dd
 
-    public Apartment(Long propertyId, String addressLine1,String addressLine2, String city, String state, int zip, Double price, String picture, double numBedrooms, double numBathrooms, Integer squareFeet, String shortDescription, String longDescription, String dateAvailable) {
+    public Apartment(Long propertyId, String addressLine1,String addressLine2, String city, String state, int zip, Double price, String picture, double numBedrooms, double numBathrooms, Integer squareFeet, String shortDescription, String longDescription, String dateAvailable, boolean availableForRent) {
         this.propertyId = propertyId;
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
@@ -38,6 +39,7 @@ public class Apartment {
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
         this.dateAvailable = dateAvailable;
+        this.availableForRent = availableForRent;
     }
 
     public Apartment() {
@@ -102,9 +104,12 @@ public class Apartment {
         return dateAvailable;
     }
 
+    public boolean isAvailableForRent() {return availableForRent;}
+
 
     //-------------------------------setters
 
+    public void setAvailableForRent(boolean availableForRent) {this.availableForRent = availableForRent;}
 
     public void setPropertyId(Long propertyId) {
         this.propertyId = propertyId;
@@ -181,4 +186,6 @@ public class Apartment {
                 ", long_description=" + longDescription +
                 '}';
     }
+
+
 }

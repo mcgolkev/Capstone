@@ -66,7 +66,20 @@ public class JdbcApartmentDao implements ApartmentDao {
             apartments.add(apartment);
         }return apartments;
     }
-    //todo: try catch if the search is blank
+
+    @Override
+    public void updatePropertyDetailsForRenter(Apartment apartment, Long id) {
+        String sql = "UPDATE available_date, available_for_rent FROM apartments WHERE " +
+                "property_id = ?;";
+        LocalDate date = LocalDate.parse(apartment.getDateAvailable());
+        jdbcTemplate.update(sql, date, apartment.isAvailableForRent(), id);
+    }
+
+    @Override
+    public void updatePropertyWithRentersId(String principal, Long renter, Long propertyId) {
+        String sql = "INSERT INTO ownership VALUES (?,?,?))";
+        jdbcTemplate.update(sql, propertyId, principal, renter);
+    }
 
     @Override
     public void updateApartment(Apartment apartment, Long id) {
