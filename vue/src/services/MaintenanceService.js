@@ -5,7 +5,7 @@ export default {
       return axios.get('/maintenance/incomplete');
     },
 
-    getbyId(id){
+    getById(id){
         return axios.get(`/maintenance/${id}`)
     },
 
