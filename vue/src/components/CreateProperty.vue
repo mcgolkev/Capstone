@@ -17,7 +17,9 @@
       <input type="text" v-model="property.shortDescription" />
     </div>
     <div class="actions">
+      <button type="submit" v-on:click="addProperty()">Add Property</button>
       <button type="submit" v-on:click="saveProperty()">Save Property</button>
+      <button type="submit" v-on:click="deleteProperty()">Delete Property</button>
     </div>
   </form>
 </template>
@@ -49,9 +51,22 @@ export default {
                     this.$router.push({name: 'Home'});
                 }
             })
-        }
+        },
+        deleteProperty(){
+          propertyService.deleteProperty(this.property).then((response) => {
+                if (response.status == 201){
+                    this.$router.push({name: 'Home'});
+                }
+            })
+    }, 
+    addProperty(){
+          propertyService.addProperty(this.property).then((response) => {
+                if (response.status == 201){
+                    this.$router.push({name: 'Home'});
+                }
+            })
+    },
     }
-
 }
 </script>
 
