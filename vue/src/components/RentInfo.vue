@@ -1,9 +1,9 @@
 <template>
   <div class="rent-info">
     <p v-if="this.$store.state.rentInfo.pastDue">Status: Past Due</p>
-    <p v-else>Status: Due :</p>
+    <p v-else>Status: Due</p>
     <p>Balance: {{ this.$store.state.rentInfo.balanceDue }}</p>
-    <p>Monthly Rent Amount: {{ this.$store.state.rentInfo.monthlyRentAmt }}</p>
+    <p>Monthly Rent Amount: {{ this.$store.state.rentInfo.monthlyRentAmount }}</p>
   </div>
 </template>
 

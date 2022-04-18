@@ -21,11 +21,11 @@ public class ApartmentController {
     }
 
     @PreAuthorize("permitAll")
-    @RequestMapping(value = "/properties", method = RequestMethod.GET)
+    @RequestMapping(path = "/properties", method = RequestMethod.GET)
     public List<Apartment> findAll(){
         return apartmentDao.findAll();}
 
-    @RequestMapping(value = "/properties/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/properties/{id}", method = RequestMethod.GET)
     public Apartment findApartment(@PathVariable long id){
         return apartmentDao.findApartment(id);}
 
@@ -45,9 +45,9 @@ public class ApartmentController {
         apartmentDao.deleteApartment(id);}
 
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(path = "/apartments", method = RequestMethod.GET)
     public List<Apartment> findAptForCurrentUser(Principal principal){
-        return apartmentDao.findAptForCurrentUser(principal);}
+        return apartmentDao.findAptForCurrentUser(principal.getName());}
 
     /**
      *      @RequestMapping(value = "/rent/{id}", method = RequestMethod.GET)

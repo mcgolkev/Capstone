@@ -15,14 +15,14 @@ public class JdbcRentDao implements RentDao {
     }
 
     @Override
-    public Rent findRentDueByRenterId(long renterUserId) {
+    public Rent findRentDueByRenterId(String username) {
         Rent rent = new Rent();
         String sql = "SELECT * \n" +
                 "FROM account \n" +
                 "JOIN ownership on account.ownership_id = ownership.ownership_id\n" +
                 "JOIN users on ownership.renter = users.user_id\n" +
-                "WHERE users.user_id = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, renterUserId);
+                "WHERE users.username = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
         if(results.next()){
             rent = mapRowToRent(results);
         }
