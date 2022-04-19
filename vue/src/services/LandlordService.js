@@ -9,6 +9,14 @@ export default {
         return axios.get('/maintenance/incomplete');
       },
 
+    getRentInfo(id){
+        return axios.get(`/rent/${id}`)
+    },
+
+    getRented(){
+        return axios.get('/properties/rented')
+    },
+
     create(){
         return axios.post('/properties/');
     },

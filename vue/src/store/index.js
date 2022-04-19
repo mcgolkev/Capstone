@@ -26,6 +26,7 @@ export default new Vuex.Store({
     properties: [],
     activeProperty: {},
     renterProperty: {}, //gets from /apartments
+    rentedProperty: {},
     maintenance: {},
     activeMaintenance: {},
     notifications: [],
@@ -56,6 +57,9 @@ export default new Vuex.Store({
     },
     SET_RENTER_PROPERTY(state, data) {
       state.renterProperty = data;
+    },
+    SET_RENTED_PROPERTY(state, data) {
+      state.rentedProperty = data;
     },
     SET_MAINTENANCE(state, data) {
       state.maintenance = data;
