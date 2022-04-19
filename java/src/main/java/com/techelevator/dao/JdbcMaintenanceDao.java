@@ -38,7 +38,12 @@ public class JdbcMaintenanceDao implements  MaintenanceDao {
     public List<Maintenance> findIncompleteMaintenance(String username) {
         List<Maintenance> maintenance = new ArrayList<>();
         String sql = "SELECT *\n" +
-                "FROM maintenance WHERE complete IS null AND maint_staff_id = (Select maint_staff_id FROM maint_staff WHERE staff_name = ?));";
+                "FROM maintenance \n" +
+                "WHERE complete IS null AND (maint_staff_id IN (Select maint_staff_id FROM maint_staff WHERE staff_name = ?) or ownership_id IN (Select ownership_id \n" +
+                "From ownership \n" +
+                "WHERE landlord IN (SELECT user_id \n" +
+                "FROM users \n" +
+                "Where username = ?)))";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
         while(results.next()){
             Maintenance maintenance1 = mapRowToMaintenance(results);

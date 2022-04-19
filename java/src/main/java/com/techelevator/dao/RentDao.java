@@ -13,6 +13,7 @@ public interface RentDao {
 
     void updateRent(Rent rent, long id);
 
+    Rent findRentDueByPropertyId(String username, int id);
 
     void deleteRentalAccount(long id);
 

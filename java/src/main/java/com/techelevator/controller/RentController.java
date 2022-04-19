@@ -28,4 +28,8 @@ public class RentController {
     @RequestMapping(path = "/rent/{id}", method = RequestMethod.DELETE)
     public void deleteRentalAccount(@PathVariable long id){
         rentDao.deleteRentalAccount(id);}
+
+    @RequestMapping(path = "/rent/{id}", method = RequestMethod.GET)
+    public Rent findRentbyId(Principal principal, @PathVariable int id){
+        return rentDao.findRentDueByPropertyId(principal.getName(), id);}
 }
