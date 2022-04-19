@@ -1,11 +1,16 @@
 <template>
   <div>
-      <div
+    <div
       class="rental-property-info"
       v-for="property in this.$store.state.renterProperty"
       v-bind:key="property.propertyId"
     >
-    <input type="checkbox" id="availability-status" name="availability-status" v-model="property.availableForRent" >
+      <input
+        type="checkbox"
+        id="availability-status"
+        name="availability-status"
+        v-model="property.availableForRent"
+      />
       <h1>
         Address: {{ property.addressLine1 }}
         {{ property.addressLine2 }}
@@ -13,54 +18,100 @@
         {{ property.state }}
         {{ property.zip }}
       </h1>
-      <router-link :to="{name: 'add-property', params: {id: property.propertyId}}"><button type="button">Edit Property</button></router-link>
+      <router-link
+        :to="{ name: 'add-property', params: { id: property.propertyId } }"
+        ><button type="button">Edit Property</button></router-link
+      >
       <label for="rentee">Rented to: </label>
       <input type="text" name="rentee" id="rentee" />
     </div>
-    
+
     <div class="show-hide">
-    <create-property />
+      <create-property />
     </div>
 
-     <div class="maintenance">
-         <div v-for="maint in this.$store.state.maintenance" v-bind:key="maint.maintenanceId">
-             <p>Date: {{maint.dateSubmitted}}</p>
-             <p>Description: {{maint.description}}</p>
-            </div>
+    <div
+      class="rented-properties"
+      v-for="property in this.$store.rentedProperty"
+      v-bind:key="property.propertyId"
+    >
+      <h1>
+        Address: {{ property.addressLine1 }}
+        {{ property.addressLine2 }}
+        {{ property.city }}
+        {{ property.state }}
+        {{ property.zip }}
+      </h1>
+
+        <p v-if="rent.pastDue">Status: Past Due</p>
+        <p v-else>Status: Due</p>
+        <p>Balance: {{ rent.balanceDue }}</p>
+        <p>
+          Monthly Rent Amount:
+          {{ rent.monthlyRentAmount }}
+        </p>
+         
     </div>
-    
+
+    <!-- Get list of rent info, then .innerHtml-->
+
+    <div class="maintenance">
+      <div
+        v-for="maint in this.$store.state.maintenance"
+        v-bind:key="maint.maintenanceId"
+      >
+        <p>Date: {{ maint.dateSubmitted }}</p>
+        <p>Description: {{ maint.description }}</p>
       </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import LandlordService from '../services/LandlordService'
-import CreateProperty from './CreateProperty.vue';
+import LandlordService from "../services/LandlordService";
+import CreateProperty from "./CreateProperty.vue";
 export default {
   components: { CreateProperty },
-     created() {
-    LandlordService.get().then((response) => {
-        this.$store.commit("SET_RENTER_PROPERTY", response.data);
-      }).catch((error) => {
-        if (error.response.status == 404) {
-          this.$router.push({ name: "NotFound" });
-        }
+  data(){
+    return {
+      rentInfo: {}
+    }
+  },
+  methods: {
+    getRentInfo(id) {
+      LandlordService.getRentInfo(id).then((response) => {
+        this.rentInfo = response.data;
+        return this.rentInfo;
       });
+    }
+  },
+  created() {
+      LandlordService.get()
+        .then((response) => {
+          this.$store.commit("SET_RENTER_PROPERTY", response.data);
+        })
+        .catch((error) => {
+          if (error.response.status == 404) {
+            this.$router.push({ name: "NotFound" });
+          }
+        });
 
-      LandlordService.getMaintenance().then((response) => {
-        this.$store.commit("SET_MAINTENANCE", response.data);
-      }).catch((error) => {
-        if (error.response.status == 404) {
-          this.$router.push({ name: "NotFound" });
-        }
-      });
-
-     }
-
-}
+      LandlordService.getMaintenance()
+        .then((response) => {
+          this.$store.commit("SET_MAINTENANCE", response.data);
+        })
+        .catch((error) => {
+          if (error.response.status == 404) {
+            this.$router.push({ name: "NotFound" });
+          }
+        });
+    },
+};
 </script>
 
 <style>
-    .show-hide{
-        display: none;
-    }
+.show-hide {
+  display: none;
+}
 </style>
+
