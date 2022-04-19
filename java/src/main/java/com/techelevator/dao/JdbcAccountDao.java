@@ -34,6 +34,8 @@ public class JdbcAccountDao implements AccountDao {
         return accounts;
     }
 
+
+
     private Account mapRowToAccount(SqlRowSet rs){
         Account account = new Account();
         account.setAccountId(rs.getLong("account_id"));

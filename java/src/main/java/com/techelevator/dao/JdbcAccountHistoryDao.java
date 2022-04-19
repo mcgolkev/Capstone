@@ -46,9 +46,7 @@ public class JdbcAccountHistoryDao implements AccountHistoryDao{
 
         String sql1 = "UPDATE account SET balance_due = balance_due - ? WHERE account_id = ?;";
         jdbcTemplate.update(sql1, accountHistory.getAmount(), accountHistory.getAccountId());
-
-
-
+        
         int newBalance = 0;
         String sql2 = "INSERT INTO account_history\n" +
                 "                (account_id, date, memo, amount, balance)\n" +
@@ -56,6 +54,9 @@ public class JdbcAccountHistoryDao implements AccountHistoryDao{
         LocalDate date = LocalDate.parse(accountHistory.getDate());
         jdbcTemplate.update(sql2, accountHistory.getAccountId(),date, accountHistory.getMemo(),accountHistory.getAmount(), accountHistory.getAccountId());
 
+        String sql3 = "UPDATE account SET past_due = true WHERE account_id = ? " +
+                "AND balance_due > monthly_rent_amt;";
+        jdbcTemplate.update(sql3, accountHistory.getAccountId());
     }
 
     private AccountHistory mapRowToAccountHistory(SqlRowSet rs){
