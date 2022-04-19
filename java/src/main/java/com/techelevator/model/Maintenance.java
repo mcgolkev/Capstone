@@ -1,9 +1,10 @@
 package com.techelevator.model;
 
+import org.springframework.stereotype.Component;
 import org.w3c.dom.Text;
 
 import java.time.LocalDate;
-
+@Component
 public class Maintenance {
 
     private Long maintenanceId;
