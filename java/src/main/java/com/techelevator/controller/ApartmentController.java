@@ -50,6 +50,18 @@ public class ApartmentController {
         return apartmentDao.findAptForCurrentUser(principal.getName());}
 
 
+
+
+
+
+    @PreAuthorize("hasRole('LANDLORD')")
+    @RequestMapping(path = "/properties/{id}", method = RequestMethod.POST)
+    public void UpdateApartmentWithRenter(Principal principal, Long renter, Long propertyId, Apartment apartment){
+        apartmentDao.updatePropertyDetailsForRenter(apartment, propertyId);
+        apartmentDao.updatePropertyWithRentersId(principal.getName(), propertyId, renter);
+    }
+
+
 }
 
 

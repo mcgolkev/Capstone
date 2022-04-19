@@ -20,4 +20,8 @@ public interface ApartmentDao {
     void deleteApartment(Long id);
 
     List<Apartment> findAptForCurrentUser(String principal);
+
+    void updatePropertyDetailsForRenter(Apartment apartment, Long id);
+
+    void updatePropertyWithRentersId(String principal, Long renter, Long propertyId);
 }

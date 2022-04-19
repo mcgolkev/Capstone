@@ -48,7 +48,7 @@ public class JdbcMaintenanceDao implements  MaintenanceDao {
     @Override
     public List<Maintenance> findMaintenanceById(Long id) {
         List<Maintenance> maintenances = new ArrayList<>();
-        String sql = "SELECT * FROM maintenance WHERE property_id = ?;";
+        String sql = "SELECT * FROM maintenance WHERE maintenance_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
         while (results.next()) {
             Maintenance maintenance = mapRowToMaintenance(results);
