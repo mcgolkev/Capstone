@@ -44,6 +44,19 @@ public class JdbcRentDao implements RentDao {
         jdbcTemplate.update(sql, accountId);
     }
 
+    @Override
+    public Rent findRentDueByPropertyId(String username, int id) {
+        Rent rent = new Rent();
+        String sql = "SELECT * \n" +
+                "FROM account \n" +
+                "WHERE ownership_id = (SELECT ownership_id " +
+                "FROM ownership WHERE property_id = ? AND Landlord = (SELECT user_id FROM users WHERE username = ?) )";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id, username);
+        if(results.next()){
+            rent = mapRowToRent(results);
+        }
+        return rent;
+    }
 
     //todo update rent status (paid and status)
     private Rent mapRowToRent(SqlRowSet rs) {

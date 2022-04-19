@@ -54,12 +54,18 @@ public class ApartmentController {
         apartmentDao.updatePropertyDetailsForRenter(propertyId);
         apartmentDao.assignRenterIdToProperty(propertyId, renter);
     }
-
+    @PreAuthorize("hasRole('LANDLORD')")
+    @RequestMapping(path = "/properties/rented", method = RequestMethod.GET)
+    public List<Apartment> findRentedApartments(Principal principal){
+        return apartmentDao.findRentedApartments(principal.getName());}
 
 
 
 
 }
+
+
+
 
 
 
