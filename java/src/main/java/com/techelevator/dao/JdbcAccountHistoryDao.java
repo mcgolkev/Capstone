@@ -57,6 +57,10 @@ public class JdbcAccountHistoryDao implements AccountHistoryDao{
         String sql3 = "UPDATE account SET past_due = true WHERE account_id = ? " +
                 "AND balance_due > monthly_rent_amt;";
         jdbcTemplate.update(sql3, accountHistory.getAccountId());
+
+        String sql4 = "UPDATE account SET past_due = false WHERE account_id = ? " +
+                "AND balance_due <= monthly_rent_amt;";
+        jdbcTemplate.update(sql4, accountHistory.getAccountId());
     }
 
     private AccountHistory mapRowToAccountHistory(SqlRowSet rs){
