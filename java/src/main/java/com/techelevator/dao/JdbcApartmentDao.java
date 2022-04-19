@@ -68,19 +68,22 @@ public class JdbcApartmentDao implements ApartmentDao {
     }
 
     @Override
-    public void updatePropertyDetailsForRenter(Apartment apartment, Long id) {
-        String sql = "UPDATE available_date, available_for_rent FROM apartments WHERE " +
-                "property_id = ?;";
-        LocalDate date = LocalDate.parse(apartment.getDateAvailable());
-        jdbcTemplate.update(sql, date, apartment.isAvailableForRent(), id);
+    public void updatePropertyDetailsForRenter(Long id) {
+        String sql = "UPDATE apartment SET available_date = null, available_for_rent = false" +
+                "WHERE property_id = ?;";
+        jdbcTemplate.update(sql, id);
     }
 
     @Override
-    public void updatePropertyWithRentersId(String principal, Long renter, Long propertyId) {
-        String sql = "INSERT INTO ownership VALUES (?,?,?))";
-        jdbcTemplate.update(sql, propertyId, principal, renter);
+    public void assignRenterIdToProperty(Long renterId, Long propertyId) {
+        String sql = "UPDATE ownership SET renter = ? WHERE property_id = )";
+
+        jdbcTemplate.update(sql,renterId, propertyId);
     }
 
+    //landlord is principal.getname
+    //renter is given
+    //property Id is path variable
     @Override
     public void updateApartment(Apartment apartment, Long id) {
         String sql = "UPDATE apartments SET address_line_1 = ?, address_line_2 = ?, city = ?," +
@@ -114,12 +117,12 @@ public class JdbcApartmentDao implements ApartmentDao {
         apartment.setPrice(rs.getDouble("price"));
         apartment.setPicture(rs.getString("picture"));
         apartment.setDateAvailable(rs.getString("available"));
-        //todo: date should be set as date rather than string? can change later
         apartment.setNumBedrooms(rs.getDouble("num_bedrooms"));
         apartment.setNumBathrooms(rs.getDouble("num_bathrooms"));
         apartment.setSquareFeet(rs.getInt("square_feet"));
         apartment.setShortDescription(rs.getString("short_description"));
         apartment.setLongDescription(rs.getString("long_description"));
+        apartment.setAvailableForRent(rs.getBoolean("available_for_rent"));
         return apartment;
     }
 }

@@ -4,21 +4,21 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 @Component
-public class MaintenaceStaff {
+public class MaintenanceStaff {
 
     private long maintStaffId;
     private long staffUserId;
     private String staffName;
     private String serviceDept;
 
-    public MaintenaceStaff(long maintStaffId, long staffUserId, String staffName, String serviceDept) {
+    public MaintenanceStaff(long maintStaffId, long staffUserId, String staffName, String serviceDept) {
         this.maintStaffId = maintStaffId;
         this.staffUserId = staffUserId;
         this.staffName = staffName;
         this.serviceDept = serviceDept;
     }
 
-    public MaintenaceStaff(){};
+    public MaintenanceStaff(){};
 
     public long getMaintStaffId() {
         return maintStaffId;

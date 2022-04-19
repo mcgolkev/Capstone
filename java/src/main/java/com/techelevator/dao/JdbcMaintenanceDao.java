@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,8 @@ public class JdbcMaintenanceDao implements  MaintenanceDao {
         }return maintenance;
     }
 
+
+
     @Override
     public List<Maintenance> findMaintenanceById(Long id) {
         List<Maintenance> maintenances = new ArrayList<>();
@@ -58,18 +61,31 @@ public class JdbcMaintenanceDao implements  MaintenanceDao {
     }
 
     @Override
-    public void updateMaintenanceStatus(Maintenance maintenance, Long id) {
-        String sql = "UPDATE maintenance SET complete = ?, assigned = ?, new_request " +
-                "WHERE maintenance_id = ?";
+    public void addMaintenanceStaffToRequest(Maintenance maintenance, Long id) {
+        String sql = "Update maintenance SET maint_staff_id = ?, assigned = true WHERE maintenance_id = ?;";
+        jdbcTemplate.update(sql, maintenance.getMaintenanceStaffId(),id);
     }
+
     @Override
-    public void createMaintenanceRequest(Maintenance maintenance) {
+    public void updateMaintenanceStatus(Maintenance maintenance, Long id) {
+        String sql = "UPDATE maintenance SET complete = ?, new_request = false" +
+                "WHERE maintenance_id = ?";
+        jdbcTemplate.update(sql, maintenance.isComplete(), id);
+    }
+
+   private int getOwnershipId(String principal){
+       String sql2 = "SELECT ownership_id FROM ownership WHERE renter = (SELECT user_id FROM users " +
+               "WHERE username = ?";
+     SqlRowSet result = jdbcTemplate.queryForRowSet(sql2, principal);
+     return result.getInt("ownership_id");
+   }
+
+    @Override
+    public void createMaintenanceRequest(Maintenance maintenance, Principal principal) {
         String sql = "INSERT INTO maintenance (ownership_id, maint_staff_id, description, complete," +
-                "assigned, new_request, date_submitted)" +
-                "VALUES (?,?,?,?,?,?)";
-        LocalDate date = LocalDate.parse(maintenance.getDateSubmitted());
-        jdbcTemplate.update(sql, maintenance.getOwnershipId(), maintenance.getMaintenanceId(), maintenance.getDescription()
-                , maintenance.isComplete(), maintenance.isAssigned(), maintenance.isNewRequest(), date);
+                "assigned, new_request)" +
+                "VALUES (?,null,?,false,false,true)";
+        jdbcTemplate.update(sql, getOwnershipId(principal.getName()), maintenance.getDescription());
     }
 
 

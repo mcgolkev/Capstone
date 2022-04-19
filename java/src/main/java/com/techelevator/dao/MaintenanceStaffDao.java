@@ -1,13 +1,12 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.MaintenaceStaff;
-import com.techelevator.model.Maintenance;
-import java.security.Principal;
+import com.techelevator.model.MaintenanceStaff;
+
 import java.util.List;
 
 public interface MaintenanceStaffDao {
 
-    List<MaintenaceStaff> findAll();
+    List<MaintenanceStaff> findAll();
 
-    List<MaintenaceStaff> findAllBySvcDept(String svcDept);
+    List<MaintenanceStaff> findAllBySvcDept(String svcDept);
 }

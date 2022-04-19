@@ -44,22 +44,19 @@ public class ApartmentController {
     public void deleteApartment(@PathVariable long id){
         apartmentDao.deleteApartment(id);}
 
-
     @RequestMapping(path = "/apartments", method = RequestMethod.GET)
     public List<Apartment> findAptForCurrentUser(Principal principal){
         return apartmentDao.findAptForCurrentUser(principal.getName());}
 
-
-
-
-
-
     @PreAuthorize("hasRole('LANDLORD')")
-    @RequestMapping(path = "/properties/{id}", method = RequestMethod.POST)
-    public void UpdateApartmentWithRenter(Principal principal, Long renter, Long propertyId, Apartment apartment){
-        apartmentDao.updatePropertyDetailsForRenter(apartment, propertyId);
-        apartmentDao.updatePropertyWithRentersId(principal.getName(), propertyId, renter);
+    @RequestMapping(path = "/properties/renter/{id}", method = RequestMethod.PUT)
+    public void UpdateApartmentWithRenter(Long renter, Long propertyId){
+        apartmentDao.updatePropertyDetailsForRenter(propertyId);
+        apartmentDao.assignRenterIdToProperty(propertyId, renter);
     }
+
+
+
 
 
 }

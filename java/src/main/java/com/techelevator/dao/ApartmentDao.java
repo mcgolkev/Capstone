@@ -21,7 +21,7 @@ public interface ApartmentDao {
 
     List<Apartment> findAptForCurrentUser(String principal);
 
-    void updatePropertyDetailsForRenter(Apartment apartment, Long id);
+    void updatePropertyDetailsForRenter(Long id);
 
-    void updatePropertyWithRentersId(String principal, Long renter, Long propertyId);
+    void assignRenterIdToProperty(Long renterId, Long propertyId);
 }

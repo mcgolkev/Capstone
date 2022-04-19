@@ -21,8 +21,8 @@ public class MaintenanceController {
     }
 
     @RequestMapping(path = "/maintenance", method = RequestMethod.POST)
-    public void createApartment(@RequestBody Maintenance maintenance){
-        maintenanceDao.createMaintenanceRequest(maintenance);}
+    public void createApartment(@RequestBody Maintenance maintenance, Principal principal){
+        maintenanceDao.createMaintenanceRequest(maintenance, principal);}
 
     @RequestMapping(value = "/maintenance/{id}", method = RequestMethod.GET)
     public List<Maintenance> findMaintenanceRequest(@PathVariable long id){
@@ -39,5 +39,12 @@ public class MaintenanceController {
     @RequestMapping(path = "/maintenance/{id}", method = RequestMethod.PUT)
     public void updateMaintenanceRequest (@RequestBody Maintenance maintenance, @PathVariable long id){
         maintenanceDao.updateMaintenanceStatus(maintenance, id);}
+
+    @PreAuthorize("hasRole('LANDLORD')")
+    @RequestMapping(path = "/maintenance/worker/{id}", method = RequestMethod.PUT)
+    public void addMaintenanceWorkerToRequest (@RequestBody Maintenance maintenance, @PathVariable long id){
+        maintenanceDao.addMaintenanceStaffToRequest(maintenance, id);}
+
+
 
 }
