@@ -25,7 +25,7 @@ public class AccountHistory {
     }
     public AccountHistory(){};
 
-    public long getAccountHistoryId() {
+    public Long getAccountHistoryId() {
         return accountHistoryId;
     }
 
@@ -33,7 +33,7 @@ public class AccountHistory {
         this.accountHistoryId = accountHistoryId;
     }
 
-    public long getAccountId() {
+    public Long getAccountId() {
         return accountId;
     }
 

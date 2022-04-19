@@ -48,12 +48,13 @@ public class JdbcAccountHistoryDao implements AccountHistoryDao{
         jdbcTemplate.update(sql1, accountHistory.getAmount(), accountHistory.getAccountId());
 
 
+
         int newBalance = 0;
-        String sql2 = "INSERT INTO account_history (\n" +
-                "account_id, date, memo, amount, balance)\n" +
-                "VALUES (?,?,?,?,?);";
+        String sql2 = "INSERT INTO account_history\n" +
+                "                (account_id, date, memo, amount, balance)\n" +
+                "                VALUES (?, ?, ?, ?,(select balance_due from account where account.account_id = ?));";
         LocalDate date = LocalDate.parse(accountHistory.getDate());
-        jdbcTemplate.update(sql2, accountHistory.getAccountId(),date, accountHistory.getMemo(),accountHistory.getAmount(), newBalance);
+        jdbcTemplate.update(sql2, accountHistory.getAccountId(),date, accountHistory.getMemo(),accountHistory.getAmount(), accountHistory.getAccountId());
 
     }
 
