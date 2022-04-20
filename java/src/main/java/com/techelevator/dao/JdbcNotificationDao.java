@@ -33,13 +33,11 @@ public class JdbcNotificationDao implements NotificationDao{
     }
 
     @Override
-    public void updateNotification(Notification notification) {
+    public void updateNotification(int id, Notification notification) {
         String sql = "UPDATE notification\n" +
-                "SET message = ?, user_id = ?, read = ?\n" +
+                "SET read = ?\n" +
                 "WHERE notification_id = ?;";
-        jdbcTemplate.update(sql,notification.getMessage(),notification.getUser_id(),
-                notification.isRead(),notification.getNotification_id());
-        return;
+        jdbcTemplate.update(sql,notification.isRead(),id);
     }
 
     @Override

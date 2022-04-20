@@ -8,7 +8,7 @@ public interface NotificationDao {
 
     List<Notification> findAllByUsername(String userName);
 
-    void updateNotification(Notification notification);
+    void updateNotification(int id, Notification notification);
 
     void addNotification(Notification notification);
 
