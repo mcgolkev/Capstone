@@ -27,7 +27,7 @@
       <input type="text" name="rentee" id="rentee" />
     </div>
 
-    <div class="show-hide">
+    <div>
       <create-property />
     </div>
 
