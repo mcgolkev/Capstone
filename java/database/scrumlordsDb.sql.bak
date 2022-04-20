@@ -3,7 +3,7 @@ ROLLBACK;
 
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, apartments;
+DROP TABLE IF EXISTS users, apartments, ownership, account, account_history, maint_staff, maintenance, notification;
 
 DROP SEQUENCE IF EXISTS seq_user_id;
 
@@ -71,6 +71,18 @@ CREATE TABLE account (
 	CONSTRAINT FK_account_ownership FOREIGN KEY (ownership_id) REFERENCES ownership(ownership_id)
 );
 
+CREATE TABLE account_history (
+	account_history_id serial,
+	account_id int not null,
+	date DATE not null,
+	memo varchar(250) not null,
+	amount decimal not null,
+	balance decimal not null,
+		
+	CONSTRAINT PK_account_history PRIMARY KEY (account_history_id),
+	CONSTRAINT FK_account_history_account FOREIGN KEY (account_id) REFERENCES account(account_id)
+);
+
 CREATE TABLE maint_staff (
 	maint_staff_id SERIAL,
 	staff_user_id int NOT NULL,
@@ -90,6 +102,7 @@ CREATE TABLE maintenance (
 	complete boolean,
 	assigned boolean,
 	new_request boolean,
+	date_submitted DATE NOT NULL DEFAULT now(),
 	
 	CONSTRAINT PK_maintenance PRIMARY KEY (maintenance_id),
 	CONSTRAINT FK1_maintenance_ownership FOREIGN KEY (ownership_id) REFERENCES ownership(ownership_id),
@@ -147,7 +160,8 @@ INSERT INTO apartments (
 			num_bathrooms,
 			square_feet,
 			short_description,
-			long_description)
+			long_description,
+			available_for_rent)
 VALUES (8,
 		'1154 Jackson Rd.', 
 		'Apt. 2',
@@ -155,7 +169,7 @@ VALUES (8,
 		'FL',
 		33755,
 		1200, 
-		'www.google.com', 
+		'https://tampa.craigslist.org/hil/apa/d/tampa-car-care-center-controlled-access/7470041250.html', 
 		'08/01/2022',
 		3,
 		2,
@@ -163,7 +177,8 @@ VALUES (8,
 		'Charming North-End newly constructed duplex unit.',
 		'Located on quiet dead-end street\, 
 		centrally located to downtown\, greenbelt, and foothills. Application submittal 
-		required prior to scheduling walk-through.');
+		required prior to scheduling walk-through.',
+	   FALSE);
 		
 -- PROPERTY ID 2
 INSERT INTO apartments (
@@ -179,14 +194,15 @@ INSERT INTO apartments (
 			num_bathrooms,
 			square_feet,
 			short_description,
-			long_description)
+			long_description,
+			available_for_rent)
 VALUES (8,
 		'222 N Betty Ln.', 
 		'Clearwater', 
 		'FL',
 		33755,
 		3200, 
-		'www.google.com', 
+		'https://tampa.craigslist.org/hil/apa/d/tampa-beautiful-apartment-in-the-heart/7464943279.html', 
 		'12/1/2022',
 		3,
 		2,
@@ -200,7 +216,8 @@ VALUES (8,
 		Hospital/University & Route 25A. THIS WILL NOT LAST AGAIN!! Extensive 
 		background check and credit references! No pets no exceptions! 
 		Required 1 month broker fees 1 month security, paystubs required!! 
-		1 year lease $6,000 to move in! Call to schedule a showing');
+		1 year lease $6,000 to move in! Call to schedule a showing',
+	   TRUE);
 
 -- PROPERTY ID 3
 INSERT INTO apartments (
@@ -216,14 +233,15 @@ INSERT INTO apartments (
 			num_bathrooms,
 			square_feet,
 			short_description,
-			long_description)
+			long_description,
+			available_for_rent)
 VALUES (8,
 		'318 N Prescott Ave', 
 		'Clearwater', 
 		'FL',
 		33755,
 		1700, 
-		'www.google.com', 
+		'https://tampa.craigslist.org/pnl/apa/d/pinellas-park-sand-volleyball-court/7467909573.html', 
 		'06/01/2022',
 		1,
 		1,
@@ -234,7 +252,8 @@ VALUES (8,
 		'No pets and no smoking. $1700 includes all utilities. Additional fee for AC in 
 		summer months. Wifi and cable is the responsibility of the tenant. Available 
 		June 5th. 1 month security, 1 month broker fee and first months rent due upfront. 
-		Email agent to schedule a showing. HomeSmart Premier Living Realty');
+		Email agent to schedule a showing. HomeSmart Premier Living Realty',
+	   FALSE);
 		
 -- PROPERTY ID 4
 INSERT INTO apartments (
@@ -250,14 +269,15 @@ INSERT INTO apartments (
 			num_bathrooms,
 			square_feet,
 			short_description,
-			long_description)
+			long_description,
+			available_for_rent)
 VALUES (8,
 		'1577 Walnut St', 
 		'Clearwater', 
 		'FL',
 		33755,
 		1200, 
-		'www.google.com', 
+		'https://tampa.craigslist.org/psc/apa/d/odessa-poolside-grills-track-lighting/7468214347.html', 
 		'08/01/2022',
 		2,
 		1,
@@ -267,7 +287,8 @@ VALUES (8,
 		
 		'Safe and quiet neiborhoot, close to Adelphi and Hofstra univercities,
 		close to Roosvelt field mall and Nassau courts. Close to LIJ ,Winthrop 
-		hospitals. You pay 50% of the utilities. Available now. NO SMOKING,NO PETS.Please call Lisa');
+		hospitals. You pay 50% of the utilities. Available now. NO SMOKING,NO PETS.Please call Lisa',
+	   TRUE);
 
 -- PROPERTY ID 5
 INSERT INTO apartments (
@@ -283,14 +304,15 @@ INSERT INTO apartments (
 			num_bathrooms,
 			square_feet,
 			short_description,
-			long_description)
+			long_description,
+			available_for_rent)
 VALUES (9,
 		'1453 Springdale St', 
 		'Clearwater', 
 		'FL',
 		33755,
 		1350, 
-		'www.google.com', 
+		'https://tampa.craigslist.org/pnl/apa/d/pinellas-park-leasing-now-renovated/7471791544.html', 
 		'05/15/2022',
 		1,
 		1,
@@ -305,7 +327,8 @@ VALUES (9,
 		to shopping and very close distance to Smithtown historic quaint Village and the Smithtown train station! 
 		Pricing may include current special, is subject to change without notice restrictions apply—call for 
 		details. All layouts, dimensions and interior finishes are approximate and for display. Call/email/visit with 
-		Leasing Agent for full unit details. Equal Housing Opportunity owner/management.');
+		Leasing Agent for full unit details. Equal Housing Opportunity owner/management.',
+	   FALSE);
 		
 -- PROPERTY ID 6
 INSERT INTO apartments (
@@ -322,7 +345,8 @@ INSERT INTO apartments (
 			num_bathrooms,
 			square_feet,
 			short_description,
-			long_description)
+			long_description,
+			available_for_rent)
 VALUES (9,
 		'1837 Venetian Point Dr', 
 		'Apt. 2',
@@ -330,7 +354,7 @@ VALUES (9,
 		'FL',
 		33755,
 		2200, 
-		'www.google.com', 
+		'https://tampa.craigslist.org/hil/apa/d/tampa-frisbee-golf-play-area-bbq-picnic/7467841393.html', 
 		'06/01/2022',
 		1,
 		1,
@@ -353,7 +377,8 @@ VALUES (9,
 		1 Year lease minimum - First Month Rent . 1 Month Security Deposit at lease 
 		signing. Subject to credit check.
 		
-		THERE ARE NO BROKER FEES - NO SMOKING - NO PETS - SERIOUS INQUIRIES ONLY');
+		THERE ARE NO BROKER FEES - NO SMOKING - NO PETS - SERIOUS INQUIRIES ONLY',
+	   	TRUE);
 
 -- PROPERTY ID 7
 INSERT INTO apartments (
@@ -369,14 +394,15 @@ INSERT INTO apartments (
 			num_bathrooms,
 			square_feet,
 			short_description,
-			long_description)
+			long_description,
+			available_for_rent)
 VALUES (9,
 		'1249 Eldridge St', 
 		'Clearwater', 
 		'FL',
 		33755,
 		2750, 
-		'www.google.com', 
+		'https://tampa.craigslist.org/hil/apa/d/tampa-frisbee-golf-play-area-bbq-picnic/7467841393.html', 
 		'07/01/2022',
 		4,
 		2,
@@ -396,7 +422,8 @@ VALUES (9,
 		
 		This property can also be sub-divided. If contractors yard is not suitable 
 		for the interested buyer. Call for more details. Provide your own due diligence. 
-		Zoning approval will still be required.');
+		Zoning approval will still be required.',
+	   TRUE);
 		
 -- PROPERTY ID 8
 INSERT INTO apartments (
@@ -413,7 +440,8 @@ INSERT INTO apartments (
 			num_bathrooms,
 			square_feet,
 			short_description,
-			long_description)
+			long_description,
+			available_for_rent)
 VALUES (9,
 		'50 Coe Rd', 
 		'Apt. 2',
@@ -421,7 +449,7 @@ VALUES (9,
 		'FL',
 		33756,
 		4325, 
-		'www.google.com', 
+		'https://tampa.craigslist.org/hil/apa/d/tampa-car-care-center-controlled-access/7470041250.html', 
 		'09/01/2022',
 		3,
 		2,
@@ -442,7 +470,8 @@ VALUES (9,
 		and easy access to the LIRR Huntington Station. This is not just 
 		apartment living. This is living up.
 		
-		-Balcony -3rd Floor');
+		-Balcony -3rd Floor',
+	   FALSE);
 ----------------------------------------------------------------------------------------
 --  NOTIFICATOIN TABLE
 -- NOTIFICAION ID 1
@@ -600,7 +629,7 @@ INSERT INTO maintenance(
 )
 VALUES (
 	2,
-	4,
+	2,
 	'The front door does not close properly.',
 	TRUE,
 	FALSE
@@ -617,7 +646,7 @@ INSERT INTO maintenance(
 )
 VALUES (
 	3,
-	6,
+	4,
 	'The shrubs need to be trimmed.',
 	TRUE,
 	FALSE,
@@ -710,6 +739,860 @@ VALUES (
 	4325,
 	TRUE	
 );
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+-- ACCOUNT_HISTORY TABLE
+-- ACCOUNT_ID 3 PAYMENT HISTORY
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/1
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'11/1/2021',
+	'Charge - Rent',
+	1700,
+	1700
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/2
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'11/1/2021',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/3
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'12/1/2021',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/4
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'12/1/2021',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/5
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'1/1/2022',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/6
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'1/1/2022',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/7
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'2/1/2022',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/8
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'2/1/2022',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/9
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'3/1/2022',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/10
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'3/1/2022',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/11
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'4/1/2022',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/12
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'4/1/2022',
+	'Payment',
+	1700,
+	0
+);
+
+--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-- ACCOUNT_ID 2 PAYMENT HISTORY
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/13
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'11/1/2021',
+	'Charge - Rent',
+	1350,
+	1350
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/14
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'11/1/2021',
+	'Payment',
+	1350,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/15
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'12/1/2021',
+	'Charge - Rent',
+	1350,
+	1350
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/16
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'12/1/2021',
+	'Payment',
+	1350,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/17
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'1/1/2022',
+	'Charge - Rent',
+	1350,
+	1350
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/18
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'1/1/2022',
+	'Payment',
+	1350,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/19
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'2/1/2022',
+	'Charge - Rent',
+	1350,
+	1350
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/20
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'2/1/2022',
+	'Payment',
+	1350,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/21
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'3/1/2022',
+	'Charge - Rent',
+	1350,
+	1350
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/22
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'3/1/2022',
+	'Payment',
+	1350,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/23
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'4/1/2022',
+	'Charge - Rent',
+	1350,
+	1350
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 2/24
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'4/1/2022',
+	'Payment',
+	1350,
+	0
+);
+
+
+--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-- ACCOUNT_ID 3 PAYMENT HISTORY
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/25
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'11/1/2021',
+	'Charge - Rent',
+	1700,
+	1700
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/26
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'11/1/2021',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/27
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'12/1/2021',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/28
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'12/1/2021',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/29
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'1/1/2022',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/30
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'1/1/2022',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/31
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'2/1/2022',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/32
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'2/1/2022',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/33
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'3/1/2022',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/34
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'3/1/2022',
+	'Payment',
+	1700,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/35
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'4/1/2022',
+	'Charge - Rent',
+	1700,
+	1700
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/36
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	3,
+	'4/1/2022',
+	'Payment',
+	1700,
+	0
+);
+
+
+--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-- ACCOUNT_ID 4 PAYMENT HISTORY
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/37
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'11/1/2021',
+	'Charge - Rent',
+	4325,
+	4325
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/38
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'11/1/2021',
+	'Payment',
+	4325,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/39
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'12/1/2021',
+	'Charge - Rent',
+	4325,
+	4325
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/40
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'12/1/2021',
+	'Payment',
+	4325,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/41
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'1/1/2022',
+	'Charge - Rent',
+	4325,
+	4325
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/42
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'1/1/2022',
+	'Payment',
+	4325,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/43
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'2/1/2022',
+	'Charge - Rent',
+	4325,
+	4325
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/44
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'3/1/2022',
+	'Charge - Rent',
+	4325,
+	8650
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/45
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	2,
+	'4/1/2022',
+	'Charge - Rent',
+	4325,
+	12975
+);
+
+
+
+--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-- ACCOUNT_ID 1 PAYMENT HISTORY
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/46
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'11/1/2021',
+	'Charge - Rent',
+	1200,
+	1200
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/47
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'11/1/2021',
+	'Payment',
+	1200,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/48
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'12/1/2021',
+	'Charge - Rent',
+	1200,
+	1200
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/49
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'12/1/2021',
+	'Payment',
+	1200,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/50
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'1/1/2022',
+	'Charge - Rent',
+	1200,
+	1200
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/51
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'1/1/2022',
+	'Payment',
+	1200,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/52
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'2/1/2022',
+	'Charge - Rent',
+	1200,
+	1200
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/53
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'1/1/2022',
+	'Payment',
+	1200,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/54
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'3/1/2022',
+	'Charge - Rent',
+	1200,
+	1200
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/55
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	1,
+	'4/1/2022',
+	'Charge - Rent',
+	1200,
+	2400
+);
+
 
 ----------------------------------------------------------------------------------
 --- USER SETUP (Do Not Modify)
