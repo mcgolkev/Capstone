@@ -602,6 +602,45 @@ VALUES (
 		13
 		);
 		
+-- OWNERSHIP ID 5
+INSERT INTO ownership (
+			property_id,
+			landlord
+			)
+VALUES (
+		2,
+		8
+		);
+-- OWNERSHIP ID 6
+INSERT INTO ownership (
+			property_id,
+			landlord
+			)
+VALUES (
+		4,
+		9
+		);
+		
+-- OWNERSHIP ID 7
+INSERT INTO ownership (
+			property_id,
+			landlord
+			)
+VALUES (
+		6,
+		8
+		);
+		
+-- OWNERSHIP ID 8
+INSERT INTO ownership (
+			property_id,
+			landlord
+			)
+VALUES (
+		7,
+		9
+		);		
+		
 ------------------------------------------------------------------------------------------------------------------------------
 -- MAINTENANCE TABLE
 -- MAINTENANCE TABLE ID 1
