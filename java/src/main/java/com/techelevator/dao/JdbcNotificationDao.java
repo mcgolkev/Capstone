@@ -52,6 +52,22 @@ public class JdbcNotificationDao implements NotificationDao{
     }
 
     @Override
+    public void createRentalApplication(Notification notification, int id) {
+        String sql = "INSERT INTO notification \n" +
+                "(user_id, message, read)\n" +
+                "VALUES (?, ?, FALSE);";
+        jdbcTemplate.update(sql,getLandlordId(id),notification.getMessage());
+        return;
+    }
+
+    private int getLandlordId(int id){
+        String sql = "\"SELECT ownership_id FROM ownership WHERE landlord = (SELECT user_id FROM ownership" +
+                "WHERE property_id = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
+        return result.getInt("property_id");
+    }
+
+    @Override
     public void deleteNotification(Notification notification) {
         String sql = "DELETE \n" +
                 "FROM notification\n" +
@@ -68,6 +84,7 @@ public class JdbcNotificationDao implements NotificationDao{
         notification.setRead(rs.getBoolean("read"));
         return notification;
     }
+
 
 
 }
