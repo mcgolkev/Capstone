@@ -4,7 +4,8 @@
       v-for="notification in this.$store.state.notifications"
       v-bind:key="notification.notificationId"
     >
-    <input type="checkbox" id="notification-status" name="notification-status" v-model="notification.read" >
+    
+    <input type="checkbox" id="notification-status" name="read" :value="notification.read" v-model="notification.read" @change="(updateNotification(notification.read, notification.notification_id))" />
     <p>{{notification.message}}</p>
     </div>
   </div>
@@ -21,6 +22,10 @@ export default {
         this.$store.commit("SET_NOTIFICATIONS", response.data);
       });
     },
+    updateNotification(read, id){
+      const notification = {read: read};
+        NotificationService.update(id, notification)
+      }
   },
   created() {
     this.getNotifications();

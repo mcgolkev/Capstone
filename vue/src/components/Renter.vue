@@ -115,16 +115,6 @@ export default {
           this.$router.push({ name: "NotFound" });
         }
       });
-
-    RenterService.getMaintenance(this.$route.params.id)
-      .then((response) => {
-        this.$store.commit("SET_MAINTENANCE", response.data);
-      })
-      .catch((error) => {
-        if (error.response.status == 404) {
-          this.$router.push({ name: "NotFound" });
-        }
-      });
   },
 };
 </script>
