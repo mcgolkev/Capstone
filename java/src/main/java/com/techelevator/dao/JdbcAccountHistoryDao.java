@@ -27,12 +27,12 @@ public class JdbcAccountHistoryDao implements AccountHistoryDao{
     public List<AccountHistory> allHistoryByLoggedOnUser(String principal) {
         List<AccountHistory> accountHistories = new ArrayList<>();
         String sql = "SELECT account_history.account_history_id, account_history.account_id, account_history.date, account_history.memo, account_history.amount, account_history.balance\n" +
-                "FROM account_history \n" +
-                "JOIN account on account_history.account_id = account.account_id\n" +
-                "JOIN ownership on account.ownership_id = ownership.ownership_id\n" +
-                "JOIN users on (ownership.landlord = users.user_id OR ownership.renter = users.user_id)\n" +
-                "WHERE users.username = ?\n" +
-                "ORDER BY account_history.account_id ASC, account_history.date ASC;";
+                "                FROM account_history \n" +
+                "                JOIN account on account_history.account_id = account.account_id\n" +
+                "                JOIN ownership on account.ownership_id = ownership.ownership_id\n" +
+                "                JOIN users on (ownership.landlord = users.user_id OR ownership.renter = users.user_id)\n" +
+                "                WHERE users.username = ?\n" +
+                "                ORDER BY account_history.account_id ASC, account_history.account_history_id ASC;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal);
         while (results.next()){
             AccountHistory accountHistory = mapRowToAccountHistory(results);

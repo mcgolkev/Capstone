@@ -1150,336 +1150,8 @@ VALUES (
 
 
 --^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
--- ACCOUNT_ID 3 PAYMENT HISTORY
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/25
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	3,
-	'11/1/2021',
-	'Charge - Rent',
-	1700,
-	1700
-);
-
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/26
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	3,
-	'11/1/2021',
-	'Payment',
-	1700,
-	0
-);
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/27
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	3,
-	'12/1/2021',
-	'Charge - Rent',
-	1700,
-	1700
-);
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/28
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	3,
-	'12/1/2021',
-	'Payment',
-	1700,
-	0
-);
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/29
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	3,
-	'1/1/2022',
-	'Charge - Rent',
-	1700,
-	1700
-);
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/30
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	3,
-	'1/1/2022',
-	'Payment',
-	1700,
-	0
-);
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/31
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	3,
-	'2/1/2022',
-	'Charge - Rent',
-	1700,
-	1700
-);
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/32
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	3,
-	'2/1/2022',
-	'Payment',
-	1700,
-	0
-);
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/33
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	3,
-	'3/1/2022',
-	'Charge - Rent',
-	1700,
-	1700
-);
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/34
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	3,
-	'3/1/2022',
-	'Payment',
-	1700,
-	0
-);
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/35
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	3,
-	'4/1/2022',
-	'Charge - Rent',
-	1700,
-	1700
-);
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 3/36
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	3,
-	'4/1/2022',
-	'Payment',
-	1700,
-	0
-);
-
-
---^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
--- ACCOUNT_ID 4 PAYMENT HISTORY
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/37
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	4,
-	'11/1/2021',
-	'Charge - Rent',
-	4325,
-	4325
-);
-
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/38
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	4,
-	'11/1/2021',
-	'Payment',
-	4325,
-	0
-);
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/39
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	4,
-	'12/1/2021',
-	'Charge - Rent',
-	4325,
-	4325
-);
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/40
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	4,
-	'12/1/2021',
-	'Payment',
-	4325,
-	0
-);
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/41
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	4,
-	'1/1/2022',
-	'Charge - Rent',
-	4325,
-	4325
-);
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/42
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	4,
-	'1/1/2022',
-	'Payment',
-	4325,
-	0
-);
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/43
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	4,
-	'2/1/2022',
-	'Charge - Rent',
-	4325,
-	4325
-);
-
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/44
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	2,
-	'3/1/2022',
-	'Charge - Rent',
-	4325,
-	8650
-);
-
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/45
-INSERT INTO account_history(
-	account_id,
-	date,
-	memo,
-	amount,
-	balance
-)
-VALUES (
-	2,
-	'4/1/2022',
-	'Charge - Rent',
-	4325,
-	12975
-);
-
-
-
---^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 -- ACCOUNT_ID 1 PAYMENT HISTORY
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/46
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/25
 INSERT INTO account_history(
 	account_id,
 	date,
@@ -1495,7 +1167,7 @@ VALUES (
 	1200
 );
 
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/47
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/26
 INSERT INTO account_history(
 	account_id,
 	date,
@@ -1510,7 +1182,7 @@ VALUES (
 	1200,
 	0
 );
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/48
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/27
 INSERT INTO account_history(
 	account_id,
 	date,
@@ -1525,7 +1197,7 @@ VALUES (
 	1200,
 	1200
 );
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/49
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/28
 INSERT INTO account_history(
 	account_id,
 	date,
@@ -1540,7 +1212,7 @@ VALUES (
 	1200,
 	0
 );
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/50
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/29
 INSERT INTO account_history(
 	account_id,
 	date,
@@ -1555,7 +1227,7 @@ VALUES (
 	1200,
 	1200
 );
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/51
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/30
 INSERT INTO account_history(
 	account_id,
 	date,
@@ -1570,7 +1242,7 @@ VALUES (
 	1200,
 	0
 );
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/52
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/31
 INSERT INTO account_history(
 	account_id,
 	date,
@@ -1585,7 +1257,7 @@ VALUES (
 	1200,
 	1200
 );
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/53
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/32
 INSERT INTO account_history(
 	account_id,
 	date,
@@ -1595,12 +1267,12 @@ INSERT INTO account_history(
 )
 VALUES (
 	1,
-	'1/1/2022',
+	'2/1/2022',
 	'Payment',
 	1200,
 	0
 );
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/54
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/33
 INSERT INTO account_history(
 	account_id,
 	date,
@@ -1616,7 +1288,7 @@ VALUES (
 	1200
 );
 
--- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/55
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 1/34
 INSERT INTO account_history(
 	account_id,
 	date,
@@ -1631,6 +1303,148 @@ VALUES (
 	1200,
 	2400
 );
+
+--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-- ACCOUNT_ID 4 PAYMENT HISTORY
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/35
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'11/1/2021',
+	'Charge - Rent',
+	4325,
+	4325
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/36
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'11/1/2021',
+	'Payment',
+	4325,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/37
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'12/1/2021',
+	'Charge - Rent',
+	4325,
+	4325
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/38
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'12/1/2021',
+	'Payment',
+	4325,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/39
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'1/1/2022',
+	'Charge - Rent',
+	4325,
+	4325
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/40
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'1/1/2022',
+	'Payment',
+	4325,
+	0
+);
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/41
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'2/1/2022',
+	'Charge - Rent',
+	4325,
+	4325
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/42
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'3/1/2022',
+	'Charge - Rent',
+	4325,
+	8650
+);
+
+-- ACCOUNT_ID/ACCOUNT_HISTORY ACCOUNT_HISTORY_ID 4/43
+INSERT INTO account_history(
+	account_id,
+	date,
+	memo,
+	amount,
+	balance
+)
+VALUES (
+	4,
+	'4/1/2022',
+	'Charge - Rent',
+	4325,
+	12975
+);
+
 
 
 ----------------------------------------------------------------------------------
