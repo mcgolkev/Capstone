@@ -32,4 +32,8 @@ export default {
     updateMaintenance(id){
         return axios.put(`/maintenance/${id}`);
     },
+
+    updateRenter(id, property){
+        return axios.put(`/properties/rented/${id}`, property);
+    },
 }

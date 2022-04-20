@@ -9,7 +9,9 @@
         type="checkbox"
         id="availability-status"
         name="availability-status"
+        :value="property.availableForRent"
         v-model="property.availableForRent"
+        @change="(updateProperty(property.availableForRent, property.propertyId))"
       />
       
       <h1>
@@ -78,7 +80,11 @@ export default {
         this.rentInfo = response.data;
         return this.rentInfo;
       });
-    }
+    },
+     updateProperty(available, id){
+      const property = {availableForRent: available};
+        LandlordService.update(id, property)
+      }
   },
   created() {
       LandlordService.get()

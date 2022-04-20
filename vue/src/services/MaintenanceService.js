@@ -13,8 +13,8 @@ export default {
         return axios.get(`/maintenance/${id}/address`)
     },
 
-    update(id){
-        return axios.put(`/maintenance/${id}`)
+    update(id, maintenance){
+        return axios.put(`/maintenance/${id}`, maintenance)
     }
 }
 
