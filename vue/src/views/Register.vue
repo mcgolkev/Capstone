@@ -32,6 +32,28 @@
         v-model="user.confirmPassword"
         required
       />
+      <label for="role" class="sr-only">Role</label>
+      <input type="role" id="role" class="form-control" 
+        placeholder="Renter/Landlord/Staff"
+        v-model="user.role" required/>
+
+     <!-- <select class="sr-only">
+        <option value="" selected disabled>Pick Role</option>
+        <option v-for="role in role" :value="users.role" :key="users.role">{{users.role}}</option>
+      </select> -->
+      <!-- <input type="b-dropdown"/>
+      <b-dropdown
+      id="role"
+      text="Select your role"
+      class="sr-only">
+      <b-dropdown-item>Renter</b-dropdown-item>
+      <b-dropdown-item>Landlord</b-dropdown-item>
+      <b-dropdown-item>Maintenance</b-dropdown-item>
+      <b-dropdown-divider></b-dropdown-divider>
+      <b-dropdown-item active>Active Action</b-dropdown-item>
+      <b-dropdown-item disabled> Disabled Action</b-dropdown-item>
+      </b-dropdown> -->
+
       <router-link :to="{ name: 'login' }">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
@@ -51,7 +73,7 @@ export default {
         username: '',
         password: '',
         confirmPassword: '',
-        role: 'user',
+        role: '',
       },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
@@ -62,7 +84,11 @@ export default {
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
         this.registrationErrorMsg = 'Password & Confirm Password do not match.';
-      } else {
+      } else if (this.user.role != 'Renter' && this.user.role != 'Landlord' && this.user.role != 'Staff') {
+        this.registrationErrors =true;
+        this.registrationErrorMsg = 'Role is not Renter, Landlord or Staff'
+      }
+      else {
         authService
           .register(this.user)
           .then((response) => {
