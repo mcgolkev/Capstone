@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Apartment;
 import com.techelevator.model.Maintenance;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -93,6 +94,24 @@ public class JdbcMaintenanceDao implements  MaintenanceDao {
         jdbcTemplate.update(sql, getOwnershipId(principal.getName()), maintenance.getDescription());
     }
 
+    @Override
+    public Apartment getAddressForMaint(Long id){
+        Apartment apartment = new Apartment();
+        String sql = "SELECT address_line_1, address_line_2, city, state, zip \n" +
+                "from apartments\n" +
+                "JOIN ownership on apartments.property_id = ownership.property_id\n" +
+                "JOIN maintenance on ownership.ownership_id = maintenance.ownership_id\n" +
+                "WHERE maintenance_id = ?;";
+
+        SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, id);
+        if (rs.next()) {
+        apartment.setAddressLine1(rs.getString("address_line_1"));
+        apartment.setAddressLine2(rs.getString("address_line_2"));
+        apartment.setCity(rs.getString("city"));
+        apartment.setState(rs.getString("state"));
+        apartment.setZip(rs.getInt("zip"));}
+        return apartment;
+    }
 
     private Maintenance mapRowToMaintenance(SqlRowSet rs){
         Maintenance maintenance = new Maintenance();

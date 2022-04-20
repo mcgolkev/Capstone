@@ -16,8 +16,6 @@
     </div>
     <rent-info />
 
-    <!-- call rent info - bind it to property.propertyId -->
-
     <div class="payment-form">
       <form v-on:submit.prevent>
         <div class="field">
@@ -41,6 +39,7 @@
     </div>
 
     <div class="notifications">
+      <p>Notification List:</p>
       <notification-list />
     </div>
 

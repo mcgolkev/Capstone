@@ -25,12 +25,12 @@ export default new Vuex.Store({
     user: currentUser || {},
     properties: [],
     activeProperty: {},
-    renterProperty: {}, //gets from /apartments
+    renterProperty: {},
     rentedProperty: {},
     maintenance: {},
     activeMaintenance: {},
     notifications: [],
-    rentInfo: {} //gets from /rent
+    rentInfo: {} 
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
