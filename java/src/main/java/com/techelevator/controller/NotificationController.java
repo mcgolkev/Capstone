@@ -39,4 +39,9 @@ public class NotificationController {
     public void deleteNotification( @RequestBody Notification notification){
         notificationDao.deleteNotification(notification);
     }
+
+    @RequestMapping(path = "/rental/application/{id}", method = RequestMethod.POST)
+    public void createRentalApplication (@RequestBody  Notification notification, @PathVariable int id){
+        notificationDao.createRentalApplication(notification, id);
+    }
 }

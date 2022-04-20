@@ -1,16 +1,28 @@
 <template>
   <form v-on:submit.prevent>
     <div class="field">
-      <label for="title">Title</label>
-      <input type="text" v-model="property.title" />
-      <label for="price">Price</label>
-      <input type="number" v-model="property.number" />
+      <label for="addressLine1">Address</label>
+      <input type="text" v-model="property.addressLine1" />
+      <label for="addressLine2">Address Line 2</label>
+      <input type="text" v-model="property.addressLine2" />  
+      <label for="city">City</label>
+      <input type="text" v-model="property.city" />    
+      <label for="state">State</label>
+      <input type="text" v-model="property.state" />      
+      <label for="zip">Zip</label>
+      <input type="text" v-model="property.zip" />
+      <br>
+      <label for="price">Price $</label>
+      <input type="number" v-model="property.price" />
+      <label for="picture">Picture URL</label>
+      <input type="text" v-model="property.picture" />
       <label for="available">Available</label>
       <input type="date" v-model="property.available" />
       <label for="bedrooms">Bedrooms</label>
       <input type="number" v-model="property.bedrooms" />
       <label for="bathrooms">Bathrooms</label>
       <input type="number" v-model="property.bathrooms" />
+      <br>
       <label for="sqft">Square Feet</label>
       <input type="number" v-model="property.sqft" />
       <label for="shortDescription">Short Description</label>
@@ -32,7 +44,11 @@ export default {
     data(){
         return {
             property: {
-                title: "",
+                addressLine1: "",
+                addressLine2: "",
+                city: "",
+                state: "",
+                zip: "",
                 price: "",
                 picture: "",
                 available: "",
@@ -40,7 +56,8 @@ export default {
                 bathrooms: "",
                 sqft: "",
                 shortDescription: ""
-                //add address
+
+               
             }
         }
     },

@@ -14,4 +14,5 @@ public interface NotificationDao {
 
    void deleteNotification(Notification notification);
 
+    void createRentalApplication(Notification notification, int id);
 }
