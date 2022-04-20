@@ -60,7 +60,10 @@ public class ApartmentController {
     public List<Apartment> findRentedApartments(Principal principal){
         return apartmentDao.findRentedApartments(principal.getName());}
 
-
+    @GetMapping(path = "/properties/available")
+    public List<Apartment> findAllByLandlord(Principal principal){
+        return apartmentDao.findAllByLandlord(principal.getName());
+    }
 
 
 }
