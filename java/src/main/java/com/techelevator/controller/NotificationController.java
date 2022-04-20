@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-
+@PreAuthorize("isAuthenticated()")
 
 public class NotificationController {
     private NotificationDao notificationDao;
@@ -30,9 +30,9 @@ public class NotificationController {
          notificationDao.addNotification(notification);
     }
 
-    @RequestMapping(path = "/notification", method = RequestMethod.PUT)
-    public void updateNotification( @RequestBody Notification notification){
-        notificationDao.updateNotification(notification);
+    @RequestMapping(path = "/notification/{id}", method = RequestMethod.PUT)
+    public void updateNotification( @PathVariable int id, @RequestBody Notification notification){
+        notificationDao.updateNotification(id, notification);
     }
 
     @RequestMapping(path = "/notification", method = RequestMethod.DELETE)

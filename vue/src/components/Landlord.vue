@@ -83,7 +83,7 @@ export default {
     },
      updateProperty(available, id){
       const property = {availableForRent: available};
-        LandlordService.update(id, property)
+        LandlordService.updateRenter(id, property)
       }
   },
   created() {
