@@ -30,6 +30,6 @@ public class RentController {
         rentDao.deleteRentalAccount(id);}
 
     @RequestMapping(path = "/rent/{id}", method = RequestMethod.GET)
-    public Rent findRentbyId(Principal principal, @PathVariable int id){
+    public Rent findRentById(Principal principal, @PathVariable int id){
         return rentDao.findRentDueByPropertyId(principal.getName(), id);}
 }

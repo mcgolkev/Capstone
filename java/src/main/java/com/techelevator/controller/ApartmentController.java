@@ -25,6 +25,7 @@ public class ApartmentController {
     public List<Apartment> findAll(){
         return apartmentDao.findAll();}
 
+    @PreAuthorize("permitAll")
     @RequestMapping(path = "/properties/{id}", method = RequestMethod.GET)
     public Apartment findApartment(@PathVariable long id){
         return apartmentDao.findApartment(id);}
