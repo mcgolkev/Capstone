@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Apartment;
+import com.techelevator.model.Notification;
 
 
 import java.security.Principal;
@@ -28,4 +29,6 @@ public interface ApartmentDao {
     List<Apartment> findRentedApartments(String username);
 
     List<Apartment> findAllByLandlord(String username);
+
+
 }
