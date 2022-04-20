@@ -52,8 +52,6 @@ public class JdbcMaintenanceDao implements  MaintenanceDao {
         }return maintenance;
     }
 
-
-
     @Override
     public List<Maintenance> findMaintenanceById(Long id) {
         List<Maintenance> maintenances = new ArrayList<>();

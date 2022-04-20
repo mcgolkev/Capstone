@@ -51,10 +51,10 @@ public class ApartmentController {
 
     @PreAuthorize("hasRole('LANDLORD')")
     @RequestMapping(path = "/properties/renter/{id}", method = RequestMethod.PUT)
-    public void UpdateApartmentWithRenter(Long renter, Long propertyId){
-        apartmentDao.updatePropertyDetailsForRenter(propertyId);
-        apartmentDao.assignRenterIdToProperty(propertyId, renter);
+    public void UpdateApartmentWithRenter(@PathVariable long id, @RequestBody Apartment apartment){
+        apartmentDao.updatePropertyDetailsForRenter(id, apartment);
     }
+
     @PreAuthorize("hasRole('LANDLORD')")
     @RequestMapping(path = "/properties/rented", method = RequestMethod.GET)
     public List<Apartment> findRentedApartments(Principal principal){

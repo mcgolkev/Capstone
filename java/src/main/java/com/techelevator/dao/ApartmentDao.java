@@ -22,7 +22,7 @@ public interface ApartmentDao {
 
     List<Apartment> findAptForCurrentUser(String principal);
 
-    void updatePropertyDetailsForRenter(Long id);
+    void updatePropertyDetailsForRenter(Long id, Apartment apartment);
 
     void assignRenterIdToProperty(Long renterId, Long propertyId);
 

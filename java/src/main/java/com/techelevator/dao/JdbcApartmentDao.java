@@ -81,10 +81,10 @@ public class JdbcApartmentDao implements ApartmentDao {
     }
 
     @Override
-    public void updatePropertyDetailsForRenter(Long id) {
-        String sql = "UPDATE apartment SET available_date = null, available_for_rent = false" +
+    public void updatePropertyDetailsForRenter(Long id, Apartment apartment) {
+        String sql = "UPDATE apartment SET available_date = null, available_for_rent = ?" +
                 "WHERE property_id = ?;";
-        jdbcTemplate.update(sql, id);
+        jdbcTemplate.update(sql, apartment.isAvailableForRent(), id);
     }
 
     @Override
