@@ -16,9 +16,13 @@
             <router-link v-bind:to="{ name: 'properties' }"><b-navbar-item>
                 Properties
             </b-navbar-item></router-link>
+            <router-link v-bind:to="{ name: 'about-us' }"><b-navbar-item>
+                About Us
+            </b-navbar-item></router-link>
             <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"><b-navbar-item>
                 Logout
             </b-navbar-item></router-link>
+
         </template>
     </b-navbar>
     </div> <!-- navbar container -->

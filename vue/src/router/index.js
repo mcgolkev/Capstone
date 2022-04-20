@@ -9,6 +9,7 @@ import Properties from '../views/Properties.vue'
 import PropertyInfo from '../views/PropertyInfo.vue'
 import AddProperty from '../views/AddProperty.vue'
 import Maintenance from '../views/Maintenance.vue'
+import About from '../views/AboutUs.vue'
 // import Renter from '../components/Renter'
 // import NotificationList from '../components/NotificationList'
 
@@ -35,6 +36,11 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/about-us',
+      name: "about-us",
+      component: About
     },
     {
       path: "/login",
