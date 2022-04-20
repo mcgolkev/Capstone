@@ -40,7 +40,7 @@ public class JdbcMaintenanceDao implements  MaintenanceDao {
         List<Maintenance> maintenance = new ArrayList<>();
         String sql = "SELECT *\n" +
                 "FROM maintenance \n" +
-                "WHERE complete IS null AND (maint_staff_id IN (Select maint_staff_id FROM maint_staff WHERE staff_name = ?) or ownership_id IN (Select ownership_id \n" +
+                "WHERE (complete IS null or complete = false) AND (maint_staff_id IN (Select maint_staff_id FROM maint_staff WHERE staff_name = ?) or ownership_id IN (Select ownership_id \n" +
                 "From ownership \n" +
                 "WHERE landlord IN (SELECT user_id \n" +
                 "FROM users \n" +
@@ -74,7 +74,7 @@ public class JdbcMaintenanceDao implements  MaintenanceDao {
 
     @Override
     public void updateMaintenanceStatus(Maintenance maintenance, Long id) {
-        String sql = "UPDATE maintenance SET complete = ?, new_request = false" +
+        String sql = "UPDATE maintenance SET complete = ?, new_request = false " +
                 "WHERE maintenance_id = ?";
         jdbcTemplate.update(sql, maintenance.isComplete(), id);
     }
