@@ -44,7 +44,7 @@ public class JdbcMaintenanceDao implements  MaintenanceDao {
                 "WHERE landlord IN (SELECT user_id \n" +
                 "FROM users \n" +
                 "Where username = ?)))";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username, username);
         while(results.next()){
             Maintenance maintenance1 = mapRowToMaintenance(results);
             maintenance.add(maintenance1);

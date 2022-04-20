@@ -44,7 +44,7 @@ public class JdbcApartmentDao implements ApartmentDao {
                 apartment.getNumBathrooms(), apartment.getSquareFeet(), apartment.getShortDescription(),
                 apartment.getLongDescription());
     }
-
+    @Override
     public Apartment findApartment(Long propertyId){
       Apartment apartment = new Apartment();
         String sql = "SELECT * FROM apartments WHERE property_id = ?;";
@@ -54,6 +54,19 @@ public class JdbcApartmentDao implements ApartmentDao {
         }return apartment;
     }
 
+    @Override
+    public List<Apartment> findAllByLandlord(String username) {
+        List<Apartment> apartments = new ArrayList<>();
+        String sql = "SELECT * FROM apartments WHERE available_for_rent = TRUE AND property_id IN " +
+                "(SELECT property_id FROM ownership WHERE landlord = " +
+                "(SELECT user_id FROM users where username = ?));";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
+        while (results.next()) {
+            Apartment apartment = mapRowToApartment(results);
+            apartments.add(apartment);
+        }
+        return apartments;
+    }
 
     public List<Apartment> findAptForCurrentUser(String principal){
         List<Apartment> apartments = new ArrayList<>();
@@ -108,8 +121,8 @@ public class JdbcApartmentDao implements ApartmentDao {
     @Override
     public List<Apartment> findRentedApartments(String username) {
         List<Apartment> apartments = new ArrayList<>();
-        String sql = "SELECT * FROM apartments WHERE available_for_rent = false AND property_id in (SELECT property_id \\n\" +\n" +
-                "                \"FROM ownership WHERE landlord in (SELECT user_id FROM users WHERE username = ?) )";
+        String sql = "SELECT * FROM apartments WHERE available_for_rent = false AND property_id in (SELECT property_id " +
+                "                FROM ownership WHERE landlord in (SELECT user_id FROM users WHERE username = ?) )";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
         while (results.next()) {
             Apartment apartment = mapRowToApartment(results);
@@ -117,6 +130,7 @@ public class JdbcApartmentDao implements ApartmentDao {
         }
         return apartments;
     }
+
 
     private Apartment mapRowToApartment(SqlRowSet rs) {
         Apartment apartment = new Apartment();

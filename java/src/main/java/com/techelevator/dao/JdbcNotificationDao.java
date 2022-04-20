@@ -32,7 +32,6 @@ public class JdbcNotificationDao implements NotificationDao{
         return notifications;
     }
 
-
     @Override
     public void updateNotification(Notification notification) {
         String sql = "UPDATE notification\n" +

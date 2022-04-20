@@ -26,4 +26,6 @@ public interface ApartmentDao {
     void assignRenterIdToProperty(Long renterId, Long propertyId);
 
     List<Apartment> findRentedApartments(String username);
+
+    List<Apartment> findAllByLandlord(String username);
 }
