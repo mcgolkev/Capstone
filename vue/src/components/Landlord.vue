@@ -11,6 +11,7 @@
         name="availability-status"
         v-model="property.availableForRent"
       />
+      
       <h1>
         Address: {{ property.addressLine1 }}
         {{ property.addressLine2 }}
@@ -30,9 +31,10 @@
       <create-property />
     </div>
 
+<!-- /properties/rented -->
     <div
       class="rented-properties"
-      v-for="property in this.$store.rentedProperty"
+      v-for="property in this.$store.state.rentedProperty"
       v-bind:key="property.propertyId"
     >
       <h1>
@@ -43,17 +45,9 @@
         {{ property.zip }}
       </h1>
 
-        <p v-if="rent.pastDue">Status: Past Due</p>
-        <p v-else>Status: Due</p>
-        <p>Balance: {{ rent.balanceDue }}</p>
-        <p>
-          Monthly Rent Amount:
-          {{ rent.monthlyRentAmount }}
-        </p>
+      <account-info :id="property.propertyId" />
          
     </div>
-
-    <!-- Get list of rent info, then .innerHtml-->
 
     <div class="maintenance">
       <div
@@ -70,8 +64,9 @@
 <script>
 import LandlordService from "../services/LandlordService";
 import CreateProperty from "./CreateProperty.vue";
+import AccountInfo from './AccountInfo.vue'
 export default {
-  components: { CreateProperty },
+  components: { CreateProperty, AccountInfo },
   data(){
     return {
       rentInfo: {}
@@ -89,6 +84,16 @@ export default {
       LandlordService.get()
         .then((response) => {
           this.$store.commit("SET_RENTER_PROPERTY", response.data);
+        })
+        .catch((error) => {
+          if (error.response.status == 404) {
+            this.$router.push({ name: "NotFound" });
+          }
+        });
+
+        LandlordService.getRented()
+        .then((response) => {
+          this.$store.commit("SET_RENTED_PROPERTY", response.data);
         })
         .catch((error) => {
           if (error.response.status == 404) {
@@ -114,4 +119,15 @@ export default {
   display: none;
 }
 </style>
+
+<!--
+-Add a way to register with role
+-check puts
+-check posts
+-Logged in renter should be able to send landlord a request to rent
+
+bind the edit property to the id and then send in as prop of property with the values
+
+
+-->
 

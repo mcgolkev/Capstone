@@ -9,6 +9,10 @@ export default {
         return axios.get(`/maintenance/${id}`)
     },
 
+    getAddressForMaintenance(id){
+        return axios.get(`/maintenance/${id}/address`)
+    },
+
     update(id){
         return axios.put(`/maintenance/${id}`)
     }

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default {
      get(){
-      return axios.get('/apartments');
+      return axios.get('/properties/available');
     },
 
     getMaintenance(){
