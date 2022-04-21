@@ -32,7 +32,7 @@ CREATE TABLE apartments (
 	zip decimal NOT NULL,
 	price decimal NOT NULL,
 	picture text,
-	available date,
+	available date NOT NULL,
 	num_bedrooms decimal,
 	num_bathrooms decimal,
 	square_feet int,
@@ -472,6 +472,504 @@ VALUES (9,
 		
 		-Balcony -3rd Floor',
 	   FALSE);
+	 --/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+	 
+	-- PROPERTY ID 9   
+INSERT INTO apartments (
+			landlord,
+			address_line_1,
+			address_line_2,
+			city,
+			state,
+			zip,
+			price,
+			picture,
+			available,
+			num_bedrooms,
+			num_bathrooms,
+			square_feet,
+			short_description,
+			long_description,
+			available_for_rent)
+VALUES (9,
+		'3602 Carrollwood Place Circle', 
+		'Apt. 32',
+		'Tampa', 
+		'FL',
+		33624,
+		2500, 
+		'https://images.craigslist.org/00e0e_choydcnAADgz_0cm07K_1200x900.jpg', 
+		'08/01/2022',
+		2,
+		2,
+		1150,
+		'We believe elevating where you live is about blending it seamlessly 
+		with how you live. We go to great lengths designing amenities and 
+		choosing locations that put everything within reach. Property Tours Now Available! We are now welcoming in-person and virtual tours. Please contact us today to schedule your appointment.
+		Schedule a Tour Today.',
+		
+		'At Sabal Palm, our stunning community will provide the perfect backdrop for every lifestyle. 
+		In each of our one bedroom, two bedroom, and three bedroom luxury apartments in Tampa, FL 
+		and throughout our community, the amazing amenities around every corner will allow residents 
+		to find the best place to spend their time. Within our homes, residents will love the 
+		stainless steel appliances, spacious walk-in closets, and private patios. Throughout the 
+		community at our Tampa apartments for rent, residents can take advantage of the resort-style 
+		swimming pool, 24-hour fitness center, and beautiful clubhouse and coffee bar. No matter 
+		what residents are looking for, it can be found at our Carrollwood, Tampa apartments..
+		
+		-Balcony -3rd Floor',
+	   TRUE);
+	   
+	-- PROPERTY ID 10   
+INSERT INTO apartments (
+			landlord,
+			address_line_1,
+			address_line_2,
+			city,
+			state,
+			zip,
+			price,
+			picture,
+			available,
+			num_bedrooms,
+			num_bathrooms,
+			square_feet,
+			short_description,
+			long_description,
+			available_for_rent)
+VALUES (9,
+		'106 Hampton Rd', 
+		'Apt. 26',
+		'Tampa', 
+		'FL',
+		33624,
+		1850, 
+		'https://images.craigslist.org/01212_7MKH84kBBGFz_0g808S_1200x900.jpg', 
+		'05/01/2022',
+		2,
+		1,
+		1650,
+		'We now book our tour appointments online! Please call or text us  to self-schedule 
+		from your phone! Book your appointment online today or anytime 24/7!',
+		
+		'We are pleased to offer in-person tours, virtual tours and Facetime/Skype tours for 
+		your convenience. Temperature checks and face masks required for in-person tours and social distancing enforced.
+
+		Step into luxury and refinement in Clearwater most exceptional boutique-style community. 
+		Our gourmet kitchens are finished with the finest touches such as stainless steel appliances 
+		and granite countertops. Our sparkling pool, spa and zen garden are sure to evoke a relaxing 
+		environment. Want to hit the gym? Check out our fitness center with state-of-the-art equipment. 
+		Feel like heading to the beach? We are only 10 minutes away! Come see where luxury living 
+		meets your lifestyle.',
+	   TRUE);	
+
+	   
+	-- PROPERTY ID 11   
+INSERT INTO apartments (
+			landlord,
+			address_line_1,
+			address_line_2,
+			city,
+			state,
+			zip,
+			price,
+			picture,
+			available,
+			num_bedrooms,
+			num_bathrooms,
+			square_feet,
+			short_description,
+			long_description,
+			available_for_rent)
+VALUES (8,
+		'1302 Cooperstown Ct', 
+		'Apt. 101',
+		'Tampa', 
+		'FL',
+		33624,
+		975, 
+		'https://images.craigslist.org/00l0l_8reY6i8gd2Xz_0gw0b1_1200x900.jpg', 
+		'05/01/2022',
+		1,
+		1,
+		641,
+		'Just north of the hustle and bustle of the city, Palms at Sand Lake is a 
+		welcoming community of apartments for rent in Tampa, FL. ',
+		
+		'The community is just minutes from I-275, University of South Florida, 
+		local restaurants, University Mall, and parks. While Palms at Sand Lake 
+		offers amenities such as a full fitness center, play area, 24-hour laundry 
+		facility, and a sparkling pool, our one or two-bedroom apartments are spacious 
+		with open floor plans . Our homes are also pet-friendly and offer 
+		inviting water views! We are now leasing for our newly renovated 
+		apartments, which includes a stackable washer and dryer in select 
+		apartments, black appliances, and faux wood flooring. Stop by today to 
+		reserve your home at our Tampa, FL apartments.',
+	   TRUE);
+
+	   
+	-- PROPERTY ID 12   
+INSERT INTO apartments (
+			landlord,
+			address_line_1,
+			address_line_2,
+			city,
+			state,
+			zip,
+			price,
+			picture,
+			available,
+			num_bedrooms,
+			num_bathrooms,
+			square_feet,
+			short_description,
+			long_description,
+			available_for_rent)
+VALUES (8,
+		'8500 Belcher Road', 
+		'Apt. 2A',
+		'Tampa', 
+		'FL',
+		33624,
+		1225, 
+		'https://images.craigslist.org/00E0E_jV4uqejp3ryz_0bE07K_1200x900.jpg', 
+		'05/01/2022',
+		2,
+		2,
+		1000,
+		'Come home to our community at Bayou Point! At our apartments near St. 
+		Petersburg, FL, we offer one bedroom, two bedroom, and three bedroom 
+		floorplans that feature details that enhance every lifestyle.',
+		
+		'In each home, residents will find black kitchen appliances, spacious 
+		walk-in closets, full-sized washers and dryers, and a private patio or 
+		balcony to take in some fresh air while enjoying a cup of coffee. The 
+		community at our apartments in Pinellas Park also features amazing 
+		amenities like lake views and a swimming pool. Residents will love 
+		our ideal location because they can easily access the beach and the 
+		best shopping and dining at our apartments near Clearwater, FL. Find 
+		your new home at Bayou Point Apartments for rent in Pinellas Park. 
+		Contact us for more information today!',
+	   TRUE);	
+
+	   
+	-- PROPERTY ID 13   
+INSERT INTO apartments (
+			landlord,
+			address_line_1,
+			address_line_2,
+			city,
+			state,
+			zip,
+			price,
+			picture,
+			available,
+			num_bedrooms,
+			num_bathrooms,
+			square_feet,
+			short_description,
+			long_description,
+			available_for_rent)
+VALUES (8,
+		'5150 Net Drive', 
+		'Apt. 22A',
+		'Tampa', 
+		'FL',
+		33624,
+		1000, 
+		'https://images.craigslist.org/00r0r_czYO08vAonWz_0cU07g_1200x900.jpg', 
+		'05/01/2022',
+		1,
+		1,
+		752,
+		'Enjoy living in a newly renovated home at 5 West Apartments! Our one 
+		bedroom and two bedroom apartments for rent in Tampa features an 
+		unparalleled luxury lifestyle with amazing amenities and an ideal location. ',
+		
+		'Interiors are spacious enough to accommodate large closets, 9 ft. ceilings, 
+		and a private patio or balcony. Elegant details can be found throughout, 
+		like customer counters, track lighting, and cordless security monitoring 
+		systems. Our apartments in Town ‘N’ Country Tampa, FL give residents exclusive 
+		access to a brand new fitness center, a new cyber lounge with high-speed 
+		Wi-Fi, and a unique swimming pool with an expansive sundeck overlooking 5 
+		West Apartments private lake. Not to mention, we are just a short commute 
+		to Downtown, Westshore Business District, and the International Plaza. 
+		Everything residents need for comfort and convenience can be found at our 
+		Northwest Tampa apartments',
+	   TRUE);	 
+
+	   
+	-- PROPERTY ID 14   
+INSERT INTO apartments (
+			landlord,
+			address_line_1,
+			address_line_2,
+			city,
+			state,
+			zip,
+			price,
+			picture,
+			available,
+			num_bedrooms,
+			num_bathrooms,
+			square_feet,
+			short_description,
+			long_description,
+			available_for_rent)
+VALUES (9,
+		'5501 110th Avenue', 
+		'Apt. 2D',
+		'Tampa', 
+		'FL',
+		33624,
+		1950, 
+		'https://images.craigslist.org/01111_1SAPfKcBFTLz_0cU07f_1200x900.jpg', 
+		'06/01/2022',
+		2,
+		2,
+		1182,
+		'Aspire At Gateway offers our residents a place to discover all they need for a life of ease. ',
+		
+		'With a selection of one bedroom, two bedroom, and three bedroom homes and a 
+		stunning community, our Pinellas Park apartments will provide the perfect place 
+		to call home. In each of our homes, residents will love the private patios, 
+		full-sized washer and dryer, and spacious closets. Throughout the community at our 
+		apartments near Clearwater, FL, residents can take advantage of the beautiful swimming pool, 
+		fitness center, and outdoor barbecue area.',
+	   TRUE);
+
+
+	   
+	-- PROPERTY ID 15   
+INSERT INTO apartments (
+			landlord,
+			address_line_1,
+			address_line_2,
+			city,
+			state,
+			zip,
+			price,
+			picture,
+			available,
+			num_bedrooms,
+			num_bathrooms,
+			square_feet,
+			short_description,
+			long_description,
+			available_for_rent)
+VALUES (9,
+		'2615 North Grady Avenue', 
+		'Apt. 4B',
+		'Tampa', 
+		'FL',
+		33624,
+		2250, 
+		'https://images.craigslist.org/00808_3PFyXht1HbTz_0g8094_1200x900.jpg', 
+		'05/18/2022',
+		2,
+		2,
+		1180,
+		'We now book our tour appointments online! Please call or text us to 
+		self-schedule from your phone! Book your appointment online today or anytime 24/7!',
+		
+		'We are pleased to offer in-person tours, virtual tours and Facetime/Skype 
+		tours for your convenience. Temperature checks and face masks required for 
+		in-person tours and social distancing enforced.
+
+		Located in the Westshore Tampa area, Grady Square is a community 
+		like no other. You’ll find an abundance of amenities at your doorstep 
+		from the state-of-the-art gym, yoga and spin room to the resort-style 
+		pool and interactive courtyards! Pampered is a way of life for Grady 
+		Square residents. Offering stylish urban lofts, one-, two- and three-bedroom 
+		residences, Grady Square is sure to have a place suited to your lifestyle. 
+		It’s more than an apartment, it is an experience!',
+	   TRUE);
+
+	   
+	-- PROPERTY ID 16   
+INSERT INTO apartments (
+			landlord,
+			address_line_1,
+			address_line_2,
+			city,
+			state,
+			zip,
+			price,
+			picture,
+			available,
+			num_bedrooms,
+			num_bathrooms,
+			square_feet,
+			short_description,
+			long_description,
+			available_for_rent)
+VALUES (8,
+		'2615 North Grady Avenue', 
+		'Apt. 104',
+		'Tampa', 
+		'FL',
+		33624,
+		1750, 
+		'https://images.craigslist.org/01010_2lRnuSeI7WLz_0cU08B_1200x900.jpg', 
+		'05/01/2022',
+		1,
+		1,
+		630,
+		'Searching for great apartment home living in sunny Temple Terrace, ]
+		Florida? We have just the place for you. ',
+		
+		'The Park at Valenza is a unique and inviting community that offers 
+		the lifestyle you deserve. Our location allows for easy access to 
+		lakes, state parks, shopping, restaurants, and entertainment venues,
+		all nearby. The Park at Valenza is your gateway to fun and excitement
+		in the beautiful sunshine state.
+
+		We offer a wide variety of floor plans with one, two, and
+		three-bedroom apartments for rent. Come discover the lifestyle
+		you have been dreaming of.
+
+		From the moment you arrive, you will feel like you’ve come home. 
+		Take heart in knowing we are a pet-friendly community, so your 
+		four-legged friends are welcome to come along. Our on-call and on-site
+		maintenance teams are dedicated to providing quick and excellent
+		service when you need it. Come tour our community and see what makes
+		The Park at Valenza the best apartment community in Temple Terrace, Florida.',
+	   TRUE);	
+
+	   
+	-- PROPERTY ID 17   
+INSERT INTO apartments (
+			landlord,
+			address_line_1,
+			address_line_2,
+			city,
+			state,
+			zip,
+			price,
+			picture,
+			available,
+			num_bedrooms,
+			num_bathrooms,
+			square_feet,
+			short_description,
+			long_description,
+			available_for_rent)
+VALUES (9,
+		'3301 Whitney Rd', 
+		'Apt. 1',
+		'Tampa', 
+		'FL',
+		33624,
+		2650, 
+		'https://images.craigslist.org/00C0C_4mderJc8bZIz_09i03i_1200x900.jpg', 
+		'06/01/2022',
+		3,
+		3,
+		1890,
+		'Call about our specials.  Discover a lifestyle of elegance 
+		and tranquility at Whitney Place, the newest townhome community
+		in Clearwater, Florida.',
+		
+		'Call about our specials.  Discover a lifestyle of elegance and 
+		tranquility at Whitney Place, the newest townhome community in 
+		Clearwater, Florida. Tucked away in a peaceful neighborhood with 
+		easy access to all the comforts Clearwater has to offer, you will 
+		love calling this serene townhome community home.',
+	   TRUE);
+
+	   
+	-- PROPERTY ID 18   
+INSERT INTO apartments (
+			landlord,
+			address_line_1,
+			address_line_2,
+			city,
+			state,
+			zip,
+			price,
+			picture,
+			available,
+			num_bedrooms,
+			num_bathrooms,
+			square_feet,
+			short_description,
+			long_description,
+			available_for_rent)
+VALUES (9,
+		'7610 W Waters Ave', 
+		'Apt. 321',
+		'Tampa', 
+		'FL',
+		33624,
+		1875, 
+		'https://images.craigslist.org/00R0R_bPQQD0c5l10z_0bC07K_1200x900.jpg', 
+		'06/01/2022',
+		2,
+		2,
+		1000,
+		'At WestEnd, our residents will love getting to come home to our 
+		beautiful community. With a selection of studio, 1 bedroom, and 2 
+		bedroom apartments in Tampa and a community that is filled with 
+		amazing amenities, residents can find the best place to call home. ',
+		
+		'At WestEnd, our residents will love getting to come home to our 
+		beautiful community. With a selection of studio, 1 bedroom, and 
+		2 bedroom apartments in Tampa and a community that is filled with
+		amazing amenities, residents can find the best place to call home.
+		Each home includes a modern kitchen with stainless steel appliances 
+		and designer cabinetry, walk-in closets, and a private patio. Throughout
+		our community, residents can take advantage of the resort-style swimming 
+		pool, 24-hour fitness center, and newly designed clubhouse. No matter 
+		what our residents are in search of, it can be found at our West Tampa 
+		apartments.',
+	   TRUE);	
+
+	   
+	-- PROPERTY ID 19   
+INSERT INTO apartments (
+			landlord,
+			address_line_1,
+			address_line_2,
+			city,
+			state,
+			zip,
+			price,
+			picture,
+			available,
+			num_bedrooms,
+			num_bathrooms,
+			square_feet,
+			short_description,
+			long_description,
+			available_for_rent)
+VALUES (9,
+		'5501 110th Avenue', 
+		'Apt. 112',
+		'Tampa', 
+		'FL',
+		33624,
+		2300, 
+		'https://images.craigslist.org/00O0O_f6k4VwtI7Zjz_0cU07f_1200x900.jpg', 
+		'05/01/2022',
+		2,
+		2,
+		1182,
+		'Aspire At Gateway offers our residents a place to discover all 
+		they need for a life of ease. With a selection of one bedroom, 
+		two bedroom, and three bedroom homes and a stunning community, 
+		our Pinellas Park apartments will provide the perfect place to
+		call home. ',
+		
+		'Aspire At Gateway offers our residents a place to discover 
+		all they need for a life of ease. With a selection of one bedroom, 
+		two bedroom, and three bedroom homes and a stunning community, our 
+		Pinellas Park apartments will provide the perfect place to call home. 
+		In each of our homes, residents will love the private patios, 
+		full-sized washer and dryer, and spacious closets. Throughout
+		the community at our apartments near Clearwater, FL, residents
+		can take advantage of the beautiful swimming pool, fitness center, 
+		and outdoor barbecue area.',
+	   TRUE);		   	   
 ----------------------------------------------------------------------------------------
 --  NOTIFICATOIN TABLE
 -- NOTIFICAION ID 1
@@ -641,6 +1139,116 @@ VALUES (
 		9
 		);		
 		
+-- OWNERSHIP ID 9
+INSERT INTO ownership (
+			property_id,
+			landlord
+			)
+VALUES (
+		9,
+		9
+		);	
+		
+-- OWNERSHIP ID 10
+INSERT INTO ownership (
+			property_id,
+			landlord
+			)
+VALUES (
+		10,
+		9
+		);		
+		
+-- OWNERSHIP 11
+INSERT INTO ownership (
+			property_id,
+			landlord
+			)
+VALUES (
+		11,
+		8
+		);		
+		
+-- OWNERSHIP ID 12
+INSERT INTO ownership (
+			property_id,
+			landlord
+			)
+VALUES (
+		12,
+		8
+		);		
+		
+-- OWNERSHIP ID 13
+INSERT INTO ownership (
+			property_id,
+			landlord
+			)
+VALUES (
+		13,
+		8
+		);		
+		
+-- OWNERSHIP ID 14
+INSERT INTO ownership (
+			property_id,
+			landlord
+			)
+VALUES (
+		14,
+		9
+		);		
+		
+-- OWNERSHIP ID 15
+INSERT INTO ownership (
+			property_id,
+			landlord
+			)
+VALUES (
+		15,
+		9
+		);		
+		
+-- OWNERSHIP ID 16
+INSERT INTO ownership (
+			property_id,
+			landlord
+			)
+VALUES (
+		16,
+		8
+		);		
+		
+-- OWNERSHIP ID 17
+INSERT INTO ownership (
+			property_id,
+			landlord
+			)
+VALUES (
+		17,
+		9
+		);		
+		
+-- OWNERSHIP ID 18
+INSERT INTO ownership (
+			property_id,
+			landlord
+			)
+VALUES (
+		18,
+		9
+		);		
+		
+-- OWNERSHIP ID 19
+INSERT INTO ownership (
+			property_id,
+			landlord
+			)
+VALUES (
+		19,
+		9
+		);		
+		
 ------------------------------------------------------------------------------------------------------------------------------
 -- MAINTENANCE TABLE
 -- MAINTENANCE TABLE ID 1
@@ -653,7 +1261,7 @@ INSERT INTO maintenance(
 )
 VALUES (
 	1,
-	1,
+	2,
 	'The air conditioning system does not get cold in the garage.',
 	TRUE,
 	FALSE
@@ -685,26 +1293,95 @@ INSERT INTO maintenance(
 )
 VALUES (
 	3,
-	4,
+	2,
 	'The shrubs need to be trimmed.',
 	TRUE,
-	FALSE,
-	TRUE
+	true,
+	false
 );
 
 -- MAINTENANCE TABLE ID 4
 INSERT INTO maintenance(
 	ownership_id,
+	maint_staff_id,
 	description,
-	new_request
+	assigned,
+	new_request,
+	complete
 )
 VALUES (
 	3,
+	2,
 	'The porch light is broken',
-	TRUE
+	TRUE,
+	true,
+	false
 );
 
 -- MAINTENANCE TABLE ID 5
+INSERT INTO maintenance(
+	ownership_id,
+	maint_staff_id,
+	description,
+	new_request,
+	assigned,
+	complete
+)
+
+VALUES (
+	3,
+	2,
+	'The automatic sprinkler does not shut off.',
+	FALSE,
+	true,
+	TRUE
+	
+);
+
+
+-- MAINTENANCE TABLE ID 6
+INSERT INTO maintenance(
+	ownership_id,
+	maint_staff_id,
+	description,
+	new_request,
+	assigned,
+	complete
+	
+	
+)
+VALUES (
+	2,
+	2,
+	'The bathroom window is broken.',
+	TRUE,
+	true,
+	FALSE
+	
+);
+
+-- MAINTENANCE TABLE ID 7
+INSERT INTO maintenance(
+	ownership_id,
+	maint_staff_id,
+	description,
+	new_request,
+	assigned,
+	complete
+	
+	
+)
+VALUES (
+	3,
+	2,
+	'The tile in the bathroom is cracked and needs to be repalced.',
+	FALSE,
+	TRUE,
+	FALSE
+	
+);
+
+-- MAINTENANCE TABLE ID 8
 INSERT INTO maintenance(
 	ownership_id,
 	description,
@@ -715,13 +1392,166 @@ INSERT INTO maintenance(
 	
 )
 VALUES (
-	3,
-	'The automatic sprinkler does not shut off.',
+	4,
+	'The lights in the living room flicker when they first turn on.',
 	FALSE,
+	True,
+	false,
+	2
+);
+
+-- MAINTENANCE TABLE ID 9
+INSERT INTO maintenance(
+	ownership_id,
+	description,
+	new_request,
+	assigned,
+	complete,
+	maint_staff_id
+	
+)
+VALUES (
+	2,
+	'The hot water heater is leaking and the water does not get very hot.',
+	FALSE,
+	True,
+	FALSE,
+	2
+);
+
+-- MAINTENANCE TABLE ID 10
+INSERT INTO maintenance(
+	ownership_id,
+	description,
+	new_request,
+	assigned,
+	complete,
+	maint_staff_id
+	
+)
+VALUES (
+	1,
+	'The yard requires a spring clean-up.  Leaves raked, edged, and new grass seed.',
+	TRUE,
+	TRUE,
+	FALSE,
+	2
+);
+
+-- MAINTENANCE TABLE ID 11
+INSERT INTO maintenance(
+	ownership_id,
+	description,
+	new_request,
+	assigned,
+	complete,
+	maint_staff_id
+	
+)
+VALUES (
+	2,
+	'There is a leak in the roof.  It is leaking into the living room and onto my TV!',
 	FALSE,
 	TRUE,
-	4
+	FALSE,
+	2
 );
+
+-- MAINTENANCE TABLE ID 12
+INSERT INTO maintenance(
+	ownership_id,
+	description,
+	new_request,
+	assigned,
+	complete,
+	maint_staff_id
+	
+)
+VALUES (
+	1,
+	'The pool is too cold.  The pool heater needs to be adjusted.',
+	FALSE,
+	TRUE,
+	TRUE,
+	2
+);
+
+-- MAINTENANCE TABLE ID 13
+INSERT INTO maintenance(
+	ownership_id,
+	description,
+	new_request,
+	assigned,
+	complete,
+	maint_staff_id
+	
+)
+VALUES (
+	4,
+	'The two front window screens are ripped and need to be repalced.',
+	FALSE,
+	TRUE,
+	FALSE,
+	2
+);
+
+-- MAINTENANCE TABLE ID 14
+INSERT INTO maintenance(
+	ownership_id,
+	description,
+	new_request,
+	assigned,
+	complete,
+	maint_staff_id
+	
+)
+VALUES (
+	4,
+	'The bathroom door does not close properly.',
+	TRUE,
+	TRUE,
+	FALSE,
+	2
+);
+
+-- MAINTENANCE TABLE ID 15
+INSERT INTO maintenance(
+	ownership_id,
+	description,
+	new_request,
+	assigned,
+	complete,
+	maint_staff_id
+	
+)
+VALUES (
+	1,
+	'The outlet in the kitchen island is not working.',
+	FALSE,
+	TRUE,
+	TRUE,
+	2
+);
+
+-- MAINTENANCE TABLE ID 16
+INSERT INTO maintenance(
+	ownership_id,
+	description,
+	new_request,
+	assigned,
+	complete,
+	maint_staff_id
+	
+)
+VALUES (
+	2,
+	'The washing machine does not turn on.',
+	True,
+	true,
+	False,
+	2
+);
+
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 -- ACCOUNT TABLE
