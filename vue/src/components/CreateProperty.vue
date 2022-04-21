@@ -1,5 +1,5 @@
 <template>
-  <form v-on:submit.prevent>
+  <form v-on:submit.prevent v-show='toggle'>
     <div class="field">
       <label for="addressLine1">Address</label>
       <input type="text" v-model="property.addressLine1" />
