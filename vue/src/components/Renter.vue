@@ -1,15 +1,30 @@
 <template>
   <!-- Renter:  Will want rental information (if renting) and maintenance request info, browsing properties-->
   <div>
+
+
+    <h1 id="OverallPageTitleOutsideOfTitles">
+        <center>My Account</center>
+    </h1>
+    <div id="this-contains-the-entire-page-and-all-contents" class="tile is-ancestor">
+        <div id="this-contains-all-tiles" class="tile is-6">
+            <div id="this-contains-all-tiles-and-makes-tiles-stack-vertically" class="tile is-parent is-vertical">
+                <div id="this-is-a-single-tile" class="tile is-12 is-child box">
+                    <div id="this-makes-all-content-within-the-tile-stack-vertically" class="tile is-vertical">
+                        <p id="this-automatically-formats-to-be-a-title-in-buefy" class="title">
+                            <b>Rent Status</b>
+                        </p>
+                        <p id="this-is-example-text-information">
+                            
     <div
       class="rental-property-info"
       v-for="property in this.$store.state.renterProperty"
       v-bind:key="property.propertyId"
     >
       <h1>
-        Address: {{ property.addressLine1 }}
+        <b>Address:</b><br> {{ property.addressLine1 }}<br>
         {{ property.addressLine2 }}
-        {{ property.city }}
+        {{ property.city }},
         {{ property.state }}
         {{ property.zip }}
       </h1>
@@ -19,7 +34,7 @@
     <div class="payment-form">
       <form v-on:submit.prevent>
         <div class="field">
-          <p>Payment Form:</p>
+          <p><b>Payment Form:</b></p>
           <label for="date">Date:</label>
           <input type="date" name="date" id="date" v-model="payment.date" />
           <label for="amount">Amount:</label>
@@ -30,13 +45,7 @@
             v-model="payment.amount"
           />
         </div>
-        <label for="memo">Memo:</label>
-          <input
-            type="text"
-            name="memo"
-            id="memo"
-            v-model="payment.memo"
-          />
+        
         <div class="actions">
           <button type="submit" v-on:click="savePayment()" @click="resetPayment">
             Submit Payment
@@ -45,12 +54,31 @@
       </form>
     </div>
 
+                        
+                    </div>
+                </div>
+                <div id="this-is-a-single-tile" class="tile is-12 is-child box">
+                    <div id="this-makes-all-content-within-the-tile-stack-vertically" class="tile is-vertical">
+                        <p id="this-automatically-formats-to-be-a-title-in-buefy" class="title">                
+                            Account Messages        
+                        </p>
+                        <p id="this-is-example-text-information">
+                           
     <div class="notifications">
       <p>Notification List:</p>
-      <notification-list />
+      Mark as read: <notification-list />
     </div>
-
-    <div class="maintenance-form">
+                                           
+                    </div>
+                </div>
+<div id="this-is-a-single-tile" class="tile is-12 is-child box">
+                    <div id="this-makes-all-content-within-the-tile-stack-vertically" class="tile is-vertical">
+                        <p id="this-automatically-formats-to-be-a-title-in-buefy" class="title">                
+                            Submit Maintenance Request        
+                        </p>
+                        <p id="this-is-example-text-information">
+                           
+     <div class="maintenance-form">
       <form v-on:submit.prevent>
         <div class="field">
           <!-- <label for="maintenance-type">Maintenance Type</label>
@@ -70,6 +98,21 @@
         </div>
       </form>
     </div>
+                                           
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+   
   </div>
 </template>
 
@@ -128,4 +171,9 @@ export default {
 </script>
 
 <style>
+#this-makes-all-content-within-the-tile-stack-vertically{
+  align-content: left ;
+}
+
+
 </style>
