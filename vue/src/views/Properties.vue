@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h1>Properties For Rent</h1>
+  <br>
     <property-list />
 </div>
 </template>
