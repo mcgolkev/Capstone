@@ -4,6 +4,7 @@ import com.techelevator.dao.MaintenanceDao;
 import com.techelevator.dao.MaintenanceStaffDao;
 import com.techelevator.model.Apartment;
 import com.techelevator.model.Maintenance;
+import com.techelevator.model.MaintenanceStaff;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,9 +43,9 @@ public class MaintenanceController {
         maintenanceDao.updateMaintenanceStatus(maintenance, id);}
 
     @PreAuthorize("hasRole('LANDLORD')")
-    @RequestMapping(path = "/maintenance/worker/{id}", method = RequestMethod.PUT)
-    public void addMaintenanceWorkerToRequest (@RequestBody Maintenance maintenance, @PathVariable long id){
-        maintenanceDao.addMaintenanceStaffToRequest(maintenance, id);}
+    @RequestMapping(path = "/maintenance/{id}/worker", method = RequestMethod.PUT)
+    public void addMaintenanceWorkerToRequest (@RequestBody MaintenanceStaff maintenanceStaff, @PathVariable long id){
+        maintenanceDao.addMaintenanceStaffToRequest(maintenanceStaff, id);}
 
     @RequestMapping(path = "/maintenance/{id}/address", method = RequestMethod.GET)
     public Apartment getAddressForMaint(@PathVariable long id){

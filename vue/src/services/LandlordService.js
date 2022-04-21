@@ -29,8 +29,8 @@ export default {
         return axios.delete(`/properties/${id}`);
     },
 
-    updateMaintenance(id){
-        return axios.put(`/maintenance/${id}`);
+    updateMaintenance(id, staff){
+        return axios.put(`/maintenance/${id}/worker`, staff);
     },
 
     updateRenter(id, property){

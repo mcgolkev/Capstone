@@ -17,7 +17,7 @@ public interface ApartmentDao {
 
     Apartment findApartment(Long id);
 
-    void createApartment(Apartment apartment);
+    void createApartment(Apartment apartment, String username);
 
     void deleteApartment(Long id);
 

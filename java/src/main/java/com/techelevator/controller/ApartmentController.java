@@ -38,8 +38,8 @@ public class ApartmentController {
 
     @PreAuthorize("hasRole('LANDLORD')")
     @RequestMapping(path = "/properties", method = RequestMethod.POST)
-    public void createApartment(@RequestBody Apartment apartment){
-         apartmentDao.createApartment(apartment);}
+    public void createApartment(Principal principal, @RequestBody Apartment apartment){
+         apartmentDao.createApartment(apartment, principal.getName());}
 
     @PreAuthorize("hasRole('LANDLORD')")
     @RequestMapping(path = "/properties/{id}", method = RequestMethod.DELETE)

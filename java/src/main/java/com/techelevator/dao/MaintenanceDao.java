@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Apartment;
 import com.techelevator.model.Maintenance;
+import com.techelevator.model.MaintenanceStaff;
 
 import java.security.Principal;
 import java.util.List;
@@ -18,7 +19,7 @@ public interface MaintenanceDao {
 
     List<Maintenance> findIncompleteMaintenance(String username);
 
-    void addMaintenanceStaffToRequest(Maintenance maintenance, Long id);
+    void addMaintenanceStaffToRequest(MaintenanceStaff maintenance, Long id);
 
     Apartment getAddressForMaint(Long id);
 }

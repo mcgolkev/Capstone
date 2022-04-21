@@ -15,8 +15,9 @@
       </h1>
       <router-link
         :to="{ name: 'add-property', params: { id: property.propertyId } }"
-        ><button type="button">Edit Property</button></router-link
-      >
+        ><button type="button">Edit Property</button>
+      </router-link>
+      <button type="button" v-on:click="deleteProperty(property.propertyId)" @click="reloadPage">Delete Property</button>
       <label for="rentee">Rented to: </label>
       <input type="text" name="rentee" id="rentee" v-model="user.userId" />
       <div class="actions">
@@ -55,6 +56,14 @@
       >
         <p>Date: {{ maint.dateSubmitted }}</p>
         <p>Description: {{ maint.description }}</p>
+
+        <label for="maintenance_worker">Assign To: </label>
+      <input type="text" name="maintenance_worker" id="maint_worker" v-model="maint_staff.staffName" />
+      <div class="actions">
+          <button type="submit" v-on:click="updateWorker(maint.maintId)" @click="resetWorker">
+            Assign Staff
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -64,6 +73,8 @@
 import LandlordService from "../services/LandlordService";
 import CreateProperty from "./CreateProperty.vue";
 import AccountInfo from './AccountInfo.vue'
+import PropertyService from '../services/PropertyService'
+
 export default {
   components: { CreateProperty, AccountInfo },
   data(){
@@ -71,6 +82,9 @@ export default {
       rentInfo: {},
       user: {
         userId: ""
+      },
+      maint_staff: {
+        staffName: ""
       }
     }
   },
@@ -84,8 +98,25 @@ export default {
      updateProperty(id){
         LandlordService.updateRenter(id, this.user)
       },
+      updateWorker(id){
+        LandlordService.updateMaintenance(id, this.maint_staff)
+      },
+      deleteProperty(id){
+          PropertyService.deleteProperty(id).then((response) => {
+                if (response.status == 201){
+                    this.$router.push({name: 'Home'});
+                }
+            })
+    }, 
       resetRentee(){
       this.user = {};
+      location.reload()
+    },
+      resetWorker(){
+      this.maint_staff = {};
+      location.reload()
+    },
+    reloadPage(){
       location.reload()
     }
   },

@@ -2,14 +2,17 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Apartment;
 import com.techelevator.model.User;
+import org.springframework.cglib.core.Local;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Component //anytime that a ApartmentDao gets injected, create an object of JdbcApartmentDao to use
 public class JdbcApartmentDao implements ApartmentDao {
@@ -33,17 +36,19 @@ public class JdbcApartmentDao implements ApartmentDao {
         return apartments;
     }
     @Override
-    public void createApartment(Apartment apartment){
-        String sql = "INSERT INTO apartments (address_line_1, address_line_2, city," +
-                "state, zip, price, picture, available, num_bedrooms," +
-                "num_bathrooms, square_feet, short_description, long_description)" +
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
-        LocalDate date = LocalDate.parse(apartment.getDateAvailable());
-       jdbcTemplate.update(sql, apartment.getAddressLine1(), apartment.getAddressLine2(),
+    public void createApartment(Apartment apartment, String username){
+        String sql = "INSERT INTO apartments (landlord, address_line_1, address_line_2, city, " +
+                "state, zip, price, picture, available, num_bedrooms, " +
+                "num_bathrooms, square_feet, short_description, long_description, available_for_rent) " +
+                "VALUES ((SELECT user_id FROM users WHERE username = ?),?,?,?,?,?,?,?,?,?,?,?,?, ?, ?) RETURNING property_id;";
+        LocalDate lt = LocalDate.parse(apartment.getDateAvailable());
+        int result = jdbcTemplate.queryForObject(sql, int.class, username, apartment.getAddressLine1(), apartment.getAddressLine2(),
                 apartment.getCity(), apartment.getState(), apartment.getZip(), apartment.getPrice(),
-                apartment.getPicture(), date, apartment.getNumBedrooms(),
+                apartment.getPicture(), lt, apartment.getNumBedrooms(),
                 apartment.getNumBathrooms(), apartment.getSquareFeet(), apartment.getShortDescription(),
-                apartment.getLongDescription());
+                apartment.getLongDescription(), apartment.isAvailableForRent());
+       String sql2 = "INSERT INTO ownership (property_id, landlord, renter) VALUES (?, (SELECT user_id FROM users WHERE username = ?),null)";
+        jdbcTemplate.update(sql2, result,username);
     }
     @Override
     public Apartment findApartment(Long propertyId){
@@ -58,9 +63,8 @@ public class JdbcApartmentDao implements ApartmentDao {
     @Override
     public List<Apartment> findAllByLandlord(String username) {
         List<Apartment> apartments = new ArrayList<>();
-        String sql = "SELECT * FROM apartments WHERE available_for_rent = TRUE AND property_id IN " +
-                "(SELECT property_id FROM ownership WHERE landlord = " +
-                "(SELECT user_id FROM users where username = ?));";
+        String sql = "SELECT * FROM apartments WHERE available_for_rent = true AND landlord IN " +
+                "(SELECT user_id FROM users where username = ?);";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
         while (results.next()) {
             Apartment apartment = mapRowToApartment(results);
@@ -89,6 +93,10 @@ public class JdbcApartmentDao implements ApartmentDao {
 
         String sql2 = "UPDATE ownership SET renter = ? WHERE property_id = ?";
         jdbcTemplate.update(sql, user.getId(), id);
+
+        String sql3 = "INSERT INTO account (ownership_id, balance_due, monthly_rent_amt, past_due) VALUES " +
+                "((SELECT ownership_id FROM ownership WHERE property_id = ?), 0, (SELECT price FROM apartments WHERE property_id = ?), false)";
+        jdbcTemplate.update(sql, id, id);
     }
 
     //for landlord - make sure when adding property to inserty new connection in ownership table
@@ -102,15 +110,20 @@ public class JdbcApartmentDao implements ApartmentDao {
                 "state = ?, zip = ?, price = ?, picture = ?, available = ?, num_bedrooms = ?," +
                 "num_bathrooms = ?, square_feet = ?, short_description = ?, long_description = ?" +
                 "WHERE property_id =?; ";
-        LocalDate date = LocalDate.parse(apartment.getDateAvailable());
+        LocalDate lt = LocalDate.parse(apartment.getDateAvailable());
         jdbcTemplate.update(sql, apartment.getAddressLine1(), apartment.getAddressLine2(),
                 apartment.getCity(), apartment.getState(), apartment.getZip(), apartment.getPrice(),
-                apartment.getPicture(), date, apartment.getNumBedrooms(),
+                apartment.getPicture(), lt, apartment.getNumBedrooms(),
                 apartment.getNumBathrooms(), apartment.getSquareFeet(), apartment.getShortDescription(),
                 apartment.getLongDescription(), id);
     }
 
     public  void deleteApartment(Long propertyId){
+        String sql2 = "DELETE\n" +
+                "FROM ownership\n" +
+                "WHERE property_id = ?;";
+        jdbcTemplate.update(sql2, propertyId);
+
         String sql = "DELETE\n" +
                 "FROM apartments\n" +
                 "WHERE property_id = ?;";

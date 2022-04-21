@@ -11,18 +11,16 @@
       <input type="text" v-model="property.state" />      
       <label for="zip">Zip</label>
       <input type="number" v-model="property.zip" />
-      <br>
       <label for="price">Price $</label>
       <input type="number" v-model="property.price" />
       <label for="picture">Picture URL</label>
       <input type="text" v-model="property.picture" />
       <label for="dateAvailable">Available Date</label>
-      <input type="date" v-model="property.dateAvailable" />
+      <input type="text" v-model="property.available" />
       <label for="numBedrooms">Bedrooms</label>
       <input type="number" v-model="property.numBedrooms" />
       <label for="numBathrooms">Bathrooms</label>
       <input type="number" v-model="property.numBathrooms" />
-      <br>
       <label for="squareFeet">Square Feet</label>
       <input type="number" v-model="property.squareFeet" />
       <label for="shortDescription">Short Description</label>
@@ -32,8 +30,7 @@
     </div>
     <div class="actions">
       <button type="submit" v-on:click="addProperty()">Add Property</button>
-      <button type="submit" v-on:click="saveProperty()">Save Property</button>
-      <button type="submit" v-on:click="deleteProperty()">Delete Property</button>
+      <button type="submit" v-on:click="saveProperty()" @click="resetProperty">Save Property</button>
     </div>
   </form>
 </template>
@@ -50,41 +47,33 @@ export default {
                 addressLine2: "",
                 city: "",
                 state: "",
-                zip: "",
-                price: "",
+                zip: Number,
+                price: Number,
                 picture: "",
-                dateAvailable: "",
+                available: "",
                 numBedrooms: "",
                 numBathrooms: "",
-                squareFeet: "",
+                squareFeet: Number,
                 shortDescription: "",
-                longDescription: ""
+                longDescription: "",
+                availableForRent: true
 
                
             }
         }
     },
     methods: {
-        saveProperty(){
-            propertyService.addProperty(this.property).then((response) => {
-                if (response.status == 201){
-                    this.$router.push({name: 'Home'});
-                }
-            })
+        saveProperty(id){
+           
+            propertyService.update(id, this.property)
         },
-        deleteProperty(){
-          propertyService.deleteProperty(this.property).then((response) => {
-                if (response.status == 201){
-                    this.$router.push({name: 'Home'});
-                }
-            })
-    }, 
+        
     addProperty(){
-          propertyService.addProperty(this.property).then((response) => {
-                if (response.status == 201){
-                    this.$router.push({name: 'Home'});
-                }
-            })
+          propertyService.addProperty(this.property)
+    },
+    resetProperty(){
+      this.property = {};
+      location.reload()
     },
     }
 }

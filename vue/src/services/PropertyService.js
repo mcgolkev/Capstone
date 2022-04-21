@@ -16,10 +16,11 @@ export default {
 
     deleteProperty(id){
       return axios.delete(`properties/${id}`)
+    },
+
+    update(id, property){
+      return axios.put(`properties/${id}`, property)
     }
-
-
-    // update property return axios.put(`properties/${id}`, property)
   
   }
   

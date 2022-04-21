@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Apartment;
 import com.techelevator.model.Maintenance;
+import com.techelevator.model.MaintenanceStaff;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -68,9 +69,9 @@ public class JdbcMaintenanceDao implements  MaintenanceDao {
     }
 
     @Override
-    public void addMaintenanceStaffToRequest(Maintenance maintenance, Long id) {
-        String sql = "Update maintenance SET maint_staff_id = ?, assigned = true WHERE maintenance_id = ?;";
-        jdbcTemplate.update(sql, maintenance.getMaintenanceStaffId(),id);
+    public void addMaintenanceStaffToRequest(MaintenanceStaff maintenance, Long id) {
+        String sql = "Update maintenance SET maint_staff_id = (SELECT maint_staff_id FROM maint_staff WHERE staff_name = ?), assigned = true WHERE maintenance_id = ?;";
+        jdbcTemplate.update(sql, maintenance.getStaffName(),id);
     }
 
     @Override
