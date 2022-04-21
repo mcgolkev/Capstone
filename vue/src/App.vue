@@ -32,16 +32,19 @@
 </template>
 
 <style>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
 
 #mainContent {
-    background-color: white;
+    background-color: #f7ece1;
     margin-top: 1rem;
     border-radius: 10px;
     padding: 1rem;
 
 }
 #navBarCss {
+    background-color: #cac4ce;
 display: flex;
 align-items: center;
 border-radius: 10px;
@@ -49,13 +52,15 @@ border-radius: 10px;
 }
 #app {
     padding: 1.5rem;
-    background-color:rgb(230, 249, 255);
+    background-color:#f7ece1;
     height: 100vh;
+    font-family: 'Libre Baskerville', serif;
 }
 #navBarContainer {
 align-items: center;
 justify-items: right;
 }
+
 
 
 
