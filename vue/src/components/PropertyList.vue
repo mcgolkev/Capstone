@@ -9,8 +9,8 @@
     <div id="this-contains-the-entire-page-and-all-contents" class="tile is-ancestor">
   
             <div id="this-contains-all-tiles-and-makes-tiles-stack-vertically" class="tile is-parent is-vertical">
-                <div id="this-is-a-single-tile" class="tile is-12 is-child">
-                    <div id="this-makes-all-content-within-the-tile-stack-vertically" class="tile">
+                <div id="this-is-a-single-tile" class="tile">
+                  
                       <div id="tileID" class="tile is-vertical box" v-for="property in this.$store.state.properties" v-bind:key="property.propertyId">
                         <img v-bind:src="property.picture" />
                          <div id="propertyInfo">
@@ -19,7 +19,7 @@
                               <p>Bed: {{property.numBedrooms}} Bath: {{property.numBathrooms}} {{property.squareFeet}}sqft</p>
                                <p>Description: {{property.shortDescription}}</p>
                          </div>
-                      </div>
+                    
 
 
 
@@ -78,6 +78,14 @@ export default {
 
 #tileID {
   margin: 20px;
+  display:flex;
+  flex-wrap:wrap;
+  min-width:300px;
+}
+
+#this-is-a-single-tile {
+  display:flex;
+  flex-wrap:wrap;
 }
 
 #OverallPageTitleOutsideOfTitles {
