@@ -38,14 +38,13 @@
 
 
 #mainContent {
-    background-color: #f7ece1;
     margin-top: 1rem;
     border-radius: 10px;
     padding: 1rem;
 
 }
 #navBarCss {
-    background-color: #cac4ce;
+    background-color: #fffee0;
 display: flex;
 align-items: center;
 border-radius: 10px;
@@ -53,7 +52,7 @@ border-radius: 10px;
 }
 #app {
     padding: 1.5rem;
-    background-color:#f7ece1;
+    background-color:#fff3e7;
     height: 100vh;
     font-family: 'Libre Baskerville', serif;
 }

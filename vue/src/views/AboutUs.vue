@@ -1,14 +1,14 @@
 <template>
     <div id="aboutUs">
-        <Template />
+        <About />
     </div>
 </template>
 <script scoped>    
-import Template from '../components/Template.vue'
+import About from '../components/About.vue'
 
 export default {
   name: "about",
-  components:  {Template}
+  components:  {About}
 }
 
 </script>
