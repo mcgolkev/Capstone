@@ -1,10 +1,25 @@
 <template>
-  <div id="register" class="text-center">
+
+
+<div id="all">
+    
+    <h1 id="OverallPageTitleOutsideOfTitles">
+      <br>
+        <center>Create an Account</center>
+    </h1>
+    <div id="this-contains-the-entire-page-and-all-contents" class="tile is-ancestor">
+        <div id="this-contains-all-tiles" class="tile is-12">
+            <div id="this-contains-all-tiles-and-makes-tiles-stack-vertically" class="tile is-parent is-vertical">
+                <div id="this-is-a-single-tile" class="tile is-5 is-child box">
+
+
+
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Please complete the following:</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
+      
       <label for="username" class="sr-only">Username</label>
       <input
         type="text"
@@ -15,6 +30,8 @@
         required
         autofocus
       />
+      <br>
+      <br>
       <label for="password" class="sr-only">Password</label>
       <input
         type="password"
@@ -24,6 +41,8 @@
         v-model="user.password"
         required
       />
+      <br>
+      <br>
       <input
         type="password"
         id="confirmPassword"
@@ -32,7 +51,9 @@
         v-model="user.confirmPassword"
         required
       />
-      <label for="role" class="sr-only">Role</label>
+      <br>
+      <br>
+      <label for="role" class="sr-only">Your Role</label>
       <input type="role" id="role" class="form-control" 
         placeholder="Renter/Landlord/Staff"
         v-model="user.role" required/>
@@ -54,12 +75,37 @@
       <b-dropdown-item disabled> Disabled Action</b-dropdown-item>
       </b-dropdown> -->
 
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
+      <br>
+      <br>
+      <center>
+      <router-link :to="{ name: 'login' }">Already have an account?</router-link>
+      </center>
     </form>
-  </div>
+
+
+     
+
+            </div>
+        </div>
+    </div>
+    
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 </template>
 
 <script>
@@ -116,4 +162,14 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+
+.form-signin {
+  text-align: center;
+}
+
+#this-contains-all-tiles-and-makes-tiles-stack-vertically {
+  align-items: center;
+  text-align: center;
+}
+</style>
