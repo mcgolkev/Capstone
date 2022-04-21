@@ -38,12 +38,15 @@ public class JdbcMaintenanceDao implements  MaintenanceDao {
     @Override
     public List<Maintenance> findIncompleteMaintenance(String username) {
         List<Maintenance> maintenance = new ArrayList<>();
-        String sql = "SELECT *\n" +
-                "FROM maintenance \n" +
-                "WHERE (complete IS null) AND (maint_staff_id IN (Select maint_staff_id FROM maint_staff WHERE staff_name = ?) or ownership_id IN (Select ownership_id \n" +
-                "From ownership \n" +
-                "WHERE landlord IN (SELECT user_id \n" +
-                "FROM users \n" +
+        String sql = "SELECT * " +
+                "FROM maintenance " +
+                "WHERE (complete IS null or complete = false) " +
+                "AND (maint_staff_id IN (Select maint_staff_id " +
+                "FROM maint_staff " +
+                "WHERE staff_name = ?) or ownership_id IN (Select ownership_id " +
+                "From ownership " +
+                "WHERE landlord IN (SELECT user_id " +
+                "FROM users " +
                 "Where username = ?)))";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username, username);
         while(results.next()){
@@ -88,8 +91,8 @@ public class JdbcMaintenanceDao implements  MaintenanceDao {
     public void createMaintenanceRequest(Maintenance maintenance, Principal principal) {
         String sql = "INSERT INTO maintenance (ownership_id, maint_staff_id, description, complete," +
                 "assigned, new_request)" +
-                "VALUES (?,null,?,false,false,true)";
-        jdbcTemplate.update(sql, getOwnershipId(principal.getName()), maintenance.getDescription());
+                "VALUES ((SELECT ownership_id FROM ownership WHERE renter = (SELECT user_id FROM users WHERE username = ?)),null,?,false,false,true)";
+        jdbcTemplate.update(sql, principal.getName(), maintenance.getDescription());
     }
 
     @Override

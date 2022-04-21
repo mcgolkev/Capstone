@@ -64,7 +64,7 @@
           <input type="text" v-model="maintenance.description" />
         </div>
         <div class="actions">
-          <button type="submit" v-on:click="saveMaintenance()">
+          <button type="submit" v-on:click="saveMaintenance()" @click="resetMaintenance">
             Submit Maintenance Request
           </button>
         </div>
@@ -87,7 +87,6 @@ export default {
   data() {
     return {
       maintenance: {
-        type: "",
         description: "",
       },
       payment: {
@@ -99,18 +98,18 @@ export default {
   },
   methods: {
     saveMaintenance() {
-      RenterService.addMaintenance(this.maintenance).then((response) => {
-        if (response.status == 201) {
-          this.$router.push({ name: "Home" });
-        }
-      });
+      RenterService.addMaintenance(this.maintenance)
     },
     savePayment() {
       const payment = {amount: this.payment.amount, memo: this.payment.memo, date: this.payment.date}
       RenterService.addPayment(payment)
     },
     resetPayment(){
-      this. payment = {};
+      this.payment = {};
+      location.reload()
+    },
+      resetMaintenance(){
+      this.maintenance = {};
       location.reload()
     }
   },
