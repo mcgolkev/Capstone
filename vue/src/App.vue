@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
       <div id="navBarContainer">
       <b-navbar id="navBarCss">
         <template #brand>
@@ -32,9 +35,7 @@
 </template>
 
 <style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+
 
 #mainContent {
     background-color: #f7ece1;
