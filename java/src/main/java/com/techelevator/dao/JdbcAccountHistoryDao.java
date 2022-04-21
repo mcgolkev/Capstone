@@ -42,25 +42,15 @@ public class JdbcAccountHistoryDao implements AccountHistoryDao{
     }
 
     @Override
-    public void payRent(AccountHistory accountHistory) {
+    public void payRent(AccountHistory accountHistory, String username) {
 
-        String sql1 = "UPDATE account SET balance_due = balance_due - ? WHERE account_id = ?;";
-        jdbcTemplate.update(sql1, accountHistory.getAmount(), accountHistory.getAccountId());
-        
-        int newBalance = 0;
-        String sql2 = "INSERT INTO account_history\n" +
-                "                (account_id, date, memo, amount, balance)\n" +
-                "                VALUES (?, ?, ?, ?,(select balance_due from account where account.account_id = ?));";
+        String sql1 = "UPDATE account SET balance_due = balance_due - ?, past_due = balance_due - ? > monthly_rent_amt WHERE ownership_id = (SELECT ownership_id FROM ownership WHERE renter = (SELECT user_id FROM users WHERE username = ?));;";
+        jdbcTemplate.update(sql1, accountHistory.getAmount(), accountHistory.getAmount(), username);
+
+        String sql2 = "INSERT INTO account_history(account_id, date, memo, amount, balance)\n" +
+                "VALUES ((SELECT account_id FROM account WHERE ownership_id = (SELECT ownership_id FROM ownership WHERE renter = (SELECT user_id FROM users WHERE username = ?))), ?, ?, ?,(select balance_due from account where ownership_id = (SELECT ownership_id FROM ownership WHERE renter = (SELECT user_id FROM users WHERE username = ?))));";
         LocalDate date = LocalDate.parse(accountHistory.getDate());
-        jdbcTemplate.update(sql2, accountHistory.getAccountId(),date, accountHistory.getMemo(),accountHistory.getAmount(), accountHistory.getAccountId());
-
-        String sql3 = "UPDATE account SET past_due = true WHERE account_id = ? " +
-                "AND balance_due > monthly_rent_amt;";
-        jdbcTemplate.update(sql3, accountHistory.getAccountId());
-
-        String sql4 = "UPDATE account SET past_due = false WHERE account_id = ? " +
-                "AND balance_due <= monthly_rent_amt;";
-        jdbcTemplate.update(sql4, accountHistory.getAccountId());
+        jdbcTemplate.update(sql2, username,date, accountHistory.getMemo(),accountHistory.getAmount(), username);
     }
 
     private AccountHistory mapRowToAccountHistory(SqlRowSet rs){

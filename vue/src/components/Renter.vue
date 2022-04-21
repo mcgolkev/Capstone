@@ -21,17 +21,24 @@
         <div class="field">
           <p>Payment Form:</p>
           <label for="date">Date:</label>
-          <input type="date" name="date" id="date" v-model="maintenance.date" />
+          <input type="date" name="date" id="date" v-model="payment.date" />
           <label for="amount">Amount:</label>
           <input
             type="text"
             name="amount"
             id="amount"
-            v-model="maintenance.amount"
+            v-model="payment.amount"
           />
         </div>
+        <label for="memo">Memo:</label>
+          <input
+            type="text"
+            name="memo"
+            id="memo"
+            v-model="payment.memo"
+          />
         <div class="actions">
-          <button type="submit" v-on:click="savePayment()">
+          <button type="submit" v-on:click="savePayment()" @click="resetPayment">
             Submit Payment
           </button>
         </div>
@@ -85,6 +92,7 @@ export default {
       },
       payment: {
         amount: "",
+        memo: "",
         date: "",
       },
     };
@@ -98,12 +106,13 @@ export default {
       });
     },
     savePayment() {
-      RenterService.addPayment(this.payment).then((response) => {
-        if (response.status == 201) {
-          this.$router.push({ name: "Home" });
-        }
-      });
+      const payment = {amount: this.payment.amount, memo: this.payment.memo, date: this.payment.date}
+      RenterService.addPayment(payment)
     },
+    resetPayment(){
+      this. payment = {};
+      location.reload()
+    }
   },
   created() {
     RenterService.getRental()

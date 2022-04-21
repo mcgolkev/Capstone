@@ -11,6 +11,6 @@ public interface AccountHistoryDao {
 
     List<AccountHistory> allHistoryByLoggedOnUser(String principal);
 
-    void payRent(AccountHistory accountHistory);
+    void payRent(AccountHistory accountHistory, String username);
 
 }

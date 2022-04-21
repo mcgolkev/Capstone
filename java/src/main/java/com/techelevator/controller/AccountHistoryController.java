@@ -31,9 +31,10 @@ public class AccountHistoryController {
         return accountHistoryDao.allHistoryByLoggedOnUser(principal.getName());
     }
 
+    @PreAuthorize("hasRole('RENTER')")
     @RequestMapping(path = "/pay_rent", method = RequestMethod.POST)
-    public void payRent(@RequestBody AccountHistory accountHistory){
-        accountHistoryDao.payRent(accountHistory);
+    public void payRent(Principal principal, @RequestBody AccountHistory accountHistory){
+        accountHistoryDao.payRent(accountHistory, principal.getName());
     }
 
 }

@@ -10,7 +10,7 @@ export default {
     },
 
     addPayment(payment){
-      return axios.post('payment', payment);
+      return axios.post('pay_rent', payment);
     },
 
     getNotifications(){
