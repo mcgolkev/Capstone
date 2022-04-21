@@ -1,36 +1,59 @@
 <template>
   <div>
+    <h1 id="OverallPageTitleOutsideOfTitles">
+        <center>Available Properties</center>
+    </h1>
     <div
       class="rental-property-info"
       v-for="property in this.$store.state.renterProperty"
       v-bind:key="property.propertyId"
     >
-      
-      <h1>
-        Address: {{ property.addressLine1 }}
-        {{ property.addressLine2 }}
-        {{ property.city }}
-        {{ property.state }}
-        {{ property.zip }}
-      </h1>
-      <router-link
-        :to="{ name: 'add-property', params: { id: property.propertyId } }"
-        ><button type="button">Edit Property</button>
-      </router-link>
-      <button type="button" v-on:click="deleteProperty(property.propertyId)" @click="reloadPage">Delete Property</button>
-      <label for="rentee">Rented to: </label>
-      <input type="text" name="rentee" id="rentee" v-model="user.userId" />
-      <div class="actions">
-          <button type="submit" v-on:click="updateProperty(property.propertyId)" @click="resetRentee">
-            Submit Renter Info
-          </button>
+      <div id="all">
+    
+    <div id="this-contains-the-entire-page-and-all-contents" class="tile is-ancestor">
+        <div id="this-contains-all-tiles" class="tile is-3">
+            <div id="this-contains-all-tiles-and-makes-tiles-stack-vertically" class="tile is-parent is-vertical">
+                <div id="this-is-a-single-tile" class="tile is-12 is-child box">
+                    <div id="this-makes-all-content-within-the-tile-stack-vertically" class="tile is-vertical">
+                        <p id="this-automatically-formats-to-be-a-title-in-buefy" class="title"></p>
+                           <h1>
+                              Address: <br>{{ property.addressLine1 }}
+                              {{ property.addressLine2 }}<br>
+                              {{ property.city }}, 
+                              {{ property.state }} 
+                              {{ property.zip }}
+                            </h1>
+                            <router-link
+                              :to="{ name: 'add-property', params: { id: property.propertyId } }"
+                              ><button class= "inline" type="button">Edit Property</button>
+                            </router-link>
+                            <button class= "inline" type="button" v-on:click="deleteProperty(property.propertyId)" @click="reloadPage">Delete Property</button>
+                            <label for="rentee"><br><br>Assign property to a new renter. <br>
+                            Enter renter's user ID: </label>
+                            <input type="text" name="rentee" id="rentee" v-model="user.userId" />
+                            <div class="actions">
+                                <button type="submit" v-on:click="updateProperty(property.propertyId)" @click="resetRentee">
+                                  Assign Renter to Property
+                                </button>
+                              </div>
+                                           </div>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
+
+
+
+      
     </div>
 
     <div>
       <create-property />
     </div>
-
+<h1 id="OverallPageTitleOutsideOfTitles">
+        <center>Rented Properties Overview</center>
+    </h1>
 <!-- /properties/rented -->
     <div
       class="rented-properties"
@@ -48,7 +71,9 @@
       <account-info :id="property.propertyId" />
          
     </div>
-
+<h1 id="OverallPageTitleOutsideOfTitles">
+        <center>Outstanding Maintenance Requests</center>
+    </h1>
     <div class="maintenance">
       <div
         v-for="maint in this.$store.state.maintenance"
@@ -157,6 +182,10 @@ export default {
 <style>
 .show-hide {
   display: none;
+}
+
+.inline{
+  display: inline
 }
 </style>
 
