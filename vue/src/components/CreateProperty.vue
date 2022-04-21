@@ -10,23 +10,25 @@
       <label for="state">State</label>
       <input type="text" v-model="property.state" />      
       <label for="zip">Zip</label>
-      <input type="text" v-model="property.zip" />
+      <input type="number" v-model="property.zip" />
       <br>
       <label for="price">Price $</label>
       <input type="number" v-model="property.price" />
       <label for="picture">Picture URL</label>
       <input type="text" v-model="property.picture" />
-      <label for="available">Available</label>
-      <input type="date" v-model="property.available" />
-      <label for="bedrooms">Bedrooms</label>
-      <input type="number" v-model="property.bedrooms" />
-      <label for="bathrooms">Bathrooms</label>
-      <input type="number" v-model="property.bathrooms" />
+      <label for="dateAvailable">Available Date</label>
+      <input type="date" v-model="property.dateAvailable" />
+      <label for="numBedrooms">Bedrooms</label>
+      <input type="number" v-model="property.numBedrooms" />
+      <label for="numBathrooms">Bathrooms</label>
+      <input type="number" v-model="property.numBathrooms" />
       <br>
-      <label for="sqft">Square Feet</label>
-      <input type="number" v-model="property.sqft" />
+      <label for="squareFeet">Square Feet</label>
+      <input type="number" v-model="property.squareFeet" />
       <label for="shortDescription">Short Description</label>
       <input type="text" v-model="property.shortDescription" />
+      <label for="longDescription">Long Description</label>
+      <input type="text" v-model="property.longDescription" />
     </div>
     <div class="actions">
       <button type="submit" v-on:click="addProperty()">Add Property</button>
@@ -51,11 +53,12 @@ export default {
                 zip: "",
                 price: "",
                 picture: "",
-                available: "",
-                bedrooms: "",
-                bathrooms: "",
-                sqft: "",
-                shortDescription: ""
+                dateAvailable: "",
+                numBedrooms: "",
+                numBathrooms: "",
+                squareFeet: "",
+                shortDescription: "",
+                longDescription: ""
 
                
             }
