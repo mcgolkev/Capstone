@@ -25,10 +25,28 @@
             <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"><b-navbar-item>
                 Logout
             </b-navbar-item></router-link>
-
+      
         </template>
+      
+        <template #end>
+            
+            <div class="inline">
+             
+            <p>Welcome home -</p>
+               <i><strong>
+            <p v-if="$store.state.token != ''">{{$store.state.user.username}}
+            </p>
+                
+            <p v-else>Annonymous User</p>
+            </strong>
+            </i>
+            <p>!</p>
+            
+            </div>
+        </template>
+        
     </b-navbar>
-    </div> <!-- navbar container -->
+</div>
     <router-view id="mainContent" />
 
   </div>
@@ -38,30 +56,41 @@
 
 
 #mainContent {
+        background-color:#feffca;
+
     margin-top: 1rem;
     border-radius: 10px;
     padding: 1rem;
+    
 
 }
 #navBarCss {
-    background-color: #fffee0;
+    background-color: #ffffff;
 display: flex;
 align-items: center;
+align-self:auto;
 border-radius: 10px;
     
 }
 #app {
+    background-color:rgb(205, 229, 236);
     padding: 1.5rem;
-    background-color:#fff3e7;
-    height: 100vh;
     font-family: 'Libre Baskerville', serif;
+    min-height: 100vh;
 }
-#navBarContainer {
+.navBarContainer {
 align-items: center;
 justify-items: right;
 }
 
+.inline {
+    display:inline-flex;
+    margin-right:20px;
+    margin-top:10px;
+    margin-bottom:10px;
+    text-emphasis-color: darkblue;
 
+}
 
 
 </style>
