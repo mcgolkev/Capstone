@@ -1,26 +1,52 @@
 <template>
+
+
+
+<div id="all">
+    <h1 id="OverallPageTitleOutsideOfTitles">
+        <center>Rentals Currently Available</center>
+    </h1>
+    <div id="this-contains-the-entire-page-and-all-contents" class="tile is-ancestor">
+  
+            <div id="this-contains-all-tiles-and-makes-tiles-stack-vertically" class="tile is-parent is-vertical">
+                <div id="this-is-a-single-tile" class="tile is-12 is-child">
+                    <div id="this-makes-all-content-within-the-tile-stack-vertically" class="tile">
+                      <div id="tileID" class="tile is-vertical box" v-for="property in this.$store.state.properties" v-bind:key="property.propertyId">
+                        <img v-bind:src="property.picture" />
+                         <div id="propertyInfo">
+                              <h1><router-link :to="{name: 'property-info', params: {id: property.propertyId}}">Address: {{property.addressLine1}} {{property.city}} {{property.state}} {{property.zip}}</router-link></h1>
+                             <p> Date Available: {{property.dateAvailable}}, ${{property.price}}</p>
+                              <p>Bed: {{property.numBedrooms}} Bath: {{property.numBathrooms}} {{property.squareFeet}}sqft</p>
+                               <p>Description: {{property.shortDescription}}</p>
+                         </div>
+                      </div>
+
+
+
+
+
+                    </div>
+                </div>
+                <div id="this-is-a-single-tile" class="tile is-12 is-child box">
+                  <p>
+                    Interested? Please contact us at actuallydon't@fakeemail.com or at 867-5309 today!
+                    </p>
+                </div>
+            </div>
+      
+    </div>
+</div>
+
+
+
+
+<!--
+
   <div class="property-list column">
-  <div class="tile is-ancestor">
 
-    <div class="tile is-parent">
-
-    <div class="property-information" v-for="property in this.$store.state.properties" v-bind:key="property.propertyId">
-
-    <div class="tile is-child">
-
-
-      <img v-bind:src="property.picture" />
-      </div>
-       <div class="tile is-vertical" id="propertyInfo">
-        <h1><router-link :to="{name: 'property-info', params: {id: property.propertyId}}">Address: {{property.addressLine1}} {{property.city}} {{property.state}} {{property.zip}}</router-link></h1>
-        <p> Date Available: {{property.dateAvailable}}, ${{property.price}}</p>
-          <p>Bed: {{property.numBedrooms}} Bath: {{property.numBathrooms}} {{property.squareFeet}}sqft</p>
-          <p>Description: {{property.shortDescription}}</p>
-          </div>
-         </div>
-       </div>
-      </div>
   </div>
+  -->
+ 
 </template>
 
 <script>
@@ -50,6 +76,13 @@ export default {
 
 <style>
 
+#tileID {
+  margin: 20px;
+}
+
+#OverallPageTitleOutsideOfTitles {
+  font-size: 30px;
+}
 
 
 
