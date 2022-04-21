@@ -1,7 +1,23 @@
 <template>
-  <div id="login" class="text-center">
+
+
+
+<div id="all">
+    
+    <h1 id="OverallPageTitleOutsideOfTitles">
+      <br>
+        <center>Please Sign In</center>
+    </h1>
+    <div id="this-contains-the-entire-page-and-all-contents" class="tile is-ancestor">
+        <div id="this-contains-all-tiles" class="tile is-12">
+            <div id="this-contains-all-tiles-and-makes-tiles-stack-vertically" class="tile is-parent is-vertical">
+                <div id="this-is-a-single-tile" class="tile is-3 is-child box">
+                    <div id="this-makes-all-content-within-the-tile-stack-vertically" class="tile is-vertical">
+
+
+  
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <center><h1 class="h3 mb-3 font-weight-normal"><b>Welcome to ScrumLords!</b></h1></center>
       <div
         class="alert alert-danger"
         role="alert"
@@ -22,6 +38,8 @@
         required
         autofocus
       />
+      <br>
+      <br>
       <label for="password" class="sr-only">Password</label>
       <input
         type="password"
@@ -31,11 +49,26 @@
         v-model="user.password"
         required
       />
+      <br>
+      <br>
+      <center>
       <button type="submit">Sign in</button>
+      </center>
       <br>
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
     </form>
-  </div>
+  
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+ </div>
 </template>
 
 <script>
@@ -75,3 +108,15 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+
+.form-signin {
+  text-align: center;
+}
+
+#this-contains-all-tiles-and-makes-tiles-stack-vertically {
+  display: flexbox;
+  align-items: center;
+}
+</style>
