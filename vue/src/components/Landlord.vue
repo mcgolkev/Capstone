@@ -11,18 +11,18 @@
       <div id="all">
     
     <div id="this-contains-the-entire-page-and-all-contents" class="tile is-ancestor">
-        <div id="this-contains-all-tiles" class="tile is-3">
-            <div id="this-contains-all-tiles-and-makes-tiles-stack-vertically" class="tile is-parent is-vertical">
+        <div id="this-contains-all-tiles-1" class="tile is-3">
+            <div id="this-contains-all-tiles-and-makes-tiles-stack-vertically"  class="tile is-parent ">
                 <div id="this-is-a-single-tile" class="tile is-12 is-child box">
                     <div id="this-makes-all-content-within-the-tile-stack-vertically" class="tile is-vertical">
-                        <p id="this-automatically-formats-to-be-a-title-in-buefy" class="title"></p>
-                           <h1>
+                        
+                           <h2>
                               Address: <br>{{ property.addressLine1 }}
                               {{ property.addressLine2 }}<br>
                               {{ property.city }}, 
                               {{ property.state }} 
                               {{ property.zip }}
-                            </h1>
+                            </h2>
                             <router-link
                               :to="{ name: 'add-property', params: { id: property.propertyId } }"
                               ><button class= "inline" type="button">Edit Property</button>
@@ -186,6 +186,11 @@ export default {
 
 .inline{
   display: inline
+}
+
+#this-contains-all-tiles-1{
+  display: flex;
+  flex-wrap: wrap
 }
 </style>
 
