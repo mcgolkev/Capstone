@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Apartment;
+import com.techelevator.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -81,18 +82,16 @@ public class JdbcApartmentDao implements ApartmentDao {
     }
 
     @Override
-    public void updatePropertyDetailsForRenter(Long id, Apartment apartment) {
-        String sql = "UPDATE apartment SET available_date = null, available_for_rent = ?" +
+    public void updatePropertyDetailsForRenter(Long id, User user) {
+        String sql = "UPDATE apartments SET available = null, available_for_rent = false " +
                 "WHERE property_id = ?;";
-        jdbcTemplate.update(sql, apartment.isAvailableForRent(), id);
+        jdbcTemplate.update(sql, id);
+
+        String sql2 = "UPDATE ownership SET renter = ? WHERE property_id = ?";
+        jdbcTemplate.update(sql, user.getId(), id);
     }
 
-    @Override
-    public void assignRenterIdToProperty(Long renterId, Long propertyId) {
-        String sql = "UPDATE ownership SET renter = ? WHERE property_id = )";
-
-        jdbcTemplate.update(sql,renterId, propertyId);
-    }
+    //for landlord - make sure when adding property to inserty new connection in ownership table
 
     //landlord is principal.getname
     //renter is given

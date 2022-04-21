@@ -21,8 +21,8 @@ export default {
         return axios.post('/properties/');
     },
 
-    updateProperty(id){
-        return axios.put(`/properties/${id}`);
+    updateProperty(id, user){
+        return axios.put(`/properties/${id}`, user);
     },
 
     deleteProperty(id){
@@ -34,6 +34,6 @@ export default {
     },
 
     updateRenter(id, property){
-        return axios.put(`/properties/rented/${id}`, property);
+        return axios.put(`/properties/renter/${id}`, property);
     },
 }

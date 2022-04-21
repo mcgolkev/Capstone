@@ -3,12 +3,14 @@ package com.techelevator.controller;
 import com.techelevator.dao.RentDao;
 import com.techelevator.model.Apartment;
 import com.techelevator.model.Rent;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
 @RestController
 @CrossOrigin
+@PreAuthorize("isAuthenticated()")
 public class RentController {
  private RentDao rentDao;
  private Rent rent;

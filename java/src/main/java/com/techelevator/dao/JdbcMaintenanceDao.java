@@ -123,6 +123,7 @@ public class JdbcMaintenanceDao implements  MaintenanceDao {
         maintenance.setComplete(rs.getBoolean("complete"));
         maintenance.setAssigned(rs.getBoolean("assigned"));
         maintenance.setNewRequest(rs.getBoolean("new_request"));
+        maintenance.setDateSubmitted(rs.getString("date_submitted"));
         return maintenance;
     }
 

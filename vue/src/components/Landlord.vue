@@ -5,14 +5,6 @@
       v-for="property in this.$store.state.renterProperty"
       v-bind:key="property.propertyId"
     >
-      <input
-        type="checkbox"
-        id="availability-status"
-        name="availability-status"
-        :value="property.availableForRent"
-        v-model="property.availableForRent"
-        @change="(updateProperty(property.availableForRent, property.propertyId))"
-      />
       
       <h1>
         Address: {{ property.addressLine1 }}
@@ -26,7 +18,12 @@
         ><button type="button">Edit Property</button></router-link
       >
       <label for="rentee">Rented to: </label>
-      <input type="text" name="rentee" id="rentee" />
+      <input type="text" name="rentee" id="rentee" v-model="user.userId" />
+      <div class="actions">
+          <button type="submit" v-on:click="updateProperty(property.propertyId)" @click="resetRentee">
+            Submit Renter Info
+          </button>
+        </div>
     </div>
 
     <div>
@@ -71,7 +68,10 @@ export default {
   components: { CreateProperty, AccountInfo },
   data(){
     return {
-      rentInfo: {}
+      rentInfo: {},
+      user: {
+        userId: ""
+      }
     }
   },
   methods: {
@@ -81,10 +81,13 @@ export default {
         return this.rentInfo;
       });
     },
-     updateProperty(available, id){
-      const property = {availableForRent: available};
-        LandlordService.updateRenter(id, property)
-      }
+     updateProperty(id){
+        LandlordService.updateRenter(id, this.user)
+      },
+      resetRentee(){
+      this.user = {};
+      location.reload()
+    }
   },
   created() {
       LandlordService.get()

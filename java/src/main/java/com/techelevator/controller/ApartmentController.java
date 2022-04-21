@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.ApartmentDao;
 import com.techelevator.model.Apartment;
+import com.techelevator.model.User;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,8 +52,8 @@ public class ApartmentController {
 
     @PreAuthorize("hasRole('LANDLORD')")
     @RequestMapping(path = "/properties/renter/{id}", method = RequestMethod.PUT)
-    public void UpdateApartmentWithRenter(@PathVariable long id, @RequestBody Apartment apartment){
-        apartmentDao.updatePropertyDetailsForRenter(id, apartment);
+    public void UpdateApartmentWithRenter(@PathVariable long id, @RequestBody User user){
+        apartmentDao.updatePropertyDetailsForRenter(id, user);
     }
 
     @PreAuthorize("hasRole('LANDLORD')")

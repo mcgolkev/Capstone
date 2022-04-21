@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Apartment;
 import com.techelevator.model.Notification;
+import com.techelevator.model.User;
 
 
 import java.security.Principal;
@@ -22,9 +23,7 @@ public interface ApartmentDao {
 
     List<Apartment> findAptForCurrentUser(String principal);
 
-    void updatePropertyDetailsForRenter(Long id, Apartment apartment);
-
-    void assignRenterIdToProperty(Long renterId, Long propertyId);
+    void updatePropertyDetailsForRenter(Long id, User user);
 
     List<Apartment> findRentedApartments(String username);
 
