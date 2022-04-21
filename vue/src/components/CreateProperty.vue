@@ -1,5 +1,5 @@
 <template>
-  <form v-on:submit.prevent v-show='toggle'>
+  <form v-on:submit.prevent>
     <div class="field">
       <label for="addressLine1">Address</label>
       <input type="text" v-model="property.addressLine1" />
@@ -16,7 +16,7 @@
       <label for="picture">Picture URL</label>
       <input type="text" v-model="property.picture" />
       <label for="dateAvailable">Available Date</label>
-      <input type="text" v-model="property.available" />
+      <input type="date" v-model="property.dateAvailable" />
       <label for="numBedrooms">Bedrooms</label>
       <input type="number" v-model="property.numBedrooms" />
       <label for="numBathrooms">Bathrooms</label>
@@ -50,12 +50,13 @@ export default {
                 zip: Number,
                 price: Number,
                 picture: "",
-                available: "",
+                dateAvailable: "",
                 numBedrooms: Number,
                 numBathrooms: Number,
                 squareFeet: Number,
                 shortDescription: "",
                 longDescription: "",
+                available: true,
                 availableForRent: true
 
                
