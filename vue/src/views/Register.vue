@@ -10,10 +10,10 @@
     <div id="this-contains-the-entire-page-and-all-contents" class="tile is-ancestor">
         <div id="this-contains-all-tiles" class="tile is-12">
             <div id="this-contains-all-tiles-and-makes-tiles-stack-vertically" class="tile is-parent is-vertical">
-                <div id="this-is-a-single-tile" class="tile is-5 is-child box">
+                <div id="this-is-a-single-tile" class="tile is-child box">
 
 
-
+                  
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Please complete the following:</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
@@ -172,4 +172,7 @@ export default {
   align-items: center;
   text-align: center;
 }
+
+
+
 </style>
