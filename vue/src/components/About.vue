@@ -23,7 +23,7 @@
         <img src='../AboutUsPictures/Kevin.jpg' />
         </div><div id="Yehudis" class="container">
       <p><b>Yehudis Sebbag</b></p>
-      <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
+      <p>Software inspires my compassion. The only limits are those that we give to it. I thrive in the world of details that software provides in an abundance. </p>
                     <br>
 
         <img src='../AboutUsPictures/Yehudis.jpeg' />
