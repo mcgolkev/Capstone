@@ -31,7 +31,8 @@
       <input type="text" v-model="property.longDescription" /><br/>
     </div>
     <div class="actions">
-      <button type="submit" v-on:click="addProperty()">Add Property</button>
+      <button type="submit" v-on:click="addProperty()" @click="resetProperty">Add Property</button>
+      <button type="submit" v-on:click="saveProperty(property.propertyId)" @click="resetProperty">Save Property</button>
       <button type="submit" v-on:click="cancelProperty()" @click="resetProperty">Cancel</button>
     </div>
   </form>
@@ -62,8 +63,6 @@ export default {
                 longDescription: "",
                 available: true,
                 availableForRent: true
-
-               
             }
         }
     },

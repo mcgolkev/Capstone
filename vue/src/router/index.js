@@ -83,7 +83,7 @@ const router = new Router({
       }
     },
     {
-      path: "/properties",
+      path: "/properties/:id",
       name: "add-property",
       component: AddProperty,
       meta: {

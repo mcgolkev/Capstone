@@ -36,15 +36,7 @@
                             <button class= "inline" type="button" v-on:click="deleteProperty(property.propertyId)" @click="reloadPage">Delete Property</button>
                             </div>
                             
-                            <label for="rentee"><br><br><b>Assign property:</b><br>
-                            Enter renter's user ID: </label>
-                            <input type="text" name="rentee" id="rentee" v-model="user.userId" />
-                            <div class="actions">
-                                <button type="submit" v-on:click="updateProperty(property.propertyId)" @click="resetRentee">
-                                  Assign Renter to Property
-                                </button>
-                                
-                              </div>
+                            <assign-renter :id="property.propertyId" />
                         </div>
                
 
@@ -111,14 +103,7 @@
         <p>Date: {{ maint.dateSubmitted }}</p>
         <p>Description: {{ maint.description }}</p>
         <div id="inline">
-        <label for="maintenance_worker">Assign To: </label>
-      <input type="text" name="maintenance_worker" id="maint_worker" v-model="maint_staff.staffName" />
-      <div class="actions">
-          <button type="submit" v-on:click="updateWorker(maint.maintId)" @click="resetWorker">
-            Assign Staff
-          </button>
-         
-          </div>
+        <assign-worker :id="maint.maintenanceId" />
           </div>
           <br>
           <br>
@@ -137,18 +122,14 @@
 import LandlordService from "../services/LandlordService";
 import AccountInfo from './AccountInfo.vue'
 import PropertyService from '../services/PropertyService'
+import AssignRenter from './AssignRenter.vue';
+import AssignWorker from './AssignWorker.vue';
 
 export default {
-  components: {  AccountInfo },
+  components: {  AccountInfo, AssignRenter, AssignWorker },
   data(){
     return {
-      rentInfo: {},
-      user: {
-        userId: ""
-      },
-      maint_staff: {
-        staffName: ""
-      }
+      rentInfo: {}
     }
   },
   methods: {
@@ -158,12 +139,6 @@ export default {
         return this.rentInfo;
       });
     },
-     updateProperty(id){
-        LandlordService.updateRenter(id, this.user)
-      },
-      updateWorker(id){
-        LandlordService.updateMaintenance(id, this.maint_staff)
-      },
       deleteProperty(id){
           PropertyService.deleteProperty(id).then((response) => {
                 if (response.status == 201){
@@ -171,14 +146,6 @@ export default {
                 }
             })
     }, 
-      resetRentee(){
-      this.user = {};
-      location.reload()
-    },
-      resetWorker(){
-      this.maint_staff = {};
-      location.reload()
-    },
     reloadPage(){
       location.reload()
     }
