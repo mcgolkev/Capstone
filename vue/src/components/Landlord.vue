@@ -19,8 +19,6 @@
                 
                 
                 <div class="tile is-parent is-12">
-              
-                
                     <div id="this-is-bunches" class="tile is-vertical box">
                         
                            <h2>
@@ -67,27 +65,39 @@
 <h1 id="OverallPageTitleOutsideOfTitles">
         <center>Currently Rented Properties Overview</center>
     </h1>
-<!-- /properties/rented -->
-    <div
-      class="rented-properties"
-      v-for="property in this.$store.state.rentedProperty"
-      v-bind:key="property.propertyId"
-    >
-      <h1>
-        Address: {{ property.addressLine1 }}
-        {{ property.addressLine2 }}
-        {{ property.city }}
-        {{ property.state }}
-        {{ property.zip }}
-      </h1>
+                
+                        
+                        <p id="this-is-bunches">
+                           <!-- /properties/rented -->
+                            <div
+                              class="rented-properties"
+                              v-for="property in this.$store.state.rentedProperty"
+                              v-bind:key="property.propertyId"
+                            >
+                            <div class="tile is-parent is-4">
+                              <div id="this-is-bunches" class="tile is-vertical box">
+                              <h1>
+                                Address: {{ property.addressLine1 }}
+                                {{ property.addressLine2 }}
+                                {{ property.city }}
+                                {{ property.state }}
+                                {{ property.zip }}
+                              </h1>
 
-      <account-info :id="property.propertyId" />
-         
-    </div>
+                              <account-info :id="property.propertyId" />
+                            </div>
+                            </div>
+                            </div>                       
+ </div>
+  </div>
+
+
+
+
+
 </div>
-</div>
-</div>
-</div>
+
+
 
 <div class="tile box is-12 is-vertical">
 <h1 id="OverallPageTitleOutsideOfTitles">
@@ -118,7 +128,7 @@
 </div>
 
 
-
+ </div>
   </div>
   </div>
 </template>

@@ -87,9 +87,11 @@
             <option value="appliances">Appliances</option>
             <option value="heating-and-cooling">Heating and Cooling</option>
           </select> -->
-          <p>Maintenance Request:</p>
-          <label for="problem-description">Problem Description</label>
-          <input type="text" v-model="maintenance.description" />
+          
+          <label for="problem-description">Problem Description</label><br>
+          <textarea
+          input  type="text" v-model="maintenance.description"  />
+          
         </div>
         <div class="actions">
           <button type="submit" v-on:click="saveMaintenance()" @click="resetMaintenance">
@@ -174,6 +176,7 @@ export default {
 #this-makes-all-content-within-the-tile-stack-vertically{
   align-content: left ;
 }
+
 
 
 </style>
