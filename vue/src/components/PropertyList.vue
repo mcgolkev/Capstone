@@ -14,10 +14,10 @@
                       <div id="tileID" class="tile is-vertical box" v-for="property in this.$store.state.properties" v-bind:key="property.propertyId">
                         <img v-bind:src="property.picture" />
                          <div id="propertyInfo">
-                              <h1><router-link :to="{name: 'property-info', params: {id: property.propertyId}}">Address: {{property.addressLine1}} {{property.city}} {{property.state}} {{property.zip}}</router-link></h1>
+                             <router-link :to="{name: 'property-info', params: {id: property.propertyId}}"> <h1>Address: {{property.addressLine1}} {{property.city}} {{property.state}} {{property.zip}}</h1>
                              <p> Date Available: {{property.dateAvailable}}, ${{property.price}}</p>
                               <p>Bed: {{property.numBedrooms}} Bath: {{property.numBathrooms}} {{property.squareFeet}}sqft</p>
-                               <p>Description: {{property.shortDescription}}</p>
+                               <p>Description: {{property.shortDescription}}</p></router-link>
                          </div>
                     
 

@@ -26,7 +26,7 @@ public class NotificationController {
     }
 
     @RequestMapping(path = "/notification", method = RequestMethod.POST)
-    public void addNotification(@RequestBody  Notification notification){
+    public void addNotification(Principal principal, @RequestBody  Notification notification){
          notificationDao.addNotification(notification);
     }
 

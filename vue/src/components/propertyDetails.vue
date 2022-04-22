@@ -21,6 +21,7 @@
     <div>
         <!-- <img v-bind:src="property.picture" v-bind:alt="property.address1" /> -->
          <img v-bind:src="this.$store.state.activeProperty.picture"/>
+         <p>Property ID: {{this.$store.state.activeProperty.propertyId}}</p>
       <p> Date Available: {{this.$store.state.activeProperty.dateAvailable}}, ${{this.$store.state.activeProperty.price}}</p>
       <p>Bed: {{this.$store.state.activeProperty.numBedrooms}} Bath: {{this.$store.state.activeProperty.numBathrooms}} {{this.$store.state.activeProperty.squareFeet}}sqft</p>
       <p>Description: {{this.$store.state.activeProperty.longDescription}}</p>
@@ -40,7 +41,12 @@
                     <div id="this-makes-all-content-within-the-tile-stack-vertically" class="tile is-vertical">
                         <p id="this-is-example-text-information">
                             Interested in this property? Please contact our sales team TODAY at 867-5309, we are looking forward to serving you! 
-                        </p>                        
+                        </p>  
+                          <div class="renter-view" v-if="this.$store.state.user.authorities[0].name === 'ROLE_RENTER'">
+                            
+                           <request-rental :id="this.$route.params.id" />
+                          </div>
+                                              
                     </div>
                 </div>
             </div>
@@ -61,7 +67,9 @@
 
 <script>
 import PropertyService from '../services/PropertyService'
+import RequestRental from './RequestRental.vue'
 export default {
+  components: { RequestRental },
     name: "property-details",
     methods: {},
     created(){

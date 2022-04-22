@@ -53,16 +53,9 @@ public class JdbcNotificationDao implements NotificationDao{
     public void createRentalApplication(Notification notification, int id) {
         String sql = "INSERT INTO notification \n" +
                 "(user_id, message, read)\n" +
-                "VALUES (?, ?, FALSE);";
-        jdbcTemplate.update(sql,getLandlordId(id),notification.getMessage());
+                "VALUES ((SELECT landlord FROM ownership WHERE property_id = ?), ?, FALSE);";
+        jdbcTemplate.update(sql,id,notification.getMessage());
         return;
-    }
-
-    private int getLandlordId(int id){
-        String sql = "\"SELECT ownership_id FROM ownership WHERE landlord = (SELECT user_id FROM ownership" +
-                "WHERE property_id = ?";
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
-        return result.getInt("property_id");
     }
 
     @Override
