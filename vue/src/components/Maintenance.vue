@@ -5,9 +5,9 @@
     </h1>
     <div id="this-contains-the-entire-page-and-all-contents" class="tile is-ancestor">
         <div id="this-contains-all-tiles" class="tile is-12">
-            <div id="this-contains-all-tiles-and-makes-tiles-stack-vertically" class="tile is-parent is-vertical">
-                <div id="this-is-a-single-tile" class="tile is-12 is-child box">
-                    <div id="this-makes-all-content-within-the-tile-stack-vertically" >
+            <div id="this-contains-all-tiles-and-makes-tiles-stack-vertically" class="tile is-parent is-12 is-vertical">
+                <div id="this-is-a-single-tile" class="tile box">
+               
                         
                         <div id="tileID" class="tile is-vertical box" v-for="maint in this.$store.state.maintenance" v-bind:key="maint.maintenanceId">
                           <label for="maintenance-status">
@@ -16,7 +16,7 @@
                           <router-link :to="{name: 'maintenance', params: {id: maint.maintenanceId}}"><p>Date Submitted: {{maint.dateSubmitted}}</p>
                           </router-link>
                         
-                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -50,4 +50,9 @@ export default {
 </script>
 
 <style>
+
+#tileID {
+  display:flex;
+  flex-wrap:wrap;
+}
 </style>
