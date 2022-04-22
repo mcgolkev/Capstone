@@ -25,7 +25,7 @@
         <img src='../AboutUsPictures/Kevin.jpg' />
         </div><div id="Yehudis" class="tile is-child box">
       <p><b>Yehudis Sebbag</b></p>
-      <p>Software inspires my compassion. The only limits are those that we give to it. I thrive in the world of details that software provides in an abundance. </p>
+      <p>"Software inspires my compassion. The only limits are those that we give to it. I thrive in the world of details that software provides in an abundance." </p>
                     <br>
 
         <img src='../AboutUsPictures/Yehudis.jpeg' />
