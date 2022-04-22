@@ -1,10 +1,11 @@
 <template>
-   <div class="tile is-parent is-8">
+   <div id="this-not-bunches" class="tile is-parent is-8">
     <div id="this-is-bunches" class="tile is-vertical box">
-        <p>Request Rental Form - User ID: {{this.$store.state.user.id}}</p>
+        <p><b>Request Rental Form</b>
+            <!-- User ID: {{this.$store.state.user.id}}  -->     </p>
   <form v-on:submit.prevent>
     <div class="field">
-      <label for="message">Please enter the property id and your user id</label>
+      <label for="message">To rent this property, please enter the property id and your user id -</label>
       <input type="text" v-model="notification.message" /><br/>
     </div>
     <div class="actions">
@@ -41,6 +42,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 
 </style>

@@ -54,7 +54,7 @@
               </div>
             </div>
           </div>
-          <div id="this-is-a-single-tile" class="tile is-12 is-child box">
+          <div id="this-not-bunches" class="tile is-12 is-child box">
             <div
               id="this-makes-all-content-within-the-tile-stack-vertically"
               class="tile is-vertical"
@@ -63,14 +63,14 @@
                 Interested in this property? Please contact our sales team TODAY
                 at 867-5309, we are looking forward to serving you!
               </p>
-              <div
+              <!--<div
                 class="renter-view"
                 v-if="
                   this.$store.state.user.authorities[0].name === 'ROLE_RENTER'
                 "
-              >
+              > -->
                 <request-rental :id="this.$route.params.id" />
-              </div>
+              
             </div>
           </div>
         </div>
@@ -112,6 +112,11 @@ export default {
 #this-contains-all-tiles {
   margin: auto;
   text-align: center;
+}
+
+#this-makes-all-content-within-the-tile-stack-vertically {
+  display:flex;
+  align-items:center;
 }
 </style>
 
