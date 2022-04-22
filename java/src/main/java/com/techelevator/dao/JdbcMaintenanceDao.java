@@ -57,6 +57,26 @@ public class JdbcMaintenanceDao implements  MaintenanceDao {
     }
 
     @Override
+    public List<Maintenance> findIncompleteAndUnassignedMaintenance(String username) {
+        List<Maintenance> maintenance = new ArrayList<>();
+        String sql = "SELECT * " +
+                "FROM maintenance " +
+                "WHERE (complete IS null or complete = false) AND assigned = false " +
+                "AND (maint_staff_id IN (Select maint_staff_id " +
+                "FROM maint_staff " +
+                "WHERE staff_name = ?) or ownership_id IN (Select ownership_id " +
+                "From ownership " +
+                "WHERE landlord IN (SELECT user_id " +
+                "FROM users " +
+                "Where username = ?)))";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username, username);
+        while(results.next()){
+            Maintenance maintenance1 = mapRowToMaintenance(results);
+            maintenance.add(maintenance1);
+        }return maintenance;
+    }
+
+    @Override
     public List<Maintenance> findMaintenanceById(Long id) {
         List<Maintenance> maintenances = new ArrayList<>();
         String sql = "SELECT * FROM maintenance WHERE maintenance_id = ?;";

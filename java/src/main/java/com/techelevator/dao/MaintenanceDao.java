@@ -22,4 +22,6 @@ public interface MaintenanceDao {
     void addMaintenanceStaffToRequest(MaintenanceStaff maintenance, Long id);
 
     Apartment getAddressForMaint(Long id);
+
+    List<Maintenance> findIncompleteAndUnassignedMaintenance(String name);
 }

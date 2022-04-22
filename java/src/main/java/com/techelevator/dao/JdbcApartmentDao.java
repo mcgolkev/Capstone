@@ -87,16 +87,18 @@ public class JdbcApartmentDao implements ApartmentDao {
 
     @Override
     public void updatePropertyDetailsForRenter(Long id, User user) {
-        String sql = "UPDATE apartments SET available = null, available_for_rent = false " +
+        String sql2 = "UPDATE ownership SET renter = ? WHERE property_id = ?;";
+        jdbcTemplate.update(sql2, user.getId(), id);
+
+        String sql = "UPDATE apartments SET available_for_rent = false " +
                 "WHERE property_id = ?;";
         jdbcTemplate.update(sql, id);
 
-        String sql2 = "UPDATE ownership SET renter = ? WHERE property_id = ?";
-        jdbcTemplate.update(sql, user.getId(), id);
+
 
         String sql3 = "INSERT INTO account (ownership_id, balance_due, monthly_rent_amt, past_due) VALUES " +
-                "((SELECT ownership_id FROM ownership WHERE property_id = ?), 0, (SELECT price FROM apartments WHERE property_id = ?), false)";
-        jdbcTemplate.update(sql, id, id);
+                "((SELECT ownership_id FROM ownership WHERE property_id = ?), 0, (SELECT price FROM apartments WHERE property_id = ?), false);";
+        jdbcTemplate.update(sql3, id, id);
     }
 
     //for landlord - make sure when adding property to inserty new connection in ownership table

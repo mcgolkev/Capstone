@@ -38,6 +38,11 @@ public class MaintenanceController {
     public List<Maintenance> findIncompleteMaintenanceRequests(Principal principal){
         return maintenanceDao.findIncompleteMaintenance(principal.getName());}
 
+    @GetMapping(path = "/maintenance/incomplete/unassigned")
+    public List<Maintenance> findIncompleteAndUnassignedMaintenance(Principal principal){
+        return maintenanceDao.findIncompleteAndUnassignedMaintenance(principal.getName());}
+
+
     @RequestMapping(path = "/maintenance/{id}", method = RequestMethod.PUT)
     public void updateMaintenanceRequest (@RequestBody Maintenance maintenance, @PathVariable long id){
         maintenanceDao.updateMaintenanceStatus(maintenance, id);}

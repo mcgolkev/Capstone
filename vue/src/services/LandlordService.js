@@ -9,6 +9,10 @@ export default {
         return axios.get('/maintenance/incomplete');
       },
 
+      getMaintenanceUnassigned(){
+        return axios.get('/maintenance/incomplete/unassigned');
+      },
+
     getRentInfo(id){
         return axios.get(`/rent/${id}`)
     },

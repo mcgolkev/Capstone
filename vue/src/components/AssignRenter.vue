@@ -4,7 +4,7 @@
       ><br /><br /><b>Assign property:</b><br />
       Enter renter's user ID:
     </label>
-    <input type="text" name="rentee" id="rentee" v-model="user.userId" />
+    <input type="text" name="rentee" id="rentee" v-model="user.id" />
     <div class="actions">
       <button
         type="submit"
@@ -27,7 +27,7 @@ export default {
   data(){
     return {
       user: {
-        userId: ""
+        id: ""
       }
     }
   },

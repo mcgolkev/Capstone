@@ -88,6 +88,7 @@
               v-for="maint in this.$store.state.maintenance"
               v-bind:key="maint.maintenanceId"
             >
+            <p>Maintenance ID: {{maint.maintenanceId}}</p>
               <p>Date: {{ maint.dateSubmitted }}</p>
               <p>Description: {{ maint.description }}</p>
               <div id="inline">
@@ -160,7 +161,7 @@ export default {
         }
       });
 
-    LandlordService.getMaintenance()
+    LandlordService.getMaintenanceUnassigned()
       .then((response) => {
         this.$store.commit("SET_MAINTENANCE", response.data);
       })
